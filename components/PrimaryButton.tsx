@@ -1,7 +1,7 @@
-export default function PrimaryButton({message}: {message: string}) {
+export default function PrimaryButton({ message }: { message: string }) {
   return (
     <button
-      className="bg-[#6c47ff] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
+      className="bg-white/10 hover:bg-white/15 border border-white/10 hover:border-white/20 text-white font-semibold text-sm h-10 px-6 rounded-full cursor-pointer transition-all duration-200 backdrop-blur-sm">
       {message}
     </button>
   );
