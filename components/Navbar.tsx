@@ -1,6 +1,7 @@
 import { ClerkProvider, SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 import PrimaryButton from "@/components/PrimaryButton";
 import SecondaryButton from "@/components/SecondaryButton";
+import Link from "next/link";
 
 export default function Navbar() {
   return (
@@ -9,7 +10,9 @@ export default function Navbar() {
 
         {/* Brand */}
         <div className="flex items-center">
-          <span className="text-white font-bold text-base tracking-tight">Gagamba</span>
+          <Link href="/">
+            <span className="text-white font-bold text-base tracking-tight cursor-pointer">Gagamba</span>
+          </Link>
         </div>
 
         {/* Auth */}
