@@ -7,7 +7,7 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, Geist_Mono, Syne, DM_Sans, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 import Navbar from "@/components/Navbar";
 
@@ -21,6 +21,21 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
+const syne = Syne({
+  weight: ['400','600','700'],
+  variable: '--font-header',
+})
+
+const dmSans = DM_Sans({
+  weight: ['400', '500'],
+  variable: '--font-body',
+})
+
+const spaceGrotesk = Space_Grotesk({
+  weight: ['400', '500', '600'],
+  variable: '--font-techy',
+})
+
 export const metadata: Metadata = {
   title: 'Gagamba',
   description: "Las Vegas' modern solution to graffiti cleaning",
@@ -32,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${syne.variable} ${dmSans.variable} ${spaceGrotesk.variable}`}>
       <body>
         <Navbar/>
         {children}
