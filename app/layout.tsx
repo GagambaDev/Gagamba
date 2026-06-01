@@ -1,24 +1,22 @@
 import type { Metadata } from 'next'
-import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from '@clerk/nextjs'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { ClerkProvider } from '@clerk/nextjs'
+import { Syne, DM_Sans, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 import Navbar from "@/components/Navbar";
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+const syne = Syne({
+  weight: ['400','600','700'],
+  variable: '--font-header',
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const dmSans = DM_Sans({
+  weight: ['400', '500'],
+  variable: '--font-body',
+})
+
+const spaceGrotesk = Space_Grotesk({
+  weight: ['400', '500', '600'],
+  variable: '--font-techy',
 })
 
 export const metadata: Metadata = {
@@ -32,11 +30,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <Navbar/>
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className={`${syne.variable} ${dmSans.variable} ${spaceGrotesk.variable}`}>
+        <body>
+          <Navbar/>
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
