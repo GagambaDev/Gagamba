@@ -1,4 +1,7 @@
 import type { CSSProperties } from 'react';
+import { Space_Grotesk } from 'next/font/google';
+
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
 export type DronePart = {
   id: string;
@@ -41,7 +44,7 @@ export default function PartDescription({ part }: PartDescriptionProps) {
     >
       <h3 className="text-xl font-bold leading-tight text-white">{part.title}</h3>
       <div className="mt-3 h-[2px] w-16 bg-blue-500" />
-      <p className="mt-4 text-sm leading-relaxed text-gray-300">
+      <p className={`${spaceGrotesk.className} mt-4 text-sm leading-relaxed text-gray-300`}>
         {part.description}
       </p>
     </div>

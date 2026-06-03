@@ -36,7 +36,6 @@ const DRONE_PARTS: DronePart[] = [
     // other component details go here
 ]
 
-
 export default function DroneDiagram() {
     return (
         <section className="relative bg-[#04060f] text-white overflow-hidden py-32 px-6">
