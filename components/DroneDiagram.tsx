@@ -1,6 +1,7 @@
 'use client';
 import { Prata } from 'next/font/google';
 import Image from 'next/image';
+import PlusPin from './PlusPin';
 
 const Drone_Parts = [
     {
@@ -27,10 +28,6 @@ const Drone_Parts = [
         top: '78%', // % from top of image
         left: '62%', // % from left of image
     }
-    // {
-    //     id: 'camera'
-    // }
-
     // other component details go here
 ]
 
@@ -75,16 +72,18 @@ export default function DroneDiagram() {
 
                 <div className="w-16 h-[2px] bg-blue-500 mb-16" />
 
+								{/* Drone Specs Popup Buttons */}
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {Drone_Parts.map((part) => (
-                        <div
-                            key={part.id}
-                            className="absolute w-8 h-8 rounded-full border-2 border-white text-white font-bold flex items-center justify-center"
-                            style={{top: part.top, left: part.left}}
-                        >
-                        +
-                        </div>
-                    ))}
+                  {Drone_Parts.map((part) => (
+                    <button
+                    	key={part.id}
+                      className="absolute flex items-center justify-center"
+                      style={{top: part.top, left: part.left}}
+											onClick={() => console.log("component clicked")}
+                    >
+                    <PlusPin />
+                    </button>
+                  ))}
                 </div>
 
                 <div className="border border-white inline-block">
