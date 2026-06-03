@@ -8,7 +8,7 @@ import PageTitle from "./PageTitle";
 import Subtitle from "./Subtitle";
 import AboutUs from "./AboutUs";
 import MeetTheTeam from "./MeetTheTeam";
-import DroneDiagram from "./DroneDiagram"
+import DroneDiagram from "./drone/DroneDiagram";
 
 export default function Hero() {
   return (
