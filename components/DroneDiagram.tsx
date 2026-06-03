@@ -1,4 +1,5 @@
 'use client';
+import { Prata } from 'next/font/google';
 import Image from 'next/image';
 
 const Drone_Parts = [
@@ -6,13 +7,29 @@ const Drone_Parts = [
         id:'propellors',
         title: 'Propellors',
         description: 'something about the propellors',
-        top: '30%', // % from top of image
-        left: '20%', // % from left of image
+        top: '35%', // % from top of image
+        left: '15%', // % from left of image
     },
     {
         // same layout here
-        id:'Another One'
+        id:'battery',
+        top: '35%', // % from top of image
+        left: '62%', // % from left of image
+
+    },
+    {
+        id: 'water-tank',
+        top: '78%', // % from top of image
+        left: '15%', // % from left of image
+    },
+    {
+        id: 'pressure-nozzle',
+        top: '78%', // % from top of image
+        left: '62%', // % from left of image
     }
+    // {
+    //     id: 'camera'
+    // }
 
     // other component details go here
 ]
@@ -59,12 +76,13 @@ export default function DroneDiagram() {
                 <div className="w-16 h-[2px] bg-blue-500 mb-16" />
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {Drone_Parts.map((key) => (
+                    {Drone_Parts.map((part) => (
                         <div
-                            key={key.id}
-                            className="group relative rounded-2xl p-6 border border-white/[0.07] bg-white/[0.03] hover:bg-white/[0.06] hover:border-blue-500/40 transition-all duration-300"
+                            key={part.id}
+                            className="absolute w-8 h-8 rounded-full border-2 border-white text-white font-bold flex items-center justify-center"
+                            style={{top: part.top, left: part.left}}
                         >
-                        {key.id}
+                        +
                         </div>
                     ))}
                 </div>
