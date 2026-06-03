@@ -7,11 +7,9 @@ export default function PlusPin(){
 					strokeWidth="1.5"
 					className="transition-all duration-200 group-hover:fill-white/[0.10] group-hover:stroke-white/[0.2]"
 				/>
-
 				<circle cx="28" cy="28" r="4" fill="white"
 					className="transition-all duration-200 group-hover:opacity-0"
 				/>
-
         <line x1="28" y1="16" x2="28" y2="40" stroke="white" strokeWidth="3" strokeLinecap="round"
 					className="transition-all duration-200 origin-center scale-y-0 group-hover:scale-y-100"
 				/>
