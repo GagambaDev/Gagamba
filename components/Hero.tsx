@@ -8,6 +8,7 @@ import PageTitle from "./PageTitle";
 import Subtitle from "./Subtitle";
 import AboutUs from "./AboutUs";
 import MeetTheTeam from "./MeetTheTeam";
+import DroneDiagram from "./DroneDiagram"
 
 export default function Hero() {
   return (
@@ -51,6 +52,7 @@ export default function Hero() {
       </section>
 
       <AboutUs />
+      <DroneDiagram />
       <MeetTheTeam />
     </>
   );
