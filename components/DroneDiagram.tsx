@@ -62,16 +62,16 @@ export default function DroneDiagram() {
             <div className="relative z-10 max-w-6xl mx-auto">
 
                 <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
-                    The Drone Stuff
+                    The Drone 
                 </p>
 
                 <h2 className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6">
-                    Meet Charlotte The{" "}
+                    Meet {" "}
                     <span
                         className="text-transparent bg-clip-text"
                         style={{ backgroundImage: "linear-gradient(90deg, #4f8eff 0%, #a5c0ff 100%)" }}
                     >
-                        Spider Drone
+                        Gagamba
                     </span>
                 </h2>
 
