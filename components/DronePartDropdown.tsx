@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import PartDescription, { type DronePart } from './PartDescription';
 import PlusPin from './PlusPin';
 
@@ -12,9 +12,8 @@ const canHover = () =>
   typeof window !== 'undefined' &&
   window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-const isMobilePointer = () =>
-  typeof window !== 'undefined' &&
-  window.matchMedia('(hover: none), (pointer: coarse)').matches;
+const isTouchPointer = (event: PointerEvent | ReactPointerEvent) =>
+  event.pointerType !== 'mouse';
 
 export default function DronePartDropdown({ parts }: DronePartDropdownProps) {
   const [hoveredPartId, setHoveredPartId] = useState<string | null>(null);
@@ -32,11 +31,7 @@ export default function DronePartDropdown({ parts }: DronePartDropdownProps) {
     setHoveredPartId(partId);
   };
 
-  const toggleOnMobile = (partId: string) => {
-    if (!isMobilePointer()) {
-      return;
-    }
-
+  const toggleSelection = (partId: string) => {
     setHoveredPartId(null);
     setSelectedPartId((currentPartId) =>
       currentPartId === partId ? null : partId
@@ -49,7 +44,7 @@ export default function DronePartDropdown({ parts }: DronePartDropdownProps) {
     }
 
     const clearSelectionOnOutsideTap = (event: PointerEvent) => {
-      if (!isMobilePointer()) {
+      if (!isTouchPointer(event)) {
         return;
       }
 
@@ -85,17 +80,18 @@ export default function DronePartDropdown({ parts }: DronePartDropdownProps) {
           }}
           onMouseEnter={() => showOnHover(part.id)}
           onMouseLeave={() => setHoveredPartId(null)}
-          onMouseDown={(event) => {
+          onPointerDown={(event) => {
             if (canHover()) {
               event.preventDefault();
+              return;
             }
-          }}
-          onFocus={() => setHoveredPartId(part.id)}
-          onBlur={() => setHoveredPartId(null)}
-          onClick={(event) => {
+
             event.stopPropagation();
-            toggleOnMobile(part.id);
+            toggleSelection(part.id);
           }}
+          onFocus={() => showOnHover(part.id)}
+          onBlur={() => setHoveredPartId(null)}
+          onClick={(event) => event.stopPropagation()}
         >
           <PlusPin active={selectedPartId === part.id} />
         </button>
