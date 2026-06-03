@@ -1,32 +1,37 @@
-'use client';
-import { Prata } from 'next/font/google';
 import Image from 'next/image';
-import PlusPin from './PlusPin';
+import DronePartDropdown from './DronePartDropdown';
+import { type DronePart } from './PartDescription';
 
-const Drone_Parts = [
+const DRONE_PARTS: DronePart[] = [
     {
         id:'propellors',
         title: 'Propellors',
-        description: 'something about the propellors',
-        top: '35%', // % from top of image
-        left: '15%', // % from left of image
+        description: 'High-efficiency rotors.',
+        down: '20.2%', // % down from top edge of image
+        right: '19.1%', // % right from left edge of image
     },
     {
         // same layout here
         id:'battery',
-        top: '35%', // % from top of image
-        left: '62%', // % from left of image
+        title: 'Battery',
+        description: 'High efficiency and long lasting.',
+        down: '14.6%', // % down from top edge of image
+        right: '72.6%', // % right from left edge of image
 
     },
     {
         id: 'water-tank',
-        top: '78%', // % from top of image
-        left: '15%', // % from left of image
+        title: 'Water Tank',
+        description: 'Carry up to 5 gallons of cleaning solution.',
+        down: '73%', // % down from top edge of image
+        right: '20.3%', // % right from left edge of image
     },
     {
         id: 'pressure-nozzle',
-        top: '78%', // % from top of image
-        left: '62%', // % from left of image
+        title: 'Pressure Nozzle',
+        description: 'Low flow nozzle for efficient water usage.',
+        down: '77.4%', // % down from top edge of image
+        right: '72.7%', // % right from left edge of image
     }
     // other component details go here
 ]
@@ -72,28 +77,17 @@ export default function DroneDiagram() {
 
                 <div className="w-16 h-[2px] bg-blue-500 mb-16" />
 
-								{/* Drone Specs Popup Buttons */}
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {Drone_Parts.map((part) => (
-                    <button
-                    	key={part.id}
-                      className="absolute flex items-center justify-center"
-                      style={{top: part.top, left: part.left}}
-											onClick={() => console.log("component clicked")}
-                    >
-                    <PlusPin />
-                    </button>
-                  ))}
-                </div>
+                <div className="flex justify-center">
+                  <div className="relative inline-block max-w-full">
+                    <DronePartDropdown parts={DRONE_PARTS} />
 
-                <div className="border border-white inline-block">
-                  <Image
-                    src="/images/shapes.png"
-                    alt="Shapes"
-                    width={1000}
-                    height={500}
-                  />
-                  
+                    <Image
+                      src="/images/shapes.png"
+                      alt="Shapes"
+                      width={500}
+                      height={889}
+                    />
+                  </div>
                 </div>
 
             </div>
