@@ -34,12 +34,16 @@ export default function PartDescription({ part }: PartDescriptionProps) {
 
   return (
     <div
+      key={part.id}
       data-drone-dropdown
-      className="absolute z-30 border border-blue-400 bg-[#071024]/90 p-5 text-white shadow-xl backdrop-blur-sm"
+      className="absolute z-30 rounded-2xl border border-white/[0.07] bg-[#071024]/95 p-6 text-white shadow-xl backdrop-blur-md transition-all duration-300 hover:border-blue-500/40 hover:bg-[#071024]"
       style={cardStyle}
     >
-      <h3 className="text-2xl font-bold">{part.title}</h3>
-      <p className="mt-3 text-gray-300">{part.description}</p>
+      <h3 className="text-xl font-bold leading-tight text-white">{part.title}</h3>
+      <div className="mt-3 h-[2px] w-16 bg-blue-500" />
+      <p className="mt-4 text-sm leading-relaxed text-gray-300">
+        {part.description}
+      </p>
     </div>
   );
 }
