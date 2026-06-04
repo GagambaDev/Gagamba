@@ -31,7 +31,7 @@ export default function Hero() {
             />
           </div>
 
-          <EyebrowLabel message="Next Generation Drone Technology" />
+          {/* <EyebrowLabel message="Next Generation Drone Technology" /> */}
 
           <div className="mt-5">
             <PageTitle prefix="The" highlight="Gagamba" />
