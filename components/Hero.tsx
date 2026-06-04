@@ -34,15 +34,15 @@ export default function Hero() {
           {/* <EyebrowLabel message="Next Generation Drone Technology" /> */}
 
           <div className="mt-5">
-            <PageTitle prefix="The" highlight="Gagamba" />
+            <PageTitle prefix="" highlight="GAGAMBA" />
           </div>
 
           <div className="mt-4">
-            <Subtitle message="The drone redefining how buildings are maintained." />
+            <Subtitle message="No Crew. No Tether. No Compromise." />
           </div>
 
           <Link href="/contact" className="mt-7">
-            <PrimaryButton message="Get a Quote?" />
+            <PrimaryButton message="Get a Quote" />
           </Link>
         </div>
 
