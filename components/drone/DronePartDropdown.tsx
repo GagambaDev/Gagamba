@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import PartDescription, { type DronePart } from './PartDescription';
-import PlusPin from './PlusPin';
+import PlusPin, { outerRadius, pinSize } from './PlusPin';
 
 type DronePartDropdownProps = {
   parts: DronePart[];
@@ -72,12 +72,14 @@ export default function DronePartDropdown({ parts }: DronePartDropdownProps) {
           data-drone-dropdown
           aria-label={`Show ${part.title} details`}
           aria-pressed={activePartId === part.id}
-          className="absolute z-20 flex h-14 w-14 items-center justify-center rounded-full"
+          className="absolute z-20 flex items-center justify-center rounded-full"
           style={{
             top: part.down,
             left: part.right,
+            width: pinSize,
+            height: pinSize,
             transform: 'translate(-50%, -50%)',
-            clipPath: 'circle(26px at 50% 50%)',
+            clipPath: `circle(${outerRadius}px at 50% 50%)`,
           }}
           onMouseEnter={() => showOnHover(part.id)}
           onMouseLeave={() => setHoveredPartId(null)}
