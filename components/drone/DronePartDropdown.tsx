@@ -72,11 +72,12 @@ export default function DronePartDropdown({ parts }: DronePartDropdownProps) {
           data-drone-dropdown
           aria-label={`Show ${part.title} details`}
           aria-pressed={activePartId === part.id}
-          className="absolute z-20 flex items-center justify-center"
+          className="absolute z-20 flex h-14 w-14 items-center justify-center rounded-full"
           style={{
             top: part.down,
             left: part.right,
             transform: 'translate(-50%, -50%)',
+            clipPath: 'circle(26px at 50% 50%)',
           }}
           onMouseEnter={() => showOnHover(part.id)}
           onMouseLeave={() => setHoveredPartId(null)}
