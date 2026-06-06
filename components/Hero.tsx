@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import PrimaryButton from "./PrimaryButton";
-import EyebrowLabel from "./EyebrowLabel";
+// import EyebrowLabel from "./EyebrowLabel";
 import PageTitle from "./PageTitle";
 import Subtitle from "./Subtitle";
 import AboutUs from "./AboutUs";
@@ -17,6 +17,17 @@ export default function Hero() {
         {/* Single unified glow — left-offset, bleeds into black */}
         <div className="absolute inset-0 pointer-events-none"
           style={{ background: "radial-gradient(ellipse 75% 65% at 20% 35%, rgba(22,65,185,0.9) 0%, rgba(12,35,110,0.4) 45%, transparent 70%)" }} />
+
+        {/* Grid overlay: Adjust opacity and backgroundSize to tune grid visibility and density  */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(0,170,255,0.25) 1px, transparent 1px), \
+              linear-gradient(90deg, rgba(0,170,255,0.25) 1px, transparent 1px)",
+            backgroundSize: "64px 64px"
+          }}
+        />
 
         <div className="relative z-10 max-w-3xl flex flex-col items-center">
 
