@@ -18,14 +18,16 @@ export default function Hero() {
         <div className="absolute inset-0 pointer-events-none"
           style={{ background: "radial-gradient(ellipse 75% 65% at 20% 35%, rgba(22,65,185,0.9) 0%, rgba(12,35,110,0.4) 45%, transparent 70%)" }} />
 
-        {/* Grid overlay: Adjust opacity and backgroundSize to tune grid visibility and density  */}
+        {/* Grid overlay: Adjust opacity and backgroundSize to tune grid visibility and density */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(0,170,255,0.25) 1px, transparent 1px), \
+              "radial-gradient(circle, rgb(0,170,255,1) 1.5px, transparent 1.5px), \
+              linear-gradient(rgba(0,170,255,0.25) 1px, transparent 1px), \
               linear-gradient(90deg, rgba(0,170,255,0.25) 1px, transparent 1px)",
-            backgroundSize: "64px 64px"
+            backgroundSize: "64px 64px",
+            backgroundPosition: "-32px -32px, 0 0, 0 0",
           }}
         />
 
