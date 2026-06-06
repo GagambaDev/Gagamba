@@ -12,7 +12,7 @@ import MeetTheTeam from "./MeetTheTeam";
 export default function Hero() {
   return (
     <>
-      <section className="flex min-h-screen flex-col items-center justify-center bg-[#04060f] text-white text-center px-4 relative overflow-hidden">
+      <section className="flex min-h-screen flex-col items-center justify-center bg-[var(--color-ink-black)] text-white text-center px-4 relative overflow-hidden">
 
         {/* Single unified glow — left-offset, bleeds into black */}
         <div className="absolute inset-0 pointer-events-none"
@@ -60,7 +60,7 @@ export default function Hero() {
         </div>
 
         {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#050810] to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--color-ink-black)] to-transparent pointer-events-none" />
       </section>
 
       <AboutUs />
