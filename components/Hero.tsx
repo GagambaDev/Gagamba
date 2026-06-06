@@ -12,9 +12,9 @@ import MeetTheTeam from "./MeetTheTeam";
 export default function Hero() {
   return (
     <>
-      <section className="flex min-h-screen flex-col items-center justify-center bg-[var(--color-ink-black)] text-white text-center px-4 relative overflow-hidden">
+      <section className="flex min-h-screen flex-col items-center justify-center bg-background text-white text-center px-4 relative overflow-hidden">
 
-        {/* Single unified glow — left-offset, bleeds into black */}
+        {/* Single unified glow — center, bleeds into black */}
         <div className="absolute inset-0 pointer-events-none"
           style={{ background: "radial-gradient(ellipse 75% 65% at 48% 54%, rgba(22,65,185,0.9) 0%, rgba(12,35,110,0.4) 45%, transparent 70%)" }} />
 
@@ -51,7 +51,7 @@ export default function Hero() {
           </div>
 
           <div className="mt-4">
-            <Subtitle message="No Crew. No Tether. No Compromise." />
+            <Subtitle normal="No Crew. No Tether." highlight="No Compromise." />
           </div>
 
           <Link href="/contact" className="mt-7">
