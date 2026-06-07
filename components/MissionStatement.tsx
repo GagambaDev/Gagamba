@@ -38,7 +38,15 @@ export default function MissionStatement() {
                 <div className="grid md:grid-cols-2 gap-12 items-start">
                     <div className="space-y-5 text-gray-300 text-lg leading-relaxed">
                         <p>
-                            mission statement here:
+                            At Gagamba, we dedicate ourselves to a mission of safety, sustainability, and innovation as we redefine the standards of high-rise window cleaning.
+
+                            By deploying advanced drone technology, we eliminate the need for traditional at-height crews, ensuring that human lives are never put at risk on 
+                            dangerous high-rise structures. 
+                            
+                            Our OSHA-certified engineers utilize eco-friendly designs to minimize our environmental impact, while our AI-powered software calculates optimal 
+                            cleaning patterns, maximizing efficiency and conserving up to 29 times more water than legacy methods.
+
+                            We aren't just cleaning windows; we are engineering a safer, greener, and more efficient future for high-rise property maintenance.
                         </p>
                     </div>
                 </div>
