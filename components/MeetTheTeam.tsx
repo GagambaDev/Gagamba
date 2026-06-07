@@ -1,53 +1,63 @@
 "use client";
 
+import memberimg from '@/public/images/logo.png'
+
 const team = [
     {
         name: "Vaughn Guintu",
         role: "Mechanical Engineering",
         bio: "Leads the physical design and build of the Gagamba drone. Focused on making sure the hardware is sturdy, precise, and flight-ready.",
         initials: "VG",
+        img: <img src={memberimg.src} alt="member photo"></img>,
     },
     {
         name: "Richies Huynh",
         role: "Computer Science",
         bio: "Works on the software side of the drone. Helps connect the different systems together and keeps the codebase running smoothly.",
         initials: "RH",
+        img: <img src={memberimg.src} alt="member photo"></img>,
     },
     {
         name: "Aarash Gohari",
         role: "Computer Science",
         bio: "One of the hands-on builders of the drone's software. Helped develop and put together the codebase that powers how the drone thinks and operates.",
         initials: "AG",
+        img: <img src={memberimg.src} alt="member photo"></img>,
     },
     {
         name: "Nathaniel Ordonio",
         role: "Civil Engineering",
         bio: "Brings a structural perspective to the project. Helps the team understand how the drone will interact with real buildings and surfaces.",
         initials: "NO",
+        img: <img src={memberimg.src} alt="member photo"></img>,
     },
     {
         name: "Tony Tonoyan",
         role: "Computer Science",
         bio: "Contributes to the software and embedded systems work. Helps bridge the gap between code and the physical hardware on the drone.",
         initials: "TT",
+        img: <img src={memberimg.src} alt="member photo"></img>,
     },
     {
         name: "Maddox Dolor",
         role: "Civil Engineering",
         bio: "Focused on how the drone applies to real-world infrastructure. Thinks about deployment from a practical, on-the-ground perspective.",
         initials: "MD",
+        img: <img src={memberimg.src} alt="member photo"></img>,
     },
     {
         name: "Khristian Ordonio",
         role: "Political Science",
         bio: "Handles the regulatory and policy side of the project. Researches the legal landscape around drone usage and helps navigate compliance requirements.",
         initials: "KO",
+        img: <img src={memberimg.src} alt="member photo"></img>,
     },
     {
         name: "Tony Ferrar",
         role: "Mentor",
         bio: "Mathematics professor specializing in aerospace. Brings deep technical expertise to the team, guiding the math and physics behind the drone's flight and control systems.",
         initials: "TF",
+        img: <img src={memberimg.src} alt="member photo"></img>,
     },
 ];
 
@@ -97,7 +107,12 @@ export default function MeetTheTeam() {
                             key={member.name}
                             className="group relative rounded-2xl p-6 border border-white/[0.07] bg-white/[0.03] hover:bg-white/[0.06] hover:border-blue-500/40 transition-all duration-300"
                         >
+                            <div 
+                            >
+                                {member.img}
+                            </div>
                             <div
+                                
                                 className="w-16 h-16 rounded-full flex items-center justify-center text-lg font-bold mb-5 border border-blue-500/30 group-hover:border-blue-400/60 transition-colors duration-300"
                                 style={{
                                     background:
