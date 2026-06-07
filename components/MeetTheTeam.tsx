@@ -1,13 +1,13 @@
 "use client";
 
-import memberimg1 from '@/public/images/Vaughn Guintu.png'
-import memberimg2 from '@/public/images/Richies Huynh.png'
-import memberimg3 from '@/public/images/Aarash Gohari.png'
-import memberimg4 from '@/public/images/Nathaniel Ordonio.png'
-import memberimg5 from '@/public/images/Narek Tonoyan.png'
-import memberimg6 from '@/public/images/Maddox Dolor.png'
-import memberimg7 from '@/public/images/Khristian Ordonio.png'
-import memberimg8 from '@/public/images/Tony Ferrar.png'
+import memberimg1 from '@/public/images/headshots/Vaughn Guintu.png'
+import memberimg2 from '@/public/images/headshots/Richies Huynh.png'
+import memberimg3 from '@/public/images/headshots/Aarash Gohari.png'
+import memberimg4 from '@/public/images/headshots/Nathaniel Ordonio.png'
+import memberimg5 from '@/public/images/headshots/Narek Tonoyan.png'
+import memberimg6 from '@/public/images/headshots/Maddox Dolor.png'
+import memberimg7 from '@/public/images/headshots/Khristian Ordonio.png'
+import memberimg8 from '@/public/images/headshots/Tony Ferrar.png'
 
 const team = [
     {
@@ -15,56 +15,56 @@ const team = [
         role: "Mechanical Engineering",
         bio: "Leads the physical design and build of the Gagamba drone. Focused on making sure the hardware is sturdy, precise, and flight-ready.",
         initials: "VG",
-        img: <img src={memberimg1.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)'}}></img>
+        img: <img src={memberimg1.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)' }}></img>
     },
     {
         name: "Richies Huynh",
         role: "Computer Science",
         bio: "Works on the software side of the drone. Helps connect the different systems together and keeps the codebase running smoothly.",
         initials: "RH",
-        img: <img src={memberimg2.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)'}}></img>,
+        img: <img src={memberimg2.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)' }}></img>,
     },
     {
         name: "Aarash Gohari",
         role: "Computer Science",
         bio: "One of the hands-on builders of the drone's software. Helped develop and put together the codebase that powers how the drone thinks and operates.",
         initials: "AG",
-        img: <img src={memberimg3.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)'}}></img>,
+        img: <img src={memberimg3.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)' }}></img>,
     },
     {
         name: "Nathaniel Ordonio",
         role: "Civil Engineering",
         bio: "Brings a structural perspective to the project. Helps the team understand how the drone will interact with real buildings and surfaces.",
         initials: "NO",
-        img: <img src={memberimg4.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)'}}></img>,
+        img: <img src={memberimg4.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)' }}></img>,
     },
     {
         name: "Tony Tonoyan",
         role: "Computer Science",
         bio: "Contributes to the software and embedded systems work. Helps bridge the gap between code and the physical hardware on the drone.",
         initials: "TT",
-        img: <img src={memberimg5.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)'}}></img>,
+        img: <img src={memberimg5.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)' }}></img>,
     },
     {
         name: "Maddox Dolor",
         role: "Civil Engineering",
         bio: "Focused on how the drone applies to real-world infrastructure. Thinks about deployment from a practical, on-the-ground perspective.",
         initials: "MD",
-        img: <img src={memberimg6.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)'}}></img>,
+        img: <img src={memberimg6.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)' }}></img>,
     },
     {
         name: "Khristian Ordonio",
         role: "Political Science",
         bio: "Handles the regulatory and policy side of the project. Researches the legal landscape around drone usage and helps navigate compliance requirements.",
         initials: "KO",
-        img: <img src={memberimg7.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)'}}></img>,
+        img: <img src={memberimg7.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)' }}></img>,
     },
     {
         name: "Tony Ferrar",
         role: "Mentor",
         bio: "Mathematics professor specializing in aerospace. Brings deep technical expertise to the team, guiding the math and physics behind the drone's flight and control systems.",
         initials: "TF",
-        img: <img src={memberimg8.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)'}}></img>,
+        img: <img src={memberimg8.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)' }}></img>,
     },
 ];
 
@@ -120,7 +120,7 @@ export default function MeetTheTeam() {
                             </div>
                             <br></br>
                             <div
-                                
+
                                 className="w-16 h-16 rounded-full flex items-center justify-center text-lg font-bold mb-5 border border-blue-500/30 group-hover:border-blue-400/60 transition-colors duration-300"
                                 style={{
                                     background:

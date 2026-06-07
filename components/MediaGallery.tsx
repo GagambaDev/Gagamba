@@ -1,7 +1,7 @@
 "use client";
 
-import img1 from '@/public/images/PresInovChal.jpg'
-import img2 from '@/public/images/PresInovChal.jpg'
+import img1 from '@/public/images/company_events/PresInovChal.jpg'
+import img2 from '@/public/images/company_events/PresInovChal.jpg'
 
 export default function MediaGallery() {
     return (
