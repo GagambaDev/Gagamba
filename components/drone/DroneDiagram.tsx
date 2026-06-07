@@ -11,29 +11,27 @@ const DRONE_PARTS: DronePart[] = [
     right: '19.1%', // % right from left edge of image
   },
   {
-    // same layout here
     id:'battery',
     title: 'Battery',
     description: 'High efficiency and long lasting.',
-    down: '14.6%', // % down from top edge of image
-    right: '72.6%', // % right from left edge of image
+    down: '14.6%',
+    right: '72.6%',
 
   },
   {
     id: 'water-tank',
     title: 'Water Tank',
     description: 'Carry up to 5 gallons of cleaning solution.',
-    down: '73%', // % down from top edge of image
-    right: '20.3%', // % right from left edge of image
+    down: '73%',
+    right: '20.3%',
   },
   {
     id: 'pressure-nozzle',
     title: 'Pressure Nozzle',
     description: 'Low flow nozzle for efficient water usage.',
-    down: '77.4%', // % down from top edge of image
-    right: '72.7%', // % right from left edge of image
+    down: '77.4%',
+    right: '72.7%',
   }
-  // other component details go here
 ]
 
 export default function DroneDiagram() {
@@ -84,7 +82,7 @@ export default function DroneDiagram() {
               src="/images/shapes.png"
               alt="Shapes"
               width={500}
-              height={889}
+              height={500}
             />
           </div>
         </div>
