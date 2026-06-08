@@ -81,7 +81,7 @@ export default function DroneDiagram() {
             <Image
               src="/images/dronerender.png"
               alt="Shapes"
-              width={500}
+              width={1000}
               height={1000}
             />
           </div>
