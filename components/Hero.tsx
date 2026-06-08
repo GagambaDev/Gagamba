@@ -8,8 +8,6 @@ import PageTitle from "./PageTitle";
 import Subtitle from "./Subtitle";
 import AboutUs from "./AboutUs";
 import MeetTheTeam from "./MeetTheTeam";
-import MediaGallery from "./MediaGallery";
-import MissionStatement from "./MissionStatement";
 
 export default function Hero() {
   return (
@@ -52,11 +50,9 @@ export default function Hero() {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#050810] to-transparent pointer-events-none" />
       </section>
 
-      <MissionStatement />
       <AboutUs />
       
       <MeetTheTeam />
-      <MediaGallery />
     </>
   );
 }
