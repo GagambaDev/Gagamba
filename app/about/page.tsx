@@ -1,11 +1,13 @@
 "use client";
 
+// Figure out what to do with the next two lines
 import Image from "next/image";
 import Link from "next/link";
-import PageTitle from "./PageTitle";
-import MeetTheTeam from "./MeetTheTeam";
-import MediaGallery from "./MediaGallery";
-import MissionStatement from "./MissionStatement";
+
+import PageTitle from "@/components/PageTitle";
+import MeetTheTeam from "@/components/MeetTheTeam";
+import MediaGallery from "@/components/MediaGallery";
+import MissionStatement from "@/components/MissionStatement";
 
 export default function About() {
   return (
