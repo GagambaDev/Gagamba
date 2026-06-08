@@ -75,14 +75,14 @@ export default function DroneDiagram() {
         <div className="w-16 h-[2px] bg-blue-500 mb-16" />
 
         <div className="flex justify-center">
-          <div className="relative inline-block max-w-full">
+          <div className="relative inline-block max-w-full border border-white">
             <DronePartDropdown parts={DRONE_PARTS} />
 
             <Image
-              src="/images/shapes.png"
+              src="/images/dronerender.png"
               alt="Shapes"
               width={500}
-              height={500}
+              height={1000}
             />
           </div>
         </div>

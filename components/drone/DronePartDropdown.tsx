@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, type PointerEvent as ReactPointerEvent } from 'react';
+import { useEffect, useState } from 'react';
 import PartDescription, { type DronePart } from './PartDescription';
 import PlusPin, { outerRadius, pinSize } from './PlusPin';
 
@@ -9,70 +9,37 @@ type DronePartDropdownProps = {
 };
 
 const canHover = () =>
-  typeof window !== 'undefined' &&
-  window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-const isTouchPointer = (event: PointerEvent | ReactPointerEvent) =>
-  event.pointerType !== 'mouse';
+  typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches;
 
 export default function DronePartDropdown({ parts }: DronePartDropdownProps) {
-  const [hoveredPartId, setHoveredPartId] = useState<string | null>(null);
-  const [selectedPartId, setSelectedPartId] = useState<string | null>(null);
+  const [activePartId, setActivePartId] = useState<string | null>(null);
 
-  const activePartId = selectedPartId ?? hoveredPartId;
   const activePart = parts.find((part) => part.id === activePartId) ?? null;
-
-  const showOnHover = (partId: string) => {
-    if (!canHover()) {
-      return;
-    }
-
-    setSelectedPartId(null);
-    setHoveredPartId(partId);
-  };
-
-  const toggleSelection = (partId: string) => {
-    setHoveredPartId(null);
-    setSelectedPartId((currentPartId) =>
+  const togglePart = (partId: string) => {
+    setActivePartId((currentPartId) =>
       currentPartId === partId ? null : partId
     );
   };
 
   useEffect(() => {
-    if (!selectedPartId) {
+    if (!activePartId) {
       return;
     }
 
-    const clearSelectionOnOutsideTap = (event: PointerEvent) => {
-      if (!isTouchPointer(event)) {
-        return;
-      }
+    const close = () => setActivePartId(null);
 
-      if (event.target instanceof Element && event.target.closest('[data-drone-dropdown]')) {
-        return;
-      }
+    document.addEventListener('click', close);
 
-      setSelectedPartId(null);
-      setHoveredPartId(null);
-    };
-
-    document.addEventListener('pointerdown', clearSelectionOnOutsideTap);
-
-    return () => {
-      document.removeEventListener('pointerdown', clearSelectionOnOutsideTap);
-    };
-  }, [selectedPartId]);
+    return () => document.removeEventListener('click', close);
+  }, [activePartId]);
 
   return (
     <div className="absolute inset-0 z-20">
       {parts.map((part) => (
         <button
           key={part.id}
-          type="button"
-          data-drone-dropdown
-          aria-label={`Show ${part.title} details`}
-          aria-pressed={activePartId === part.id}
           className="absolute z-20 flex items-center justify-center rounded-full"
+          // Controls where the pin appears
           style={{
             top: part.down,
             left: part.right,
@@ -81,26 +48,30 @@ export default function DronePartDropdown({ parts }: DronePartDropdownProps) {
             transform: 'translate(-50%, -50%)',
             clipPath: `circle(${outerRadius}px at 50% 50%)`,
           }}
-          onMouseEnter={() => showOnHover(part.id)}
-          onMouseLeave={() => setHoveredPartId(null)}
-          onPointerDown={(event) => {
+          // Display card when the user hovers over button
+          onMouseEnter={() => {
             if (canHover()) {
-              event.preventDefault();
-              return;
+              setActivePartId(part.id);
             }
-
-            event.stopPropagation();
-            toggleSelection(part.id);
           }}
-          onFocus={() => showOnHover(part.id)}
-          onBlur={() => setHoveredPartId(null)}
-          onClick={(event) => event.stopPropagation()}
+          onMouseLeave={() => {
+            if (canHover()) {
+              setActivePartId(null);
+            }
+          }}
+          // Mobile Support
+          onClick={(event) => {
+            event.stopPropagation();
+            togglePart(part.id);
+          }}
         >
-          <PlusPin active={selectedPartId === part.id} />
+          <PlusPin active={activePartId === part.id} />
         </button>
       ))}
 
-      <PartDescription part={activePart} />
+      <div onClick={(event) => event.stopPropagation()}>
+        <PartDescription part={activePart} />
+      </div>
     </div>
   );
 }

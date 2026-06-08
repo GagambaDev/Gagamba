@@ -13,6 +13,8 @@ const plusArmLength = 12;
 const ringFill = '#251414';
 const ringStroke = '#ffffff';
 const iconColor = '#ffffff';
+const fillOpacity = 0.3;
+const strokeOpacity = 0.2;
 
 export default function PlusPin({ active = false }: PlusPinProps){
   const plusStart = center - plusArmLength;
@@ -22,9 +24,9 @@ export default function PlusPin({ active = false }: PlusPinProps){
     <svg width={pinSize} height={pinSize} viewBox={`0 0 ${pinSize} ${pinSize}`} className="group cursor-pointer transition-all duration-200">
       <circle cx={center} cy={center} r={outerRadius}
         fill={ringFill}
-        fillOpacity="0.3"
+        fillOpacity={fillOpacity}
         stroke={ringStroke}
-        strokeOpacity="0.2"
+        strokeOpacity={strokeOpacity}
         strokeWidth={ringStrokeWidth}
         className={`transition-all duration-200 [@media(hover:hover)]:group-hover:fill-[#ffffff]/10 [@media(hover:hover)]:group-hover:stroke-[#ffffff]/20 ${active ? 'fill-[#ffffff]/10 stroke-[#ffffff]/20' : ''}`}
       />
