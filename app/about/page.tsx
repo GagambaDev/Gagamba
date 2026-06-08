@@ -1,11 +1,10 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import PageTitle from "./PageTitle";
-import MeetTheTeam from "./MeetTheTeam";
-import MediaGallery from "./MediaGallery";
-import MissionStatement from "./MissionStatement";
+
+import PageTitle from "@/components/PageTitle";
+import MeetTheTeam from "@/components/MissionStatement";
+import MediaGallery from "@/components/MediaGallery";
+import MissionStatement from "@/components/MeetTheTeam";
 
 export default function About() {
   return (
