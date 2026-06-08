@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+import Image, { StaticImageData } from "next/image";
+
 import img1 from '@/public/images/gallery/PresInovChal1.jpg'
 import img2 from '@/public/images/gallery/Photo1.png'
 import img3 from '@/public/images/gallery/PIC1.png'
@@ -13,7 +16,44 @@ import img10 from '@/public/images/gallery/Early3.png'
 import img11 from '@/public/images/gallery/Blackfire1.png'
 import img12 from '@/public/images/gallery/Blackfire2.png'
 
+interface StaticImageItem {
+  source: StaticImageData; 
+  alt: string;
+}
+
 export default function MediaGallery() {
+    const gallery: StaticImageItem[]=[
+        { source: img1, alt: "PIC" },
+        { source: img2, alt: "EarlyPhoto" },
+        { source: img3, alt: "PIC1" },
+        { source: img4, alt: "PIC2" },
+        { source: img5, alt: "PIC3" },
+        { source: img6, alt: "PIC4" },
+        { source: img7, alt: "PIC5" },
+        { source: img8, alt: "E1" },
+        { source: img9, alt: "E2" },
+        { source: img10, alt: "E3" },
+        { source: img11, alt: "Blackfire1" },
+        { source: img12, alt: "Blackfire2" },
+    ];
+    const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+    //logic to navigate to the previous image
+    const handlePrev = () => {
+        setCurrentIndex((prevIndex) =>
+            prevIndex === 0 ? gallery.length - 1 : prevIndex - 1
+        );
+    };
+
+    //logic to navigate to the next image
+    const handleNext = () => {
+        setCurrentIndex((prevIndex) =>
+        prevIndex === gallery.length - 1 ? 0 : prevIndex + 1
+        );
+    };
+
+    const currentImage = gallery[currentIndex];
+
     return (
         <section className="relative bg-[#04060f] text-white overflow-hidden py-32 px-6">
 
@@ -50,25 +90,64 @@ export default function MediaGallery() {
                         Gallery
                     </span>
                 </h2>
-                <div 
-                    style={{display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridGap: "16px", }}>
-                    
-                        <img src={img1.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
-                        <img src={img2.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
-                        <img src={img3.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
-                        <img src={img4.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
-                        <img src={img5.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
-                        <img src={img6.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
-                        <img src={img7.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
-                        <img src={img8.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
-                        <img src={img9.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
-                        <img src={img10.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
-                        <img src={img11.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
-                        <img src={img12.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
-                    
-                </div>
-                
             </div>
+            <div className="relative w-fit mx-auto">
+            <div className="flex flex-col items-center justify-center min-h-[400px] p-6">
+            <div className="relative w-800 h-96 md:h-[500px] border rounded-xl overflow-hidden shadow-lg bg-gray-900">            
+                
+                <Image
+                    src={currentImage.source}
+                    alt={currentImage.alt}
+                    className="object-contain rounded-xl"
+                    style={{ maxWidth: '800px', maxHeight: '550px', height: 'auto', display: 'block', margin: '0 auto', position: 'relative', zIndex: 0 }}
+                    key={currentIndex} // Forces smooth fade or reset on change
+                    
+                />
+                <div style={{position: 'absolute', bottom: '16px', right: '16px', left: 'auto',
+                    transform: 'none', backgroundColor: 'rgba(0, 0, 0, 0.6)', color: '#ffffff',
+                    padding: '4px 12px', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 500,
+                    zIndex: 20}}>            
+                    {currentIndex + 1} / {gallery.length}
+                </div>
+            </div> 
+            </div>
+            
+                <div className="flex justify-center items-center gap-6 mt-3 w-full hover:bg-black/95 hover:scale-105 hover:shadow-md active:scale-95">
+                    <button
+                        onClick={handlePrev}
+                        className="bg-black/70 text-white p-2 rounded-full flex items-center justify-center w-10 h-10 border-none cursor-pointer shadow-sm transition-all duration-200 hover:bg-black/95 hover:scale-105 hover:shadow-md active:scale-95"
+                        aria-label="Previous image"
+                    >
+                        <svg xmlns="http://w3.org" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                            <path fillRule="evenodd" d="M11.03 3.97a.75.75 0 010 1.06L5.56 10.5H21a.75.75 0 010 1.5H5.56l5.47 5.47a.75.75 0 11-1.06 1.06l-6.75-6.75a.75.75 0 010-1.06l6.75-6.75a.75.75 0 011.06 0z" clipRule="evenodd" />
+                        </svg>
+                    </button>
+                        
+                    <button
+                        onClick={handleNext}
+                        className="bg-black/70 hover:bg-black/90 text-white p-2 rounded-full flex items-center justify-center w-10 h-10 border-none cursor-pointer transition-colors"
+                        aria-label="Next image"
+                    >
+                        <svg xmlns="http://w3.org" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                            <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l6.75 6.75a.75.75 0 010 1.06l-6.75 6.75a.75.75 0 11-1.06-1.06l5.47-5.47H3a.75.75 0 010-1.5h15.44l-5.47-5.47a.75.75 0 010-1.06z" clipRule="evenodd" />
+                        </svg>
+                    </button>
+                
+            
+            </div>
+               
+                
+            
+                
+               
+            <p className="mt-4 text-gray-600 font-medium text-center">
+                {currentImage.alt}
+            </p>
+            
+            </div>
+             
+            
+            
             
         </section>
         
