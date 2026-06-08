@@ -1,19 +1,36 @@
 "use client";
 
-// Import anything needed here
+import Image from "next/image";
+import Link from "next/link";
+import PageTitle from "./PageTitle";
+import MeetTheTeam from "./MeetTheTeam";
+import MediaGallery from "./MediaGallery";
+import MissionStatement from "./MissionStatement";
 
 export default function About() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-ink-black to-dark-amethyst">
-      {/* Mission Statement */}
-      <section></section>
+    <>
+      <section className="flex min-h-screen flex-col items-center justify-center bg-[#04060f] text-white text-center px-4 relative overflow-hidden">
 
-      {/* Founders & Members */}
-      <section></section>
+        {/* Single unified glow — left-offset, bleeds into black */}
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse 75% 65% at 20% 35%, rgba(22,65,185,0.9) 0%, rgba(12,35,110,0.4) 45%, transparent 70%)" }} />
+          <div className="mt-5">
+            <PageTitle prefix="About" highlight="Us" />
+          </div>
+        
 
-      {/* Media from PIC and Company Events */}
-      <section></section>
-
-    </main>
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#050810] to-transparent pointer-events-none" />
+        
+      
+      </section>
+      <MissionStatement />
+      
+      
+        <MeetTheTeam />
+        <MediaGallery />
+      
+    </>
   );
 }
