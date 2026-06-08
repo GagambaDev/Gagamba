@@ -1,7 +1,17 @@
 "use client";
 
-import img1 from '@/public/images/company_events/PresInovChal.jpg'
-import img2 from '@/public/images/company_events/PresInovChal.jpg'
+import img1 from '@/public/images/gallery/PresInovChal1.jpg'
+import img2 from '@/public/images/gallery/Photo1.png'
+import img3 from '@/public/images/gallery/PIC1.png'
+import img4 from '@/public/images/gallery/PIC2.png'
+import img5 from '@/public/images/gallery/PIC3.png'
+import img6 from '@/public/images/gallery/PIC4.png'
+import img7 from '@/public/images/gallery/PIC5.png'
+import img8 from '@/public/images/gallery/Early1.png'
+import img9 from '@/public/images/gallery/Early2.png'
+import img10 from '@/public/images/gallery/Early3.png'
+import img11 from '@/public/images/gallery/Blackfire1.png'
+import img12 from '@/public/images/gallery/Blackfire2.png'
 
 export default function MediaGallery() {
     return (
@@ -40,9 +50,27 @@ export default function MediaGallery() {
                         Gallery
                     </span>
                 </h2>
-                <img src={img1.src} alt="member photo"></img>
-                <img src={img2.src} alt="member photo"></img>
+                <div 
+                    style={{display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridGap: "16px", }}>
+                    
+                        <img src={img1.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
+                        <img src={img2.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
+                        <img src={img3.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
+                        <img src={img4.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
+                        <img src={img5.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
+                        <img src={img6.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
+                        <img src={img7.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
+                        <img src={img8.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
+                        <img src={img9.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
+                        <img src={img10.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
+                        <img src={img11.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
+                        <img src={img12.src} alt="member photo" width={300} height={600} style={{ clipPath: 'inset(7px round 7px)'}}></img>
+                    
+                </div>
+                
             </div>
+            
         </section>
+        
     );
 }
