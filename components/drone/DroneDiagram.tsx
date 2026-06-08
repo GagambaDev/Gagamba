@@ -7,30 +7,30 @@ const DRONE_PARTS: DronePart[] = [
     id:'propellors',
     title: 'Propellors',
     description: 'High-efficiency rotors.',
-    down: '20.2%', // % down from top edge of image
-    right: '19.1%', // % right from left edge of image
+    down: '45%', // % down from top edge of image
+    right: '18.5%', // % right from left edge of image
   },
   {
     id:'battery',
     title: 'Battery',
     description: 'High efficiency and long lasting.',
-    down: '14.6%',
-    right: '72.6%',
+    down: '45%',
+    right: '50%',
 
   },
   {
     id: 'water-tank',
     title: 'Water Tank',
     description: 'Carry up to 5 gallons of cleaning solution.',
-    down: '73%',
-    right: '20.3%',
+    down: '55%',
+    right: '47%',
   },
   {
     id: 'pressure-nozzle',
     title: 'Pressure Nozzle',
     description: 'Low flow nozzle for efficient water usage.',
-    down: '77.4%',
-    right: '72.7%',
+    down: '55%',
+    right: '54%',
   }
 ]
 
