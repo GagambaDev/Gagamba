@@ -99,8 +99,8 @@ export default function SocialProof() {
                 </div>
 
                 <div className="max-w-6xl mx-auto px-6">
-                    <div style={fadeBottom} className="mt-20 justify-center flex">
-                        <ShinyButton className="shiny-cta-md lg:shiny-cta-lg">
+                    <div style={fadeBottom()} className="mt-20 justify-center flex">
+                        <ShinyButton className="lg:shiny-cta-lg">
                             <Link href="/contact">Contact Us</Link>
                         </ShinyButton>
                     </div>
