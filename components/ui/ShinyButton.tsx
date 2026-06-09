@@ -16,7 +16,7 @@
  *   Example: className="shiny-cta-sm lg:shiny-cta-lg"
  *
  * Notes:
- * - All animation and sizing is driven by CSS custom properties in globals.css
+ * - All animation and sizing is driven by CSS custom properties
  *   inside the .shiny-cta block. Adjust --shiny-cta-highlight for color changes.
  * - Size variants override --shiny-cta-px, --shiny-cta-py, and --shiny-cta-text
  *   via cascade; no JS involved.
