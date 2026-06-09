@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import PrimaryButton from "./PrimaryButton";
-// import EyebrowLabel from "./EyebrowLabel";
 import PageTitle from "./PageTitle";
 import Subtitle from "./Subtitle";
 import AboutUs from "./AboutUs";
@@ -43,8 +42,6 @@ export default function Hero() {
               className="brightness-150"
             />
           </div>
-
-          {/* <EyebrowLabel message="Next Generation Drone Technology" /> */}
 
           <div className="mt-5">
             <PageTitle prefix="" highlight="GAGAMBA" />
