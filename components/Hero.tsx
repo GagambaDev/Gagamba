@@ -33,13 +33,14 @@ export default function Hero() {
         <div className="relative z-10 max-w-3xl flex flex-col items-center">
 
           {/* Logo */}
-          <div className="relative mb-4">
+          <div className="relative -mb-7">
+
             <Image
-              src="/images/logo.png"
-              alt="Gagamba Drone Logo"
+              src="/images/gagamba_logo.png"
+              alt="Gagamba Logo"
               width={180}
               height={180}
-              className="brightness-150"
+            className="brightness-160"
             />
           </div>
 
