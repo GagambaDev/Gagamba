@@ -11,11 +11,9 @@
  * - children: ReactNode — button label or content (typically a Link or text).
  * - onClick?: () => void — optional click handler.
  * - className?: string — pass a size-variant class to override default sizing.
- *   Available variants (defined in globals.css):
- *     .shiny-cta-xs  — compact (nav / inline uses)
- *     .shiny-cta-sm  — small
- *     (default)      — medium (2.5rem / 1.25rem / 1.125rem)
- *     .shiny-cta-lg  — large (hero / section CTAs)
+ *   Base variants: shiny-cta-xs | shiny-cta-sm | shiny-cta-lg
+ *   Responsive prefixes are supported: sm: md: lg: xl:
+ *   Example: className="shiny-cta-sm lg:shiny-cta-lg"
  *
  * Notes:
  * - All animation and sizing is driven by CSS custom properties in globals.css

@@ -1,3 +1,32 @@
+/**
+ * useScrollReveal
+ *
+ * Purpose:
+ * - Observes when a container scrolls into the viewport and returns inline-style
+ *   objects that animate child elements in from the top or bottom on first reveal.
+ *   The observer disconnects after the first intersection so the animation fires
+ *   once and never reverses.
+ *
+ * Usage:
+ *   const { ref, fadeTop, fadeBottom } = useScrollReveal();
+ *   <div ref={ref}>
+ *     <h1 style={fadeTop(0)}>Fades in from above, no delay</h1>
+ *     <h2 style={fadeTop(0.15)}>Fades in from above, 150ms later</h2>
+ *     <p style={fadeBottom}>Fades in from below</p>
+ *   </div>
+ *
+ * Returns:
+ * - ref — attach to the container element to observe.
+ * - fadeTop(delay?) — inline styles for a top-entry fade. Optional delay in seconds
+ *   staggers multiple elements without needing separate observers.
+ * - fadeBottom — inline styles for a bottom-entry fade (no delay variant needed
+ *   in current usage, but delay can be added if required).
+ *
+ * Parameters:
+ * - threshold?: number — fraction of the container that must be visible before
+ *   the animation triggers (default 0.15).
+ */
+
 import { CSSProperties, useEffect, useRef, useState } from "react";
 
 interface ScrollReveal {
