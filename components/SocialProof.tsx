@@ -1,44 +1,54 @@
 "use client";
 
-import Image from "next/image";
-import MouseTracker from "./MouseTracker";
-import InfiniteScroll from "./InfiniteScroll";
-
 /**
  * SocialProof
  *
  * Purpose:
- * - Example composition showing how to present partner logos using `MouseTracker`
- *   (spotlight highlight) and `InfiniteScroll` (looping track).
+ * - Hero-style section that displays co-innovation partner logos in a
+ *   continuously scrolling ticker, with a "Contact Us" CTA below.
  *
- * How to add logos:
- * 1. Put the SVG file in `public/images/partners/`.
- * 2. Ensure the SVG has a proper `viewBox` and does not depend on external CSS.
- * 3. Register the logo in the `technologies` array below, e.g.: 
- *    { name: "AcmeCo", src: "/images/partners/AcmeCo-Logo.svg" }
+ * Animations:
+ * - Header, divider, and CTA button fade in from their respective edges on
+ *   scroll via useScrollReveal (IntersectionObserver + inline style lerp).
+ * - Section background pulses with a breathing radial gradient glow on hover
+ *   via HoverGlow (rAF lerp, alpha animated inside rgba — no CSS transitions).
+ * - Logos scroll infinitely via InfiniteScroll (CSS animation, ResizeObserver
+ *   for pixel-perfect loop distance, mask-image edge fade).
  *
- * Sizing & Coloring:
- * - Display sizes are controlled by the wrapper classes around the `<Image />`.
- *   Default sizing: `w-36 h-24` (adjust in this file to change display size).
- * - Logos are rendered with `grayscale invert` to produce monochrome output while
- *   preserving internal luminosity. To force solid white, use `brightness-0 invert`.
+ * Data:
+ * - Partner logos are defined in the technologies array at the top of this file.
+ *   Add or remove entries there; InfiniteScroll handles layout automatically.
  */
 
+import Image from "next/image";
+import Link from "next/link";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import HoverGlow, { GradientConfig } from "./ui/HoverGlow";
+import InfiniteScroll from "./ui/InfiniteScroll";
+import { ShinyButton } from "./ui/ShinyButton";
+
 const technologies = [
-    { name: "UNLV", src: "/images/partners/UNLV-Logo.svg" },
-    { name: "Blackfire", src: "/images/partners/BlackFire-Innovation-Logo.svg" },
-    { name: "SBDC", src: "/images/partners/Nevada-SBDC-Logo.svg" },
+    { name: "UNLV",       src: "/images/partners/UNLV-Logo.svg" },
+    { name: "Blackfire",  src: "/images/partners/BlackFire-Innovation-Logo.svg" },
+    { name: "SBDC",       src: "/images/partners/Nevada-SBDC-Logo.svg" },
     { name: "RebelForge", src: "/images/partners/RebelForge-Logo.svg" },
-    { name: "Zero Labs", src: "/images/partners/ZeroLabs-Logo.svg" },
+    { name: "Zero Labs",  src: "/images/partners/ZeroLabs-Logo.svg" },
+];
+
+const GLOW_GRADIENTS: GradientConfig[] = [
+    { shape: "ellipse 70% 60%", at: "10% 10%", color: "40,80,220",  maxAlpha: 0.13 },
+    { shape: "ellipse 55% 50%", at: "90% 90%", color: "90,40,210",  maxAlpha: 0.11 },
 ];
 
 export default function SocialProof() {
+    const { ref, fadeTop, fadeBottom } = useScrollReveal();
+
     const renderLogos = technologies.map((tech) => (
         <div
             key={tech.name}
-            className="opacity-75 transition-all duration-300 hover:opacity-100 w-32 md:w-48 flex justify-center"
+            className="opacity-75 transition-all duration-300 hover:opacity-100 w-32 md:w-48 lg:w-56 flex justify-center"
         >
-            <div className="relative w-36 h-24">
+            <div className="relative w-36 h-24 md:w-48 md:h-32 lg:w-56 lg:h-36">
                 <Image
                     src={tech.src}
                     alt={`${tech.name} logo`}
@@ -50,42 +60,53 @@ export default function SocialProof() {
     ));
 
     return (
-        <MouseTracker 
-            className="bg-[#04060f] text-white py-32 px-6"
-            overlayColor="rgba(52,95,195,0.9)"
+        <HoverGlow
+            as="section"
+            gradients={GLOW_GRADIENTS}
+            className="overflow-hidden text-white py-32"
+            style={{ background: "linear-gradient(to bottom, #09061A 0%, #04060f 220px, #04060f 100%)" }}
+            breathePeriodMs={3000}
         >
-            {/* Glow — left side, echoing the Hero */}
-            <div
-                className="absolute inset-0 pointer-events-none"
-            />
-
             {/* Dot grid texture */}
             <div
-                className="absolute inset-0 pointer-events-none opacity-[0.06]"
+                className="absolute inset-0 pointer-events-none opacity-[0.05]"
                 style={{
                     backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
                     backgroundSize: "32px 32px",
                 }}
             />
 
-            <div className="relative z-10 max-w-6xl mx-auto text-center md:text-left">
-                <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4 mx-auto md:mx-0">
-                    Trusted Technology
-                </p>
-                <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-tight mb-16 mx-auto md:mx-0">
-                    Our Co-Innovation{" "}
-                    {/*  */}
-                    <span className="text-transparent bg-clip-text" style={{backgroundImage: "linear-gradient(90deg, #4f8eff 0%, #a5c0ff 100%)"}}>Partners</span>
-                </h2>
+            <div ref={ref} className="relative z-10">
+                <div className="max-w-6xl mx-auto px-6 text-center md:text-left">
+                    <p style={fadeTop(0)} className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
+                        Trusted Technology
+                    </p>
+                    <h2 style={fadeTop(0.1)} className="text-7xl font-black tracking-tight leading-tight mb-6">
+                        Our Co-Innovation{" "}
+                        <span
+                            className="text-transparent bg-clip-text"
+                            style={{ backgroundImage: "linear-gradient(90deg, #4f8eff 0%, #a5c0ff 100%)" }}
+                        >
+                            Partners
+                        </span>
+                    </h2>
+                    <div style={fadeTop(0.2)} className="w-16 h-0.5 bg-blue-500 mb-16" />
+                </div>
 
-                <InfiniteScroll 
-                    items={renderLogos} 
-                    fadeColor="#04060f" 
-                    speed="40s" 
-                />
+                <div className="w-full md:w-[90%] mx-auto my-16">
+                    <InfiniteScroll items={renderLogos} speed="40s" />
+                </div>
+
+                <div className="max-w-6xl mx-auto px-6">
+                    <div style={fadeBottom} className="mt-20 justify-center flex">
+                        <ShinyButton className="shiny-cta-lg">
+                            <Link href="/contact">Contact Us</Link>
+                        </ShinyButton>
+                    </div>
+                </div>
             </div>
 
             <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-[#050810] to-transparent pointer-events-none" />
-        </MouseTracker>
+        </HoverGlow>
     );
 }

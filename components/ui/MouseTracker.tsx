@@ -14,7 +14,7 @@ import { useRef, MouseEvent, useEffect, ReactNode } from "react";
  * - className?: string — additional classes applied to the outer container.
  * - overlayColor?: string — CSS color used for the radial highlight (default set in caller).
  *
- * Notes for maintainers:
+ * Notes:
  * - Smoothing is controlled by the lerp factor `* 0.15` near the top of the file.
  *   Reduce the number to make motion smoother/slower, increase to make it snappier.
  * - The default hidden state resets the overlay to a large, off-screen radial gradient.
@@ -43,14 +43,14 @@ export default function MouseTracker({ children, className = "", overlayColor = 
                 // Lerp current position towards target position
                 currentPos.current.x += (targetPos.current.x - currentPos.current.x) * 0.15;
                 currentPos.current.y += (targetPos.current.y - currentPos.current.y) * 0.15;
-                
+
                 overlayRef.current.style.background = `radial-gradient(50px circle at ${currentPos.current.x}px ${currentPos.current.y}px, ${overlayColor}, transparent 100%)`;
             }
             frameId.current = requestAnimationFrame(loop);
         };
-        
+
         frameId.current = requestAnimationFrame(loop);
-        
+
         return () => cancelAnimationFrame(frameId.current);
     }, [overlayColor]);
 
@@ -59,7 +59,7 @@ export default function MouseTracker({ children, className = "", overlayColor = 
         const rect = containerRef.current.getBoundingClientRect();
         targetPos.current.x = e.clientX - rect.left;
         targetPos.current.y = e.clientY - rect.top;
-        
+
         if (!isVisible.current) {
             currentPos.current.x = targetPos.current.x;
             currentPos.current.y = targetPos.current.y;
@@ -75,13 +75,13 @@ export default function MouseTracker({ children, className = "", overlayColor = 
     };
 
     return (
-        <section 
+        <section
             ref={containerRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             className={`relative overflow-hidden ${className}`}
         >
-            <div 
+            <div
                 ref={overlayRef}
                 className="absolute inset-0 z-0 pointer-events-none transition-colors duration-500 ease-out"
                 style={{ background: "radial-gradient(600px circle at -100% -100%, rgba(255,255,255,0.06), transparent 40%)" }}
