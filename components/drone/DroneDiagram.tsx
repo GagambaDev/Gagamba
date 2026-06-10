@@ -3,19 +3,19 @@ import { type DronePart } from './PartDescription';
 
 const DRONE_PARTS: DronePart[] = [
   {
-    id:'propeller-guard',
-    title: 'Propeller Guard',
-    down: '45%', // % down from top edge of image
-    right: '18.5%', // % right from left edge of image
-    tourCopy: 'Shields the propellers from damage and improves flight safety during close facade work.',
+    id: 'propellers',
+    title: 'Propellers',
+    down: '42%', // % down from top edge of image
+    right: '15%', // % right from left edge of image
+    tourCopy: 'Eight coaxial propellers generate the lift and redundancy needed to carry the full 66 lb system and remain airborne even with a single motor failure.',
     spotlightRadius: '18%',
   },
   {
-    id:'battery',
-    title: 'Smart Battery',
+    id: 'battery',
+    title: 'Battery',
     down: '45%',
     right: '50%',
-    tourCopy: 'Powers each cleaning pass with live health telemetry and a fast-swap bay for short turnaround time.',
+    tourCopy: 'High-capacity LiPo batteries power the motors, pump, and onboard compute, delivering roughly 24 minutes of flight time per mission cycle.',
     spotlightRadius: '12%',
   },
   {
@@ -23,7 +23,7 @@ const DRONE_PARTS: DronePart[] = [
     title: 'Water Tank',
     down: '55%',
     right: '47%',
-    tourCopy: 'Carries up to 5 gallons of cleaning solution while preserving balance through the center-mounted layout.',
+    tourCopy: 'A 12-liter onboard reservoir eliminates the tether entirely, freeing Gagamba from the ~200 ft altitude ceiling that limits hose-fed competitors.',
     spotlightRadius: '13%',
   },
   {
@@ -31,8 +31,16 @@ const DRONE_PARTS: DronePart[] = [
     title: 'Pressure Nozzle',
     down: '55%',
     right: '54%',
-    tourCopy: 'Directs a controlled spray pattern onto the target surface for efficient water use.',
+    tourCopy: 'A precision nozzle delivers a controlled stream of water onto the glass, keeping spray contained within the detected window boundary while minimizing waste.',
     spotlightRadius: '12%',
+  },
+  {
+    id: 'camera',
+    title: 'Camera',
+    down: '28%',
+    right: '82%',
+    tourCopy: 'The onboard camera feeds the computer vision system that identifies glass panes, guides docking, and captures the data behind the Post-Flight Report.',
+    spotlightRadius: '11%',
   }
 ]
 
@@ -76,15 +84,11 @@ export default function DroneDiagram() {
 
         <div className="w-16 h-[2px] bg-blue-500 mb-8" />
 
-        <p className="mb-10 max-w-2xl text-sm leading-6 text-slate-300 md:text-base">
-          Follow a guided tour that walks through each major subsystem of the aircraft.
-        </p>
-
         <div className="flex justify-center">
           <div className="relative w-full max-w-6xl rounded-[1.75rem] border border-white/15 bg-white/[0.04] p-2 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-sm">
             <div className="absolute -inset-px rounded-[1.75rem] bg-gradient-to-br from-white/25 via-blue-400/20 to-transparent opacity-70 pointer-events-none" />
 
-            <div className="relative rounded-[1.25rem] bg-[#f8fafc] p-3">
+            <div className="relative rounded-[1.25rem] border border-white/10 bg-[#081225] p-3 shadow-[inset_0_1px_0_rgba(165,192,255,0.16)]">
               <DronePartDropdown parts={DRONE_PARTS} />
             </div>
           </div>

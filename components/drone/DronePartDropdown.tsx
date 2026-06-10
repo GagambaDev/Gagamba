@@ -10,13 +10,25 @@ type DronePartDropdownProps = {
 };
 
 export default function DronePartDropdown({ parts }: DronePartDropdownProps) {
+  const [hasStartedTour, setHasStartedTour] = useState(false);
   const [tourIndex, setTourIndex] = useState(0);
 
   const tourPart = parts[tourIndex] ?? null;
-  const isSpotlightActive = Boolean(tourPart);
+  const isSpotlightActive = hasStartedTour && Boolean(tourPart);
+
+  const startTour = () => {
+    setTourIndex(0);
+    setHasStartedTour(true);
+  };
+
+  const resetTour = () => {
+    setTourIndex(0);
+    setHasStartedTour(false);
+  };
 
   const selectTourPart = (index: number) => {
     setTourIndex(index);
+    setHasStartedTour(true);
   };
 
   const showNextPart = () => {
@@ -38,28 +50,43 @@ export default function DronePartDropdown({ parts }: DronePartDropdownProps) {
 
   return (
     <div className="relative space-y-4 transition-all duration-300">
-      {tourPart && (
-        <div onClick={(event) => event.stopPropagation()}>
-          <PartDescription
-            part={tourPart}
-            step={tourIndex + 1}
-            totalSteps={parts.length}
-            onNext={showNextPart}
-            onPrevious={showPreviousPart}
+      <div onClick={(event) => event.stopPropagation()}>
+        <PartDescription
+          part={hasStartedTour ? tourPart : null}
+          step={hasStartedTour ? tourIndex + 1 : 0}
+          totalSteps={parts.length}
+          onNext={hasStartedTour ? showNextPart : startTour}
+          onPrevious={showPreviousPart}
+          onReset={resetTour}
+        />
+      </div>
+
+      <div className="relative isolate overflow-hidden rounded-xl bg-[#07111f]">
+        <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'radial-gradient(ellipse 55% 45% at 50% 48%, rgba(79,142,255,0.18) 0%, rgba(12,35,110,0.12) 40%, transparent 72%), linear-gradient(135deg, #07111f 0%, #0b1730 52%, #050810 100%)',
+            }}
+          />
+          <div
+            className="absolute inset-0 opacity-70"
+            style={{
+              backgroundImage:
+                'radial-gradient(circle, rgba(165,192,255,0.34) 1px, transparent 1.4px)',
+              backgroundSize: '22px 22px',
+            }}
           />
         </div>
-      )}
-
-      <div className="relative overflow-hidden rounded-xl bg-[#f8fafc]">
-        <div className="absolute inset-0 z-10 pointer-events-none shadow-[inset_0_0_70px_rgba(4,6,15,0.18)]" />
 
         <Image
           src="/images/dronerender.png"
           alt="Gagamba drone model"
           width={1719}
           height={1015}
-          className={`relative z-0 h-auto w-full select-none transition-all duration-500 ${
-            isSpotlightActive ? 'opacity-25 grayscale blur-[1px]' : 'opacity-100'
+          className={`relative z-10 h-auto w-full select-none transition-all duration-500 ${
+            isSpotlightActive ? 'opacity-100 grayscale brightness-[0.58] contrast-110 blur-[1px]' : 'opacity-100'
           }`}
           priority
         />
@@ -70,13 +97,13 @@ export default function DronePartDropdown({ parts }: DronePartDropdownProps) {
               alt=""
               width={1719}
               height={1015}
-              className="absolute inset-0 z-0 h-auto w-full select-none drop-shadow-[0_18px_34px_rgba(37,99,235,0.22)] transition-opacity duration-500"
+              className="absolute inset-0 z-10 h-auto w-full select-none drop-shadow-[0_18px_34px_rgba(37,99,235,0.22)] transition-opacity duration-500"
               style={spotlightStyle}
               aria-hidden="true"
               priority
             />
             <div
-              className="absolute inset-0 z-0 pointer-events-none opacity-70"
+              className="absolute inset-0 z-10 pointer-events-none opacity-70"
               style={{
                 background: `radial-gradient(circle at ${tourPart?.right} ${tourPart?.down}, rgba(37,99,235,0.18) 0%, rgba(37,99,235,0.08) 18%, transparent 34%)`,
               }}
@@ -84,15 +111,15 @@ export default function DronePartDropdown({ parts }: DronePartDropdownProps) {
           </>
         )}
 
-        {parts.map((part) => (
+        {hasStartedTour && parts.map((part) => (
           <button
             key={part.id}
-            className="absolute z-20 flex items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white"
+            className="absolute z-30 flex cursor-pointer items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white"
             style={{
               top: part.down,
               left: part.right,
-              width: 32,
-              height: 32,
+              width: 'clamp(1.7rem, 3.5%, 2.5rem)',
+              aspectRatio: '1 / 1',
               transform: 'translate(-50%, -50%)',
             }}
             onClick={(event) => {
@@ -102,8 +129,7 @@ export default function DronePartDropdown({ parts }: DronePartDropdownProps) {
             aria-label={`Tour step ${part.title}`}
           >
             <PlusPin
-              active={tourPart?.id === part.id}
-              label={`${parts.findIndex((item) => item.id === part.id) + 1}`}
+              active={hasStartedTour && tourPart?.id === part.id}
             />
           </button>
         ))}
