@@ -11,11 +11,14 @@ export default function About() {
     <div>
       <section className="flex min-h-screen flex-col items-center justify-center bg-[#04060f] text-white text-center px-4 relative overflow-hidden">
 
+        <h1 className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-3"> 
+          About US 
+        </h1>
+
         {/* Single unified glow — left-offset, bleeds into black */}
         <div style={{position: 'absolute', top: '70px', display: 'block',
                     transform: 'none', color: '#ffffff', fontSize: '1.25rem', fontWeight: 500,
                     zIndex: 20}}>  
-                    About Us
                 </div>
         <div className="absolute inset-0 pointer-events-none"
           style={{ background: "radial-gradient(ellipse 75% 65% at 20% 35%, rgba(22,65,185,0.9) 0%, rgba(12,35,110,0.4) 45%, transparent 70%)" }} />
@@ -30,10 +33,6 @@ export default function About() {
         {/* <div className="mt-5">
           <PageTitle prefix="About" highlight="Us" />
         </div> */}
-
-        <h1 className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-3"> 
-          About US 
-        </h1>
         
       </section>
         
