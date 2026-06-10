@@ -1,6 +1,5 @@
 "use client";
 
-
 import PageTitle from "@/components/PageTitle";
 import MissionStatement from "@/components/MissionStatement";
 import MediaGallery from "@/components/MediaGallery";
@@ -35,7 +34,6 @@ export default function About() {
         </div> */}
         
       </section>
-        
         
         <MeetTheTeam/>
         <MediaGallery/>
