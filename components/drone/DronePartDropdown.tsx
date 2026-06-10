@@ -88,25 +88,29 @@ export default function DronePartDropdown({ parts }: DronePartDropdownProps) {
         />
       </div>
 
-      <div ref={scrollContainerRef} className="overflow-x-auto rounded-xl pb-2 md:overflow-visible md:pb-0">
-        <div className="relative isolate min-w-[42rem] overflow-hidden rounded-xl bg-[#030712] md:min-w-0">
-          <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  'radial-gradient(ellipse 55% 45% at 50% 48%, rgba(79,142,255,0.11) 0%, rgba(12,35,110,0.07) 40%, transparent 72%), linear-gradient(135deg, #030712 0%, #061023 52%, #02040c 100%)',
-              }}
-            />
-            <div
-              className="absolute inset-0 opacity-40"
-              style={{
-                backgroundImage:
-                  'radial-gradient(circle, rgba(165,192,255,0.18) 1px, transparent 1.4px)',
-                backgroundSize: '22px 22px',
-              }}
-            />
-          </div>
+      <div className="overflow-hidden rounded-xl bg-[#030712]">
+        <div
+          ref={scrollContainerRef}
+          className="overflow-x-auto md:overflow-visible [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          <div className="relative isolate min-w-[42rem] overflow-hidden rounded-xl bg-[#030712] md:min-w-0">
+            <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    'radial-gradient(ellipse 55% 45% at 50% 48%, rgba(79,142,255,0.11) 0%, rgba(12,35,110,0.07) 40%, transparent 72%), linear-gradient(135deg, #030712 0%, #061023 52%, #02040c 100%)',
+                }}
+              />
+              <div
+                className="absolute inset-0 opacity-40"
+                style={{
+                  backgroundImage:
+                    'radial-gradient(circle, rgba(165,192,255,0.18) 1px, transparent 1.4px)',
+                  backgroundSize: '22px 22px',
+                }}
+              />
+            </div>
 
           <Image
             src="/images/dronerender.png"
@@ -161,6 +165,7 @@ export default function DronePartDropdown({ parts }: DronePartDropdownProps) {
               />
             </button>
           ))}
+          </div>
         </div>
       </div>
     </div>
