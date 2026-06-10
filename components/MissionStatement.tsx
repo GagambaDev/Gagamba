@@ -44,14 +44,14 @@ export default function MissionStatement() {
                         <p 
                             style={{display: 'block', margin: ' 50px 200px ', position: 'relative'}}
                         >
-                            At Gagamba, we dedicate ourselves to a mission of safety, sustainability, and innovation as we redefine the standards of high-rise window cleaning.
+                            At Gagamba, we aren't just cleaning windows; we are engineering a safer, greener, and more efficient future for high-rise property maintenance.
                             By deploying advanced drone technology, we eliminate the need for traditional at-height crews, ensuring that human lives are never put at risk on 
-                            dangerous high-rise structures. 
+                            dangerous high-rise structures.
                             <br></br> 
                             <br></br>
-                            Our engineering team is qualified to work though a FAA part 107 license and utilizes eco-friendly designs to minimize our environmental impact, while our AI-powered software calculates optimal 
-                            cleaning patterns, maximizing efficiency and conserving up to 29 times more water than legacy methods.
-                            We aren't just cleaning windows; we are engineering a safer, greener, and more efficient future for high-rise property maintenance.
+                            Our EPA 608, OSHA 10 Construction, OSHA 10 Manufacturing, and forklifp led engineering team is qualified to work though a FAA part 107 license. 
+                            Utilzing eco-friendly design to minimize our environmental impact, our drone uses AI-powered software, calculating optimal cleaning patterns 
+                            to maximize efficiency and conserving up to 29 times more water than current cleaning drones in the market.
                         </p>
                     </div>
               
