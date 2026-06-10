@@ -5,66 +5,34 @@ const DRONE_PARTS: DronePart[] = [
   {
     id:'propeller-guard',
     title: 'Propeller Guard',
-    description: 'Shields the propellers from impact during close building passes and keeps the aircraft safer around edges, cables, and glass.',
     down: '45%', // % down from top edge of image
     right: '18.5%', // % right from left edge of image
-    statSummary: 'Impact-safe perimeter protection',
-    stats: [
-      { label: 'Coverage', value: '270 deg' },
-      { label: 'Clearance', value: '8 cm' },
-      { label: 'Material', value: 'Carbon' },
-      { label: 'Weight', value: '120 g' },
-    ],
     tourCopy: 'Shields the propellers from damage and improves flight safety during close facade work.',
-    focusRadius: '18%',
+    spotlightRadius: '18%',
   },
   {
     id:'battery',
     title: 'Smart Battery',
-    description: 'High-density power pack with fast swap access, live health monitoring, and output tuned for long cleaning passes.',
     down: '45%',
     right: '50%',
-    statSummary: 'Fast-swap flight power',
-    stats: [
-      { label: 'Runtime', value: '34 min' },
-      { label: 'Charge', value: '42 min' },
-      { label: 'Cells', value: '12S' },
-      { label: 'Cycles', value: '400+' },
-    ],
     tourCopy: 'Powers each cleaning pass with live health telemetry and a fast-swap bay for short turnaround time.',
-    focusRadius: '12%',
+    spotlightRadius: '12%',
   },
   {
     id: 'water-tank',
     title: 'Water Tank',
-    description: 'Low-profile tank carries cleaning solution close to the center of mass, keeping the drone stable as fluid levels change.',
     down: '55%',
     right: '47%',
-    statSummary: 'Balanced onboard fluid storage',
-    stats: [
-      { label: 'Capacity', value: '5 gal' },
-      { label: 'Balance', value: 'Center' },
-      { label: 'Flow', value: '1.8 L/m' },
-      { label: 'Weight', value: '18.9 kg' },
-    ],
     tourCopy: 'Carries up to 5 gallons of cleaning solution while preserving balance through the center-mounted layout.',
-    focusRadius: '13%',
+    spotlightRadius: '13%',
   },
   {
     id: 'pressure-nozzle',
     title: 'Pressure Nozzle',
-    description: 'Directional low-flow nozzle focuses spray onto the cleaning path, reducing waste while maintaining useful pressure at the surface.',
     down: '55%',
     right: '54%',
-    statSummary: 'Efficient directional spray',
-    stats: [
-      { label: 'Pressure', value: '900 psi' },
-      { label: 'Pattern', value: 'Fan' },
-      { label: 'Flow', value: 'Low' },
-      { label: 'Angle', value: '35 deg' },
-    ],
     tourCopy: 'Directs a controlled spray pattern onto the target surface for efficient water use.',
-    focusRadius: '12%',
+    spotlightRadius: '12%',
   }
 ]
 
@@ -109,7 +77,7 @@ export default function DroneDiagram() {
         <div className="w-16 h-[2px] bg-blue-500 mb-8" />
 
         <p className="mb-10 max-w-2xl text-sm leading-6 text-slate-300 md:text-base">
-          Explore the aircraft in focus mode, then switch into a guided tour that walks through each major subsystem.
+          Follow a guided tour that walks through each major subsystem of the aircraft.
         </p>
 
         <div className="flex justify-center">
