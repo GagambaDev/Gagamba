@@ -3,7 +3,7 @@ type PlusPinProps = {
 };
 
 export const pinSize = 56;
-export const outerRadius = 16;
+export const outerRadius = 12;
 
 const center = pinSize / 2;
 const dotRadius = 2;

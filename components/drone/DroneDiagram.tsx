@@ -75,15 +75,22 @@ export default function DroneDiagram() {
         <div className="w-16 h-[2px] bg-blue-500 mb-16" />
 
         <div className="flex justify-center">
-          <div className="relative inline-block max-w-full border border-white">
-            <DronePartDropdown parts={DRONE_PARTS} />
+          <div className="relative w-full max-w-6xl rounded-[1.75rem] border border-white/15 bg-white/[0.04] p-2 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-sm">
+            <div className="absolute -inset-px rounded-[1.75rem] bg-gradient-to-br from-white/25 via-blue-400/20 to-transparent opacity-70 pointer-events-none" />
 
-            <Image
-              src="/images/dronerender.png"
-              alt="Shapes"
-              width={1000}
-              height={1000}
-            />
+            <div className="relative overflow-hidden rounded-[1.25rem] bg-[#eef2f7]">
+              <div className="absolute inset-0 z-10 pointer-events-none shadow-[inset_0_0_70px_rgba(4,6,15,0.18)]" />
+              <DronePartDropdown parts={DRONE_PARTS} />
+
+              <Image
+                src="/images/dronerender.png"
+                alt="Gagamba drone model"
+                width={1719}
+                height={1015}
+                className="relative z-0 h-auto w-full select-none"
+                priority
+              />
+            </div>
           </div>
         </div>
 
