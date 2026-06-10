@@ -1,36 +1,70 @@
-import Image from 'next/image';
 import DronePartDropdown from './DronePartDropdown';
 import { type DronePart } from './PartDescription';
 
 const DRONE_PARTS: DronePart[] = [
   {
-    id:'propellors',
-    title: 'Propellors',
-    description: 'High-efficiency rotors.',
+    id:'propeller-guard',
+    title: 'Propeller Guard',
+    description: 'Shields the propellers from impact during close building passes and keeps the aircraft safer around edges, cables, and glass.',
     down: '45%', // % down from top edge of image
     right: '18.5%', // % right from left edge of image
+    statSummary: 'Impact-safe perimeter protection',
+    stats: [
+      { label: 'Coverage', value: '270 deg' },
+      { label: 'Clearance', value: '8 cm' },
+      { label: 'Material', value: 'Carbon' },
+      { label: 'Weight', value: '120 g' },
+    ],
+    tourCopy: 'Shields the propellers from damage and improves flight safety during close facade work.',
+    focusRadius: '18%',
   },
   {
     id:'battery',
-    title: 'Battery',
-    description: 'High efficiency and long lasting.',
+    title: 'Smart Battery',
+    description: 'High-density power pack with fast swap access, live health monitoring, and output tuned for long cleaning passes.',
     down: '45%',
     right: '50%',
-
+    statSummary: 'Fast-swap flight power',
+    stats: [
+      { label: 'Runtime', value: '34 min' },
+      { label: 'Charge', value: '42 min' },
+      { label: 'Cells', value: '12S' },
+      { label: 'Cycles', value: '400+' },
+    ],
+    tourCopy: 'Powers each cleaning pass with live health telemetry and a fast-swap bay for short turnaround time.',
+    focusRadius: '12%',
   },
   {
     id: 'water-tank',
     title: 'Water Tank',
-    description: 'Carry up to 5 gallons of cleaning solution.',
+    description: 'Low-profile tank carries cleaning solution close to the center of mass, keeping the drone stable as fluid levels change.',
     down: '55%',
     right: '47%',
+    statSummary: 'Balanced onboard fluid storage',
+    stats: [
+      { label: 'Capacity', value: '5 gal' },
+      { label: 'Balance', value: 'Center' },
+      { label: 'Flow', value: '1.8 L/m' },
+      { label: 'Weight', value: '18.9 kg' },
+    ],
+    tourCopy: 'Carries up to 5 gallons of cleaning solution while preserving balance through the center-mounted layout.',
+    focusRadius: '13%',
   },
   {
     id: 'pressure-nozzle',
     title: 'Pressure Nozzle',
-    description: 'Low flow nozzle for efficient water usage.',
+    description: 'Directional low-flow nozzle focuses spray onto the cleaning path, reducing waste while maintaining useful pressure at the surface.',
     down: '55%',
     right: '54%',
+    statSummary: 'Efficient directional spray',
+    stats: [
+      { label: 'Pressure', value: '900 psi' },
+      { label: 'Pattern', value: 'Fan' },
+      { label: 'Flow', value: 'Low' },
+      { label: 'Angle', value: '35 deg' },
+    ],
+    tourCopy: 'Directs a controlled spray pattern onto the target surface for efficient water use.',
+    focusRadius: '12%',
   }
 ]
 
@@ -72,24 +106,18 @@ export default function DroneDiagram() {
           </span>
         </h2>
 
-        <div className="w-16 h-[2px] bg-blue-500 mb-16" />
+        <div className="w-16 h-[2px] bg-blue-500 mb-8" />
+
+        <p className="mb-10 max-w-2xl text-sm leading-6 text-slate-300 md:text-base">
+          Explore the aircraft in focus mode, then switch into a guided tour that walks through each major subsystem.
+        </p>
 
         <div className="flex justify-center">
           <div className="relative w-full max-w-6xl rounded-[1.75rem] border border-white/15 bg-white/[0.04] p-2 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-sm">
             <div className="absolute -inset-px rounded-[1.75rem] bg-gradient-to-br from-white/25 via-blue-400/20 to-transparent opacity-70 pointer-events-none" />
 
-            <div className="relative overflow-hidden rounded-[1.25rem] bg-[#eef2f7]">
-              <div className="absolute inset-0 z-10 pointer-events-none shadow-[inset_0_0_70px_rgba(4,6,15,0.18)]" />
+            <div className="relative rounded-[1.25rem] bg-[#f8fafc] p-3">
               <DronePartDropdown parts={DRONE_PARTS} />
-
-              <Image
-                src="/images/dronerender.png"
-                alt="Gagamba drone model"
-                width={1719}
-                height={1015}
-                className="relative z-0 h-auto w-full select-none"
-                priority
-              />
             </div>
           </div>
         </div>
