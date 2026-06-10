@@ -1,5 +1,5 @@
-import DronePartDropdown from './DronePartDropdown';
-import { type DronePart } from './PartDescription';
+import DronePartDropdown from '@/components/drone/DronePartDropdown';
+import { type DronePart } from '@/components/drone/PartDescription';
 
 const DRONE_PARTS: DronePart[] = [
   {

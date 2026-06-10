@@ -21,8 +21,8 @@ export default function PlusPin({ active = false }: PlusPinProps) {
             : 'h-[22%] w-[22%] -translate-x-1/2 -translate-y-1/2 bg-blue-200/75 shadow-[0_0_8px_rgba(191,219,254,0.42)] group-hover:h-[28%] group-hover:w-[28%] group-hover:bg-blue-300'
         }`}
       />
-      <span className={`absolute h-[26%] w-[2px] rounded-full bg-white transition-transform duration-200 ${active ? 'scale-y-100' : 'scale-y-0'}`} />
-      <span className={`absolute h-[2px] w-[26%] rounded-full bg-white transition-transform duration-200 ${active ? 'scale-x-100' : 'scale-x-0'}`} />
+      <span className={`absolute h-[26%] w-[2px] rounded-full bg-white transition-transform duration-200 ${active ? 'scale-y-0' : 'scale-y-100'}`} />
+      <span className={`absolute h-[2px] w-[26%] rounded-full bg-white transition-transform duration-200 ${active ? 'scale-x-0' : 'scale-x-100'}`} />
     </span>
   );
 }
