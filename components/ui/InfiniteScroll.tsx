@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
 /**
  * InfiniteScroll
@@ -10,18 +10,19 @@ import { ReactNode, useEffect, useRef } from "react";
  *
  * Props:
  * - items: ReactNode[] — array of elements to display inside the track.
- * - gap?: string — Tailwind gap classes applied uniformly between all items and between the two copies (e.g. "gap-12 md:gap-24").
+ * - gap?: string — Tailwind gap classes applied uniformly between all items and between repeated copies (e.g. "gap-12 md:gap-24").
  * - speed?: string — CSS animation duration (e.g. "30s").
  *
  * Edge fading uses mask-image (transparent → opaque) so the logos dissolve into
  * whatever background sits behind them — including dynamic effects like mouse glows.
  *
  * Loop correctness:
- * - Two copies of items sit in a flex container using the same gap class, so all
- *   inter-item spacings (including the copy boundary) are identical.
+ * - Repeated copies of items sit in a flex container using the same gap class, so all
+ *   inter-item spacings (including copy boundaries) are identical.
  * - A ResizeObserver measures copy2.offsetLeft — the exact pixel distance the track
  *   must travel before copy 2 aligns with copy 1's original position — and stores it
- *   in --scroll-dist. This avoids the half-gap drift that breaks translateX(-50%).
+ *   in --scroll-dist. The component renders enough copies to keep the viewport filled
+ *   throughout that travel distance.
  */
 
 interface InfiniteScrollProps {
@@ -35,26 +36,38 @@ export default function InfiniteScroll({
     gap = "gap-12 md:gap-24",
     speed = "30s",
 }: InfiniteScrollProps) {
+    const containerRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
     const copy2Ref = useRef<HTMLDivElement>(null);
+    const [copyCount, setCopyCount] = useState(4);
 
     useEffect(() => {
+        const container = containerRef.current;
         const track = trackRef.current;
         const copy2 = copy2Ref.current;
-        if (!track || !copy2) return;
+        if (!container || !track || !copy2) return;
 
         const update = () => {
-            track.style.setProperty("--scroll-dist", `${copy2.offsetLeft}px`);
+            const scrollDistance = copy2.offsetLeft;
+            if (!scrollDistance) return;
+
+            track.style.setProperty("--scroll-dist", `${scrollDistance}px`);
+            const nextCopyCount = Math.max(3, Math.ceil(container.offsetWidth / scrollDistance) + 2);
+            setCopyCount((currentCopyCount) =>
+                currentCopyCount === nextCopyCount ? currentCopyCount : nextCopyCount
+            );
         };
 
         update();
         const ro = new ResizeObserver(update);
+        ro.observe(container);
         ro.observe(track);
         return () => ro.disconnect();
     }, [items, gap]);
 
     return (
         <div
+            ref={containerRef}
             className="relative overflow-hidden"
             style={{
                 maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
@@ -73,22 +86,22 @@ export default function InfiniteScroll({
                 }
             `}</style>
 
-            {/* Track — two copies share the same gap so the copy boundary is seamless */}
+            {/* Track — repeated copies share the same gap so each copy boundary is seamless */}
             <div ref={trackRef} className={`scroll-track flex ${gap} w-max`}>
-                <div className={`flex ${gap}`}>
-                    {items.map((item, idx) => (
-                        <div key={idx} className="shrink-0 flex items-center justify-center">
-                            {item}
-                        </div>
-                    ))}
-                </div>
-                <div ref={copy2Ref} className={`flex ${gap}`} aria-hidden="true">
-                    {items.map((item, idx) => (
-                        <div key={`b-${idx}`} className="shrink-0 flex items-center justify-center">
-                            {item}
-                        </div>
-                    ))}
-                </div>
+                {Array.from({ length: copyCount }).map((_, copyIndex) => (
+                    <div
+                        key={copyIndex}
+                        ref={copyIndex === 1 ? copy2Ref : undefined}
+                        className={`flex ${gap}`}
+                        aria-hidden={copyIndex > 0 ? "true" : undefined}
+                    >
+                        {items.map((item, itemIndex) => (
+                            <div key={`${copyIndex}-${itemIndex}`} className="shrink-0 flex items-center justify-center">
+                                {item}
+                            </div>
+                        ))}
+                    </div>
+                ))}
             </div>
         </div>
     );
