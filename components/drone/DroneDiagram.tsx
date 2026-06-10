@@ -46,7 +46,7 @@ const DRONE_PARTS: DronePart[] = [
 
 export default function DroneDiagram() {
   return (
-    <section className="relative bg-[#04060f] text-white overflow-hidden py-32 px-6">
+    <section className="relative bg-[#04060f] text-white overflow-hidden px-4 py-20 sm:px-6 md:py-32">
 
       {/* Glow — left side, echoing the Hero */}
       <div
@@ -72,7 +72,7 @@ export default function DroneDiagram() {
           The Drone 
         </p>
 
-        <h2 className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6">
           Meet {" "}
           <span
             className="text-transparent bg-clip-text"
@@ -85,10 +85,10 @@ export default function DroneDiagram() {
         <div className="w-16 h-[2px] bg-blue-500 mb-8" />
 
         <div className="flex justify-center">
-          <div className="relative w-full max-w-6xl rounded-[1.75rem] border border-white/15 bg-white/[0.04] p-2 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-sm">
+          <div className="relative w-full max-w-6xl rounded-2xl border border-white/15 bg-white/[0.04] p-1.5 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-sm sm:rounded-[1.75rem] sm:p-2">
             <div className="absolute -inset-px rounded-[1.75rem] bg-gradient-to-br from-white/25 via-blue-400/20 to-transparent opacity-70 pointer-events-none" />
 
-            <div className="relative rounded-[1.25rem] border border-white/10 bg-[#081225] p-3 shadow-[inset_0_1px_0_rgba(165,192,255,0.16)]">
+            <div className="relative rounded-2xl border border-white/10 bg-[#081225] p-2 shadow-[inset_0_1px_0_rgba(165,192,255,0.16)] sm:rounded-[1.25rem] sm:p-3">
               <DronePartDropdown parts={DRONE_PARTS} />
             </div>
           </div>
