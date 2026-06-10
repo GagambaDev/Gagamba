@@ -5,21 +5,28 @@ import SubmitButton from "@/components/SubmitButton";
 import React, { useState } from "react";
 import FormLabel from "@/components/FormLabel";
 import { useForm } from "react-hook-form";
-
-type ContactMessage = {
-  name: string;
-  email: string;
-  message: string;
-};
+import { Quote } from "@/types/forms/quote";
 
 export default function Contact() {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactMessage>();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<Quote>();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const onSubmit = async (message: ContactMessage) => {
+  const onSubmit = async (quote: Quote) => {
     setLoading(true);
-    console.log("Form submitted:", message);
+    setError(null);
+    const response = await fetch("/api/email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(quote),
+    });
+    if (!response.ok) {
+      const body = await response.json();
+      setError(body.error ?? "Something went wrong. Please try again.");
+      setLoading(false);
+      return;
+    }
     setSubmitted(true);
     reset();
     setLoading(false);
@@ -134,6 +141,10 @@ export default function Contact() {
                 <p className="text-red-400 text-xs mt-1">{errors.message.message}</p>
               )}
             </div>
+
+            {error && (
+              <p className="text-red-400 text-sm">{error}</p>
+            )}
 
             <SubmitButton label={loading ? "Sending..." : "Send Message"} />
           </form>

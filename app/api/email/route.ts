@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { resend } from "@/lib/resend";
-import { quoteEmailBody } from "@/lib/email-templates";
+import { quoteEmailBody, quoteConfirmationEmailBody } from "@/lib/email-templates";
 import { Quote } from "@/types/forms/quote";
 
 export async function POST(request: Request) {
@@ -19,6 +19,16 @@ export async function POST(request: Request) {
 
   if (error)
     return NextResponse.json({ error: error.message }, { status: 502 });
+
+  const { error: confirmationError } = await resend.emails.send({
+    from: process.env.RESEND_FROM_EMAIL!,
+    to: quote.email,
+    subject: "We received your message | Gagamba",
+    text: quoteConfirmationEmailBody(quote),
+  });
+
+  if (confirmationError)
+    return NextResponse.json({ error: confirmationError.message }, { status: 502 });
 
   return NextResponse.json({ id: data?.id }, { status: 200 });
 }
