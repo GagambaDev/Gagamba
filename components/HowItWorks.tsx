@@ -1,0 +1,92 @@
+"use client"
+
+import Image from "next/image";
+
+export default function HowItWorks() {
+
+  return (
+
+		<section className="relative bg-[#04060f] text-white overflow-hidden py-32 px-6">
+			
+			<div className="relative z-10 max-w-6xl mx-auto">
+
+				<p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
+        	How it Works
+        </p>
+
+				<div className="w-16 h-[2px] bg-blue-500 mb-16" />
+
+				<div className=" flex flex-row items-center justify-center gap-8">
+				
+					<div className="flex flex-col items-center text-center max-w-[180px] ">
+						{/* This is the first step of the drone's sequential process*/}
+						<h2 className="min-h-[4rem]">Deployment</h2>
+						<p className="min-h-[4rem]"> The Drone is prepared and ready for autonomous, precision cleaning.</p>
+						{/* An image tag will go here for the 3d render that will be provided */}
+						<Image
+							src = "/images/drone.jpg"
+							width={180}
+							height={180}
+							alt="Step 1: Drone placeholder"
+							className="mt-5"
+					
+						/>
+					
+					</div>
+					<span>{"->"}</span>
+				
+					<div className="flex flex-col items-center text-center max-w-[180px]">
+						{/* This is the second step of the dron'es sequential process*/}
+						<h2 className="min-h-[4rem]">Assesment</h2>
+						<p className="min-h-[4rem] "> The Drone will analyze the windows with ultiamte precision, so no spec is left behind.</p>
+						{/* An image tag will go here for the 3d render that will be provided */}
+						<Image
+							src = "/images/drone.jpg"
+							width={180}
+							height={120}
+							alt="Step 2: Drone placeholder"
+							className="mt-5"
+					
+						/>
+					</div>
+					<span>{"->"}</span>
+
+					<div className="flex flex-col items-center text-center max-w-[180px]">
+						{/* This is the third step of the drone's sequential process*/}
+						<h2 className="min-h-[4rem]">Cleaning</h2>
+						<p className="min-h-[4rem]">Using its payload tank and squeegee, the drone delivers a precise and chemical clean. Leaving no trace behind.</p>
+						{/* An image tag will go here for the 3d render that will be provided */}
+						<Image
+							src = "/images/drone.jpg"
+							width={180}
+							height={120}
+							alt="Step 3: Drone placeholder"
+							className="mt-5"
+					
+						/>
+					</div>
+					<span>{"->"}</span>
+
+					<div className="flex flex-col items-center text-center max-w-[180px]">
+						{/* This is the fourth step of the drone's sequential process*/}
+						<h2 className="min-h-[4rem]">Feedback Report</h2>
+						<p className="min-h-[4rem]">A full cleaning report is sent to the client, documenting every surface cleaned and flagging any issues found.</p>
+						{/* An image tag will go here for the 3d render that will be provided */}
+						<Image
+							src = "/images/drone.jpg"
+							width={180}
+							height={120}
+							alt="Step 4: Drone placeholder"
+							className="mt-5"
+					
+						/>
+					</div>
+
+
+
+				</div>
+			</div>
+			
+		</section>
+	)
+}
