@@ -49,7 +49,7 @@ export default function MissionStatement() {
                             dangerous high-rise structures. 
                             <br></br> 
                             <br></br>
-                            Our OSHA-certified engineers utilize eco-friendly designs to minimize our environmental impact, while our AI-powered software calculates optimal 
+                            Our engineering team is qualified to work though a FAA part 107 license and utilizes eco-friendly designs to minimize our environmental impact, while our AI-powered software calculates optimal 
                             cleaning patterns, maximizing efficiency and conserving up to 29 times more water than legacy methods.
                             We aren't just cleaning windows; we are engineering a safer, greener, and more efficient future for high-rise property maintenance.
                         </p>
