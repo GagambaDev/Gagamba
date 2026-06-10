@@ -7,6 +7,7 @@ import PageTitle from "./PageTitle";
 import Subtitle from "./Subtitle";
 import AboutUs from "./AboutUs";
 import MeetTheTeam from "./MeetTheTeam";
+import DroneDiagram from "./drone/DroneDiagram";
 import SocialProof from "./SocialProof";
 
 export default function Hero() {
@@ -63,6 +64,7 @@ export default function Hero() {
       </section>
 
       <AboutUs />
+      <DroneDiagram />
       <MeetTheTeam />
       <SocialProof />
     </>
