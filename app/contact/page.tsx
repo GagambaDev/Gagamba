@@ -5,21 +5,28 @@ import SubmitButton from "@/components/SubmitButton";
 import React, { useState } from "react";
 import FormLabel from "@/components/FormLabel";
 import { useForm } from "react-hook-form";
-
-type Quote = {
-  name: string;
-  email: string;
-  message: string;
-};
+import { Quote } from "@/types/forms/quote";
 
 export default function Contact() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<Quote>();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const onSubmit = async (quote: Quote) => {
     setLoading(true);
-    console.log("Form submitted:", quote);
+    setError(null);
+    const response = await fetch("/api/email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(quote),
+    });
+    if (!response.ok) {
+      const body = await response.json();
+      setError(body.error ?? "Something went wrong. Please try again.");
+      setLoading(false);
+      return;
+    }
     setSubmitted(true);
     reset();
     setLoading(false);
@@ -53,16 +60,16 @@ export default function Contact() {
           Get in Touch
         </p>
         <h1 className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-3">
-          Request a{" "}
+          Reach Out to{" "}
           <span
             className="text-transparent bg-clip-text"
             style={{ backgroundImage: "linear-gradient(90deg, #4f8eff 0%, #a5c0ff 100%)" }}
           >
-            Quote
+            Team Gagamba
           </span>
         </h1>
         <p className="text-gray-400 text-lg mb-10 leading-relaxed">
-          Tell us about your building and we'll get back to you with a custom proposal.
+          Have a question, idea, or just want to say hello? Send us a message and we'll get back to you.
         </p>
 
         <div className="w-16 h-[2px] bg-blue-500 mb-10" />
@@ -126,7 +133,7 @@ export default function Contact() {
               <FormLabel label="Message" />
               <Textarea
                 {...register("message", { required: "Message is required" })}
-                placeholder="Tell us about your building, location, and what you need..."
+                placeholder="Tell us what's on your mind..."
                 rows={5}
                 className={`w-full bg-white/[0.05] border ${errors.message ? "border-red-500/60" : "border-white/10 hover:border-white/20"} focus:border-blue-500/60 focus:outline-none text-white placeholder-white/25 rounded-xl px-4 py-3 text-sm transition-colors duration-200 resize-none`}
               />
@@ -135,7 +142,11 @@ export default function Contact() {
               )}
             </div>
 
-            <SubmitButton label={loading ? "Sending..." : "Submit Request"} />
+            {error && (
+              <p className="text-red-400 text-sm">{error}</p>
+            )}
+
+            <SubmitButton label={loading ? "Sending..." : "Send Message"} />
           </form>
         )}
       </div>
