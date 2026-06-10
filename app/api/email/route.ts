@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     to: process.env.RESEND_TO_EMAIL!,
     replyTo: quote.email,
     subject: `New quote request from ${quote.name}`,
-    text: quoteEmailBody(quote),
+    html: quoteEmailBody(quote),
   });
 
   if (error)
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     from: process.env.RESEND_FROM_EMAIL!,
     to: quote.email,
     subject: "We received your message | Gagamba",
-    text: quoteConfirmationEmailBody(quote),
+    html: quoteConfirmationEmailBody(quote),
   });
 
   if (confirmationError)
