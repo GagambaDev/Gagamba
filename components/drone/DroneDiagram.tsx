@@ -37,8 +37,8 @@ const DRONE_PARTS: DronePart[] = [
   {
     id: 'camera',
     title: 'Camera',
-    down: '28%',
-    right: '82%',
+    down: '44%',
+    right: '55%',
     tourCopy: 'The onboard camera feeds the computer vision system that identifies glass panes, guides docking, and captures the data behind the Post-Flight Report.',
     spotlightRadius: '11%',
   }
