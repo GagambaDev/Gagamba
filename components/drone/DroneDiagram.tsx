@@ -1,5 +1,5 @@
 import DronePartDropdown from '@/components/drone/DronePartDropdown';
-import { type DronePart } from '@/components/drone/PartDescription';
+import { type DronePart } from '@/lib/types';
 
 const DRONE_PARTS: DronePart[] = [
   {

@@ -1,6 +1,4 @@
-type PlusPinProps = {
-  active?: boolean;
-};
+import { PlusPinProps } from "@/lib/types";
 
 export default function PlusPin({ active = false }: PlusPinProps) {
   return (
