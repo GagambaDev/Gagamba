@@ -29,7 +29,7 @@ export default function PartDescription({
   onReset,
 }: PartDescriptionProps) {
   const isIntro = !part;
-  const title = part?.title ?? 'Explore the Gagamba';
+  const title = part?.title ?? 'Explore Gagamba';
   const copy =
     part?.tourCopy ??
     'Start the guided tour to walk through the systems that let Gagamba fly, clean, see, and operate without a tether.';

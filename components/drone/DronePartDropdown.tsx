@@ -61,20 +61,20 @@ export default function DronePartDropdown({ parts }: DronePartDropdownProps) {
         />
       </div>
 
-      <div className="relative isolate overflow-hidden rounded-xl bg-[#07111f]">
+      <div className="relative isolate overflow-hidden rounded-xl bg-[#030712]">
         <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
           <div
             className="absolute inset-0"
             style={{
               background:
-                'radial-gradient(ellipse 55% 45% at 50% 48%, rgba(79,142,255,0.18) 0%, rgba(12,35,110,0.12) 40%, transparent 72%), linear-gradient(135deg, #07111f 0%, #0b1730 52%, #050810 100%)',
+                'radial-gradient(ellipse 55% 45% at 50% 48%, rgba(79,142,255,0.11) 0%, rgba(12,35,110,0.07) 40%, transparent 72%), linear-gradient(135deg, #030712 0%, #061023 52%, #02040c 100%)',
             }}
           />
           <div
-            className="absolute inset-0 opacity-70"
+            className="absolute inset-0 opacity-40"
             style={{
               backgroundImage:
-                'radial-gradient(circle, rgba(165,192,255,0.34) 1px, transparent 1.4px)',
+                'radial-gradient(circle, rgba(165,192,255,0.18) 1px, transparent 1.4px)',
               backgroundSize: '22px 22px',
             }}
           />
