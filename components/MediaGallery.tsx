@@ -23,18 +23,20 @@ interface StaticImageItem {
 
 export default function MediaGallery() {
     const gallery: StaticImageItem[]=[
-        { source: img1, alt: "PIC" },
-        { source: img2, alt: "EarlyPhoto" },
-        { source: img3, alt: "PIC1" },
-        { source: img4, alt: "PIC2" },
-        { source: img5, alt: "PIC3" },
-        { source: img6, alt: "PIC4" },
-        { source: img7, alt: "PIC5" },
-        { source: img8, alt: "E1" },
-        { source: img9, alt: "E2" },
-        { source: img10, alt: "E3" },
-        { source: img11, alt: "Blackfire1" },
-        { source: img12, alt: "Blackfire2" },
+        { source: img1, alt: "Presidential Innovation Challenge" },
+        { source: img5, alt: "Presidential Innovation Challenge" },
+        { source: img6, alt: "Presidential Innovation Challenge" },
+        { source: img4, alt: "Presidential Innovation Challenge" },
+        { source: img7, alt: "Presidential Innovation Challenge" },
+        { source: img3, alt: "Presidential Innovation Challenge" },
+        
+        { source: img11, alt: "Securing the Office" },
+        { source: img2, alt: "Securing the Office" },
+        { source: img12, alt: "Securing the Office" },
+    
+        { source: img9, alt: "Behind the Scenes" },
+        { source: img10, alt: "Behind the Scenes" },
+        { source: img8, alt: "Behind the Scenes" }
     ];
     const [currentIndex, setCurrentIndex] = useState<number>(0);
 
