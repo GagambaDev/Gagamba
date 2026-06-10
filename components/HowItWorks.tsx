@@ -37,8 +37,8 @@ export default function HowItWorks() {
 				
 					<div className="flex flex-col items-center text-center max-w-[180px]">
 						{/* This is the second step of the dron'es sequential process*/}
-						<h2 className="min-h-[4rem]">Assesment</h2>
-						<p className="min-h-[4rem] "> The Drone will analyze the windows with ultiamte precision, so no spec is left behind.</p>
+						<h2 className="min-h-[4rem]">Assessment</h2>
+						<p className="min-h-[4rem] "> The Drone will analyze the windows with ultimate precision, so no spec is left behind.</p>
 						{/* An image tag will go here for the 3d render that will be provided */}
 						<Image
 							src = "/images/drone.jpg"
