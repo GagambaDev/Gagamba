@@ -11,9 +11,9 @@ export default function About() {
     <div>
       <section className="flex min-h-screen flex-col items-center justify-center bg-[#04060f] text-white text-center px-4 relative overflow-hidden">
 
-        <h1 className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-3"> 
-          About US 
-        </h1>
+        {/* <h1 className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-3"> 
+          About Us
+        </h1> */}
 
         {/* Single unified glow — left-offset, bleeds into black */}
         <div style={{position: 'absolute', top: '70px', display: 'block',
