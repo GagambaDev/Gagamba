@@ -3,18 +3,18 @@
 import { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 
-import img1 from '@/public/images/gallery/PresInovChal1.jpg'
-import img2 from '@/public/images/gallery/Photo1.png'
-import img3 from '@/public/images/gallery/PIC1.png'
-import img4 from '@/public/images/gallery/PIC2.png'
-import img5 from '@/public/images/gallery/PIC3.png'
-import img6 from '@/public/images/gallery/PIC4.png'
-import img7 from '@/public/images/gallery/PIC5.png'
-import img8 from '@/public/images/gallery/Early1.png'
-import img9 from '@/public/images/gallery/Early2.png'
-import img10 from '@/public/images/gallery/Early3.png'
-import img11 from '@/public/images/gallery/Blackfire1.png'
-import img12 from '@/public/images/gallery/Blackfire2.png'
+import PICimg1 from '@/public/images/gallery/PresInovChal1.jpg'
+import BFimg3 from '@/public/images/gallery/Photo1.png'
+import PICimg2 from '@/public/images/gallery/PIC1.png'
+import PICimg3 from '@/public/images/gallery/PIC2.png'
+import PICimg4 from '@/public/images/gallery/PIC3.png'
+import PICimg5 from '@/public/images/gallery/PIC4.png'
+import PICimg6 from '@/public/images/gallery/PIC5.png'
+import BTSimg2 from '@/public/images/gallery/Early1.png'
+import BTSimg3 from '@/public/images/gallery/Early2.png'
+import BTSimg1 from '@/public/images/gallery/Early3.png'
+import BFimg1 from '@/public/images/gallery/Blackfire1.png'
+import BFimg2 from '@/public/images/gallery/Blackfire2.png'
 
 interface StaticImageItem {
   source: StaticImageData; 
@@ -23,30 +23,28 @@ interface StaticImageItem {
 
 export default function MediaGallery() {
     const gallery: StaticImageItem[]=[
-        { source: img1, alt: "Presidential Innovation Challenge" },
-        { source: img5, alt: "Presidential Innovation Challenge" },
-        { source: img6, alt: "Presidential Innovation Challenge" },
-        { source: img4, alt: "Presidential Innovation Challenge" },
-        { source: img7, alt: "Presidential Innovation Challenge" },
-        { source: img3, alt: "Presidential Innovation Challenge" },
+        { source: PICimg1, alt: "Presidential Innovation Challenge" },
+        { source: PICimg2, alt: "Presidential Innovation Challenge" },
+        { source: PICimg3, alt: "Presidential Innovation Challenge" },
+        { source: PICimg4, alt: "Presidential Innovation Challenge" },
+        { source: PICimg5, alt: "Presidential Innovation Challenge" },
+        { source: PICimg6, alt: "Presidential Innovation Challenge" },
         
-        { source: img11, alt: "Securing the Office" },
-        { source: img2, alt: "Securing the Office" },
-        { source: img12, alt: "Securing the Office" },
+        { source: BFimg1, alt: "Securing the Office" },
+        { source: BFimg2, alt: "Securing the Office" },
+        { source: BFimg3, alt: "Securing the Office" },
     
-        { source: img9, alt: "Behind the Scenes" },
-        { source: img10, alt: "Behind the Scenes" },
-        { source: img8, alt: "Behind the Scenes" }
+        { source: BTSimg1, alt: "Behind the Scenes" },
+        { source: BTSimg2, alt: "Behind the Scenes" },
+        { source: BTSimg3, alt: "Behind the Scenes" }
     ];
     const [currentIndex, setCurrentIndex] = useState<number>(0);
-
     //logic to navigate to the previous image
     const handlePrev = () => {
         setCurrentIndex((prevIndex) =>
             prevIndex === 0 ? gallery.length - 1 : prevIndex - 1
         );
     };
-
     //logic to navigate to the next image
     const handleNext = () => {
         setCurrentIndex((prevIndex) =>
@@ -58,8 +56,6 @@ export default function MediaGallery() {
 
     return (
         <section className="relative bg-[#04060f] text-white overflow-hidden py-32 px-6">
-
-            {/* Glow — left side, echoing the Hero */}
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
@@ -67,8 +63,6 @@ export default function MediaGallery() {
                         "radial-gradient(ellipse 70% 50% at 15% 70%, rgba(22,65,185,0.6) 0%, rgba(12,35,110,0.25) 50%, transparent 72%)",
                 }}
             />
-
-            {/* Dot grid texture */}
             <div
                 className="absolute inset-0 pointer-events-none opacity-[0.06]"
                 style={{
@@ -95,64 +89,54 @@ export default function MediaGallery() {
             </div>
 
             <div className="relative w-fit mx-auto">
-            <div className="flex flex-col items-center justify-center min-h-[400px] p-6">
-            <div className="relative w-[800px] h-96 md:h-[500px] border rounded-xl overflow-hidden shadow-lg bg-gray-900">
+                <div className="flex flex-col items-center justify-center min-h-[400px] p-6">
+                    <div className="relative w-[800px] h-96 md:h-[500px] border rounded-xl overflow-hidden shadow-lg bg-gray-900">
                 
-                <Image
-                    src={currentImage.source}
-                    alt={currentImage.alt}
-                    className="object-contain rounded-xl"
-                    style={{ maxWidth: '800px', maxHeight: '550px', height: 'auto', display: 'block', margin: '0 auto', position: 'relative', zIndex: 0 }}
-                    key={currentIndex} // Forces smooth fade or reset on change
-                    
-                />
-                <div style={{position: 'absolute', bottom: '16px', right: '16px', left: 'auto',
-                    transform: 'none', backgroundColor: 'rgba(0, 0, 0, 0.6)', color: '#ffffff',
-                    padding: '4px 12px', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 500,
-                    zIndex: 20}}>
-                    {currentIndex + 1} / {gallery.length}
+                        <Image
+                            src={currentImage.source}
+                            alt={currentImage.alt}
+                            className="object-contain rounded-xl"
+                            style={{ maxWidth: '800px', maxHeight: '550px', height: 'auto', display: 'block', margin: '0 auto', position: 'relative', zIndex: 0 }}
+                            onMouseOver={e => e.currentTarget.style.filter = 'brightness(1.1)'}
+                            onMouseOut={e => e.currentTarget.style.filter = 'brightness(0.9) hue-rotate(0deg) saturate(1)'}
+                            key={currentIndex} 
+                            
+                        />
+                        <div style={{position: 'absolute', bottom: '16px', right: '16px', left: 'auto',
+                            transform: 'none', backgroundColor: 'rgba(0, 0, 0, 0.6)', color: '#ffffff',
+                            padding: '4px 12px', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 500,
+                            zIndex: 20}}>
+                            {currentIndex + 1} / {gallery.length}
+                        </div>
+                    </div> 
                 </div>
-            </div> 
             </div>
-            
-                <div className="flex justify-center items-center gap-6 mt-3 w-full hover:bg-black/95 hover:scale-105 hover:shadow-md active:scale-95">
-                    <button
-                        onClick={handlePrev}
-                        className="bg-black/70 text-white p-2 rounded-full flex items-center justify-center w-10 h-10 border-none cursor-pointer shadow-sm transition-all duration-200 hover:bg-black/95 hover:scale-105 hover:shadow-md active:scale-95"
-                        aria-label="Previous image"
-                    >
-                        <svg xmlns="http://w3.org" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                            <path fillRule="evenodd" d="M11.03 3.97a.75.75 0 010 1.06L5.56 10.5H21a.75.75 0 010 1.5H5.56l5.47 5.47a.75.75 0 11-1.06 1.06l-6.75-6.75a.75.75 0 010-1.06l6.75-6.75a.75.75 0 011.06 0z" clipRule="evenodd" />
-                        </svg>
-                    </button>
-                        
-                    <button
-                        onClick={handleNext}
-                        className="bg-black/70 hover:bg-black/90 text-white p-2 rounded-full flex items-center justify-center w-10 h-10 border-none cursor-pointer transition-colors"
-                        aria-label="Next image"
-                    >
-                        <svg xmlns="http://w3.org" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                            <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l6.75 6.75a.75.75 0 010 1.06l-6.75 6.75a.75.75 0 11-1.06-1.06l5.47-5.47H3a.75.75 0 010-1.5h15.44l-5.47-5.47a.75.75 0 010-1.06z" clipRule="evenodd" />
-                        </svg>
-                    </button>
+ 
+            <button
+                onClick={handlePrev}
+                style={{ width: '40px', left: '49%', position: 'relative', zIndex: 0 }}
+                className="bg-black/70 text-white p-2 rounded-full w-10 h-10 border-none cursor-pointer shadow-sm transition-all duration-200 hover:scale-105 active:scale-95 hover:bg-white/[0.06] hover:border-blue-500/40"
+                aria-label="Previous image"
+            >
+                <svg xmlns="http://w3.org" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                    <path fillRule="evenodd" d="M11.03 3.97a.75.75 0 010 1.06L5.56 10.5H21a.75.75 0 010 1.5H5.56l5.47 5.47a.75.75 0 11-1.06 1.06l-6.75-6.75a.75.75 0 010-1.06l6.75-6.75a.75.75 0 011.06 0z" clipRule="evenodd" />
+                </svg>
+            </button>
+            <button
+                onClick={handleNext}
+                style={{  width: '40px', left: '51%', position: 'relative', zIndex: 0}}
+                className="bg-black/70 text-white p-2 rounded-full w-10 h-10 border-none cursor-pointer transition-colors hover:scale-105 active:scale-95 hover:bg-white/[0.06] hover:border-blue-500/40"
+                aria-label="Next image"
+            >
+                <svg xmlns="http://w3.org" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                    <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l6.75 6.75a.75.75 0 010 1.06l-6.75 6.75a.75.75 0 11-1.06-1.06l5.47-5.47H3a.75.75 0 010-1.5h15.44l-5.47-5.47a.75.75 0 010-1.06z" clipRule="evenodd" />
+                </svg>
+            </button>
                 
-            
-            </div>
-               
-                
-            
-                
-               
-            <p className="mt-4 text-gray-600 font-medium text-center">
+            <p className="mt-4 text-gray-600 font-medium text-center"
+                style={{display: 'block', position: 'relative'}}>
                 {currentImage.alt}
             </p>
-            
-            </div>
-             
-            
-            
-            
         </section>
-        
     );
 }
