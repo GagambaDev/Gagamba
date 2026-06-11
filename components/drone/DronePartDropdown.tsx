@@ -1,9 +1,9 @@
 'use client';
-
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import PartDescription, { type DronePart } from './PartDescription';
-import PlusPin from './PlusPin';
+import PartDescription from '@/components/drone/PartDescription';
+import { DronePart } from '@/lib/types';
+import PlusPin from '@/components/drone/PlusPin';
 
 type DronePartDropdownProps = {
   parts: DronePart[];
