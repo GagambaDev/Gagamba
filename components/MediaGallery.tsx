@@ -93,9 +93,10 @@ export default function MediaGallery() {
                     </span>
                 </h2>
             </div>
+
             <div className="relative w-fit mx-auto">
             <div className="flex flex-col items-center justify-center min-h-[400px] p-6">
-            <div className="relative w-800 h-96 md:h-[500px] border rounded-xl overflow-hidden shadow-lg bg-gray-900">            
+            <div className="relative w-[800px] h-96 md:h-[500px] border rounded-xl overflow-hidden shadow-lg bg-gray-900">
                 
                 <Image
                     src={currentImage.source}
@@ -108,7 +109,7 @@ export default function MediaGallery() {
                 <div style={{position: 'absolute', bottom: '16px', right: '16px', left: 'auto',
                     transform: 'none', backgroundColor: 'rgba(0, 0, 0, 0.6)', color: '#ffffff',
                     padding: '4px 12px', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 500,
-                    zIndex: 20}}>            
+                    zIndex: 20}}>
                     {currentIndex + 1} / {gallery.length}
                 </div>
             </div> 
