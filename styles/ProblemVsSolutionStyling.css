@@ -1,0 +1,152 @@
+/*Scoped CSS styles for layout, 
+theme colors, and desktop alignments*/
+@import "tailwindcss";
+
+.pvs-section {
+    width: 100%;
+    --color-ink-black: #05030D;
+    --color-dark-amethyst: #120A33;
+    background: var(--color-ink-black);
+    color: var(--color-periwinkle);
+}
+
+.pvs-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    box-sizing: border-box;
+}
+
+.pvs-intro {
+    margin-bottom: 4rem;
+}
+
+.pvs-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-fresh-sky);
+    margin: 0 0 1rem;
+    font-weight: 500;
+}
+
+.pvs-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: #ffffff;
+    margin: 0 0 1rem;
+}
+
+.pvs-desc {
+    font-size: 1rem;
+    color: var(--color-periwinkle);
+    opacity: 0.6;
+    max-width: 520px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.pvs-stats {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--color-dark-amethyst);
+    border: 1px solid var(--color-dark-amethyst);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 4rem;
+}
+
+.pvs-stat {
+    background: var(--color-ink-black);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.pvs-stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--color-fresh-sky);
+    line-height: 1;
+}
+
+.pvs-stat-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-periwinkle);
+    margin-top: 0.25rem;
+}
+
+.pvs-stat-sub {
+    font-size: 0.75rem;
+    color: var(--color-periwinkle);
+    opacity: 0.6;
+    line-height: 1.5;
+}
+
+.pvs-compare {
+    border: 1px solid var(--color-dark-amethyst);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.pvs-col-headers,
+.pvs-row {
+    display: grid;
+    grid-template-columns:
+        1fr 1fr;
+    border-bottom: 1px solid var(--color-dark-amethyst);
+}
+
+.pvs-row:last-child {
+    border-bottom: none;
+}
+
+.pvs-row-label {
+    display: none;
+}
+
+.pvs-col-head,
+.pvs-cell {
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: var(--color-ink-black);
+}
+
+.pvs-col-head {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    align-items: center;
+}
+
+.pvs-col-head--manual,
+.pvs-cell--manual {
+    color: var(--color-periwinkle);
+    opacity: 0.45;
+    border-right: 1px solid var(--color-dark-amethyst);
+}
+
+.pvs-col-head--manual {
+    opacity: 0.4;
+}
+
+.pvs-col-head--gagamba {
+    color: #ffffff;
+}
+
+.pvs-cell--gagamba {
+    color: #ffffff;
+    font-weight: 500;
+}
