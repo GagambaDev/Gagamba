@@ -137,6 +137,9 @@ export default function MediaGallery() {
                 style={{display: 'block', position: 'relative'}}>
                 {currentImage.alt}
             </p>
+
+            {/* Seamless background color gradient transition at the bottom of this component. */}
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#04060f] to-transparent pointer-events-none" />
         </section>
     );
 }
