@@ -5,7 +5,7 @@ const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
 export default function PartDescriptionContent({
   title,
-  copy,
+  description,
   isIntro,
 }: PartDescriptionContentProps) {
   return (
@@ -21,7 +21,7 @@ export default function PartDescriptionContent({
       <p
         className={`${spaceGrotesk.className} mt-2 text-sm leading-6 text-[#D5D2F7]/85 sm:mt-3 md:text-base md:leading-7`}
       >
-        {copy}
+        {description}
       </p>
     </div>
   );

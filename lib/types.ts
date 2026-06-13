@@ -3,7 +3,7 @@ export type DronePart = {
   title: string;
   down: string;
   right: string;
-  tourCopy: string;
+  description: string;
   spotlightRadius?: string;
 };
 
@@ -27,7 +27,7 @@ export type PartDescriptionControlsProps = {
 
 export type PartDescriptionContentProps = {
   title: string;
-  copy: string;
+  description: string;
   isIntro: boolean;
 };
 

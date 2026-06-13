@@ -7,7 +7,7 @@ const DRONE_PARTS: DronePart[] = [
     title: 'Propellers',
     down: '42%', // % down from top edge of image
     right: '15%', // % right from left edge of image
-    tourCopy: 'Eight coaxial propellers generate the lift and redundancy needed to carry the full 66 lb system and remain airborne even with a single motor failure.',
+    description: 'Eight coaxial propellers generate the lift and redundancy needed to carry the full 66 lb system and remain airborne even with a single motor failure.',
     spotlightRadius: '18%',
   },
   {
@@ -15,7 +15,7 @@ const DRONE_PARTS: DronePart[] = [
     title: 'Battery',
     down: '45%',
     right: '50%',
-    tourCopy: 'High-capacity LiPo batteries power the motors, pump, and onboard compute, delivering roughly 24 minutes of flight time per mission cycle.',
+    description: 'High-capacity LiPo batteries power the motors, pump, and onboard compute, delivering roughly 24 minutes of flight time per mission cycle.',
     spotlightRadius: '12%',
   },
   {
@@ -23,7 +23,7 @@ const DRONE_PARTS: DronePart[] = [
     title: 'Water Tank',
     down: '55%',
     right: '47%',
-    tourCopy: 'A 12-liter onboard reservoir eliminates the tether entirely, freeing Gagamba from the ~200 ft altitude ceiling that limits hose-fed competitors.',
+    description: 'A 12-liter onboard reservoir eliminates the tether entirely, freeing Gagamba from the ~200 ft altitude ceiling that limits hose-fed competitors.',
     spotlightRadius: '13%',
   },
   {
@@ -31,7 +31,7 @@ const DRONE_PARTS: DronePart[] = [
     title: 'Pressure Nozzle',
     down: '55%',
     right: '54%',
-    tourCopy: 'A precision nozzle delivers a controlled stream of water onto the glass, keeping spray contained within the detected window boundary while minimizing waste.',
+    description: 'A precision nozzle delivers a controlled stream of water onto the glass, keeping spray contained within the detected window boundary while minimizing waste.',
     spotlightRadius: '12%',
   },
   {
@@ -39,7 +39,7 @@ const DRONE_PARTS: DronePart[] = [
     title: 'Camera',
     down: '44%',
     right: '55%',
-    tourCopy: 'The onboard camera feeds the computer vision system that identifies glass panes, guides docking, and captures the data behind the Post-Flight Report.',
+    description: 'The onboard camera feeds the computer vision system that identifies glass panes, guides docking, and captures the data behind the Post-Flight Report.',
     spotlightRadius: '11%',
   }
 ]
