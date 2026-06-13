@@ -6,28 +6,16 @@
  * Purpose:
  * - Hero-style section that displays co-innovation partner logos in a
  *   continuously scrolling ticker, with a "Contact Us" CTA below.
- *
- * Animations:
- * - Header, divider, and CTA button fade in from their respective edges on
- *   scroll via useScrollReveal (IntersectionObserver + inline style lerp).
- * - Section background pulses with a breathing radial gradient glow on hover
- *   via HoverGlow (rAF lerp, alpha animated inside rgba — no CSS transitions).
- * - Logos scroll infinitely via InfiniteScroll (CSS animation, ResizeObserver
- *   for pixel-perfect loop distance, mask-image edge fade).
- *
- * Data:
- * - Partner logos are defined in the technologies array at the top of this file.
- *   Add or remove entries there; InfiniteScroll handles layout automatically.
  */
 
 import Image from "next/image";
 import Link from "next/link";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import HoverGlow, { GradientConfig } from "./ui/HoverGlow";
-import InfiniteScroll from "./ui/InfiniteScroll";
-import { ShinyButton } from "./ui/ShinyButton";
+import HoverGlow, { GradientConfig } from "@/components/ui/HoverGlow";
+import InfiniteIconScroll from "@/components/ui/InfiniteScroll";
+import { ShinyButton } from "@/components/ui/ShinyButton";
 
-const technologies = [
+const TECHNOLOGIES = [
     { name: "UNLV",       src: "/images/partners/UNLV-Logo.svg" },
     { name: "Blackfire",  src: "/images/partners/BlackFire-Innovation-Logo.svg" },
     { name: "SBDC",       src: "/images/partners/Nevada-SBDC-Logo.svg" },
@@ -36,14 +24,14 @@ const technologies = [
 ];
 
 const GLOW_GRADIENTS: GradientConfig[] = [
-    { shape: "ellipse 70% 60%", at: "10% 10%", color: "40,80,220",  maxAlpha: 0.13 },
-    { shape: "ellipse 55% 50%", at: "90% 90%", color: "90,40,210",  maxAlpha: 0.11 },
+    { shape: "ellipse 70% 60%", position: "10% 10%", color: "40,80,220",  maxAlpha: 0.13 },
+    { shape: "ellipse 55% 50%", position: "90% 90%", color: "90,40,210",  maxAlpha: 0.11 },
 ];
 
 export default function SocialProof() {
     const { ref, fadeTop, fadeBottom } = useScrollReveal();
 
-    const renderLogos = technologies.map((tech) => (
+    const renderLogos = TECHNOLOGIES.map((tech) => (
         <div
             key={tech.name}
             className="opacity-75 transition-all duration-300 hover:opacity-100 w-32 md:w-48 lg:w-56 flex justify-center"
@@ -61,7 +49,7 @@ export default function SocialProof() {
 
     return (
         <HoverGlow
-            as="section"
+            element="section"
             gradients={GLOW_GRADIENTS}
             className="overflow-hidden text-white py-32"
             style={{ background: "linear-gradient(to bottom, #09061A 0%, #04060f 220px, #04060f 100%)" }}
@@ -95,7 +83,7 @@ export default function SocialProof() {
                 </div>
 
                 <div className="w-full md:w-[90%] mx-auto my-16">
-                    <InfiniteScroll items={renderLogos} speed="35s" />
+                    <InfiniteIconScroll items={renderLogos} speed="35s" />
                 </div>
 
                 <div className="max-w-6xl mx-auto px-6">

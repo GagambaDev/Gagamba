@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "../components/ui/shiny-button.css";
 
 :root {
   /*backgrounds*/
@@ -14,7 +13,6 @@
 
   /*highlights*/
   --color-fresh-sky: #00AAFF;
-
 }
 
 @theme inline {
@@ -24,11 +22,9 @@
   --font-techy: var(--font-techy);
 }
 
-
 body {
   background: linear-gradient(135deg, var(--color-ink-black) 0%, var(--color-dark-amethyst) 100%);
   color: var(--color-periwinkle);
   font-family: var(--font-body);
 }
-
 

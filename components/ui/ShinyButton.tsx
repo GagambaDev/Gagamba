@@ -6,22 +6,9 @@
  * Purpose:
  * - Pill-shaped button with a rotating gradient shine and glow animation.
  *   Used as the primary call-to-action element across the site.
- *
- * Props:
- * - children: ReactNode — button label or content (typically a Link or text).
- * - onClick?: () => void — optional click handler.
- * - className?: string — pass a size-variant class to override default sizing.
- *   Base variants: shiny-cta-xs | shiny-cta-sm | shiny-cta-lg
- *   Responsive prefixes are supported: sm: md: lg: xl:
- *   Example: className="shiny-cta-sm lg:shiny-cta-lg"
- *
- * Notes:
- * - All animation and sizing is driven by CSS custom properties
- *   inside the .shiny-cta block. Adjust --shiny-cta-highlight for color changes.
- * - Size variants override --shiny-cta-px, --shiny-cta-py, and --shiny-cta-text
- *   via cascade; no JS involved.
  */
 
+import "@/components/ui/shiny-button.css";
 import type React from "react";
 
 interface ShinyButtonProps {

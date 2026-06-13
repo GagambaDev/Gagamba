@@ -8,18 +8,6 @@ import { useRef, MouseEvent, useEffect, ReactNode } from "react";
  * Purpose:
  * - Wraps any subtree and provides a smoothed radial-gradient "spotlight" that follows
  *   the user's mouse using requestAnimationFrame and linear interpolation (lerp).
- *
- * Props:
- * - children: ReactNode — content to render inside the tracked area.
- * - className?: string — additional classes applied to the outer container.
- * - overlayColor?: string — CSS color used for the radial highlight (default set in caller).
- *
- * Notes:
- * - Smoothing is controlled by the lerp factor `* 0.15` near the top of the file.
- *   Reduce the number to make motion smoother/slower, increase to make it snappier.
- * - The default hidden state resets the overlay to a large, off-screen radial gradient.
- * - This component intentionally keeps DOM manipulation minimal (direct style writes)
- *   for low-latency visual updates.
  */
 
 interface MouseTrackerProps {

@@ -7,21 +7,6 @@ import { ReactNode, useEffect, useRef } from "react";
  *
  * Purpose:
  * - Render a horizontal, continuously-looping track of arbitrary React items.
- *
- * Props:
- * - items: ReactNode[] — array of elements to display inside the track.
- * - gap?: string — Tailwind gap classes applied uniformly between all items and between the two copies (e.g. "gap-12 md:gap-24").
- * - speed?: string — CSS animation duration (e.g. "30s").
- *
- * Edge fading uses mask-image (transparent → opaque) so the logos dissolve into
- * whatever background sits behind them — including dynamic effects like mouse glows.
- *
- * Loop correctness:
- * - Two copies of items sit in a flex container using the same gap class, so all
- *   inter-item spacings (including the copy boundary) are identical.
- * - A ResizeObserver measures copy2.offsetLeft — the exact pixel distance the track
- *   must travel before copy 2 aligns with copy 1's original position — and stores it
- *   in --scroll-dist. This avoids the half-gap drift that breaks translateX(-50%).
  */
 
 interface InfiniteScrollProps {
@@ -35,20 +20,20 @@ export default function InfiniteScroll({
     gap = "gap-12 md:gap-24",
     speed = "30s",
 }: InfiniteScrollProps) {
-    const trackRef = useRef<HTMLDivElement>(null);
-    const copy2Ref = useRef<HTMLDivElement>(null);
+    const trackRef        = useRef<HTMLDivElement>(null);
+    const secondCopyRef   = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const track = trackRef.current;
-        const copy2 = copy2Ref.current;
-        if (!track || !copy2) return;
+        const track      = trackRef.current;
+        const secondCopy = secondCopyRef.current;
+        if (!track || !secondCopy) return;
 
-        const update = () => {
-            track.style.setProperty("--scroll-dist", `${copy2.offsetLeft}px`);
+        const syncScrollDistance = () => {
+            track.style.setProperty("--scroll-dist", `${secondCopy.offsetLeft}px`);
         };
 
-        update();
-        const ro = new ResizeObserver(update);
+        syncScrollDistance();
+        const ro = new ResizeObserver(syncScrollDistance);
         ro.observe(track);
         return () => ro.disconnect();
     }, [items, gap]);
@@ -82,7 +67,7 @@ export default function InfiniteScroll({
                         </div>
                     ))}
                 </div>
-                <div ref={copy2Ref} className={`flex ${gap}`} aria-hidden="true">
+                <div ref={secondCopyRef} className={`flex ${gap}`} aria-hidden="true">
                     {items.map((item, idx) => (
                         <div key={`b-${idx}`} className="shrink-0 flex items-center justify-center">
                             {item}
