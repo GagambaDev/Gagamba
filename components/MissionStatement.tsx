@@ -2,22 +2,15 @@
 
 export default function MissionStatement() {
     return (
-        // Commented out below code to remove overlay that clashes with background
-        // <section className="relative bg-[#04060f] text-white overflow-hidden py-32 px-6">
-        // One line below is its replacement.
         <section>
-
-            {/* Disabling top right glow near mission statement for now. */}
             {/* Glow — right side for variety */}
-            {/* <div
+            <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
                     background:
                         "radial-gradient(ellipse 65% 55% at 80% 55%, rgba(22,65,185,0.75) 0%, rgba(12,35,110,0.35) 45%, transparent 70%)",
                 }}
-            /> */}
-
-
+            />
 
             <div className="relative z-10 max-w-6xl mx-auto">
 
