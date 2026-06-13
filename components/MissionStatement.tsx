@@ -46,7 +46,7 @@ export default function MissionStatement() {
 
                 {/* Official Mission Statement Content Starts Here: */}
                 {/* Setup configurations for description text within the outermost container area. */}
-                <div className="space-y-5 text-gray-300 text-lg leading-relaxed flex justify-center items-center">
+                <div className="space-y-5 text-gray-300 text-lg leading-relaxed flex-col justify-center items-center">
                     {/* First paragraph of the mission statement, describing the company's commitment to safety, innovation, and sustainability in high-rise maintenance. */}
                     <p
                         style={{
