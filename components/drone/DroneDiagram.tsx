@@ -1,4 +1,4 @@
-import DronePartDropdown from '@/components/drone/DronePartDropdown';
+import DronePartExplorer from '@/components/drone/DronePartExplorer';
 import { type DronePart } from '@/lib/types';
 
 const DRONE_PARTS: DronePart[] = [
@@ -88,7 +88,7 @@ export default function DroneDiagram() {
             <div className="absolute -inset-px rounded-[inherit] bg-gradient-to-br from-white/25 via-blue-400/20 to-transparent opacity-70 pointer-events-none" />
 
             <div className="relative rounded-[1.25rem] border border-white/10 bg-[#081225] p-3 shadow-[inset_0_1px_0_rgba(165,192,255,0.16)]">
-              <DronePartDropdown parts={DRONE_PARTS} />
+              <DronePartExplorer parts={DRONE_PARTS} />
             </div>
           </div>
         </div>

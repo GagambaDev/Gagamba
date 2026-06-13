@@ -1,10 +1,8 @@
-import { PlusPinProps } from "@/lib/types";
+import { DroneHotspotProps } from '@/lib/types';
 
-export default function PlusPin({ active = false }: PlusPinProps) {
+export default function DroneHotspot({ active = false }: DroneHotspotProps) {
   return (
-    <span
-      className="group relative flex h-full w-full items-center justify-center rounded-full"
-    >
+    <span className="group relative flex h-full w-full items-center justify-center rounded-full">
       <span
         className={`absolute inset-0 rounded-full border transition-all duration-200 ${
           active
@@ -19,8 +17,6 @@ export default function PlusPin({ active = false }: PlusPinProps) {
             : 'h-[22%] w-[22%] -translate-x-1/2 -translate-y-1/2 bg-blue-200/75 shadow-[0_0_8px_rgba(191,219,254,0.42)] group-hover:h-[28%] group-hover:w-[28%] group-hover:bg-blue-300'
         }`}
       />
-      <span className={`absolute h-[26%] w-[2px] rounded-full bg-white transition-transform duration-200 ${active ? 'scale-y-0' : 'scale-y-100'}`} />
-      <span className={`absolute h-[2px] w-[26%] rounded-full bg-white transition-transform duration-200 ${active ? 'scale-x-0' : 'scale-x-100'}`} />
     </span>
   );
 }
