@@ -1,6 +1,15 @@
+/**
+ * This is the drone Diagram displayed on our landing page. 
+ * This holds the list of DroneParts and deals with any of the section styling.
+ * If you need to change or add a Drone Part this is where you would do it.
+ * To add a drone Part you simply add it to the list and position it using the
+ * down and right variables. 
+ */
+
 import DronePartExplorer from '@/components/drone/DronePartExplorer';
 import { type DronePart } from '@/lib/types';
 
+// Order the parts so that the lowest right value is first. This will give a smoother tour experience. 
 const DRONE_PARTS: DronePart[] = [
   {
     id: 'propellers',
@@ -11,20 +20,20 @@ const DRONE_PARTS: DronePart[] = [
     spotlightRadius: '18%',
   },
   {
-    id: 'battery',
-    title: 'Battery',
-    down: '45%',
-    right: '50%',
-    description: 'High-capacity LiPo batteries power the motors, pump, and onboard compute, delivering roughly 24 minutes of flight time per mission cycle.',
-    spotlightRadius: '12%',
-  },
-  {
     id: 'water-tank',
     title: 'Water Tank',
     down: '55%',
     right: '47%',
     description: 'A 12-liter onboard reservoir eliminates the tether entirely, freeing Gagamba from the ~200 ft altitude ceiling that limits hose-fed competitors.',
     spotlightRadius: '13%',
+  },
+  {
+    id: 'battery',
+    title: 'Battery',
+    down: '45%',
+    right: '50%',
+    description: 'High-capacity LiPo batteries power the motors, pump, and onboard compute, delivering roughly 24 minutes of flight time per mission cycle.',
+    spotlightRadius: '12%',
   },
   {
     id: 'pressure-nozzle',

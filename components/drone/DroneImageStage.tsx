@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { RefObject } from 'react';
-import DroneHotspot from '@/components/drone/DroneHotspot';
+import { type RefObject } from 'react';
+import DroneHotspots from '@/components/drone/DroneHotspots';
 import { DronePart } from '@/lib/types';
 
 const DRONE_IMAGE = {
@@ -38,7 +38,18 @@ export default function DroneImageStage({
         <div className="relative isolate min-w-[42rem] overflow-hidden rounded-xl bg-[#030712] md:min-w-0">
           <DroneStageBackground />
 
-          <BaseDroneImage isDimmed={isSpotlightActive} />
+          <Image
+            src={DRONE_IMAGE.src}
+            alt={DRONE_IMAGE.alt}
+            width={DRONE_IMAGE.width}
+            height={DRONE_IMAGE.height}
+            className={`relative z-10 h-auto w-full select-none transition-all duration-500 ${
+              isSpotlightActive
+                ? 'opacity-100 grayscale brightness-[0.58] contrast-110 blur-[1px]'
+                : 'opacity-100'
+            }`}
+            priority
+          />
 
           {isSpotlightActive && selectedPart && <DroneSpotlight part={selectedPart} />}
 
@@ -77,21 +88,6 @@ function DroneStageBackground() {
   );
 }
 
-function BaseDroneImage({ isDimmed }: { isDimmed: boolean }) {
-  return (
-    <Image
-      src={DRONE_IMAGE.src}
-      alt={DRONE_IMAGE.alt}
-      width={DRONE_IMAGE.width}
-      height={DRONE_IMAGE.height}
-      className={`relative z-10 h-auto w-full select-none transition-all duration-500 ${
-        isDimmed ? 'opacity-100 grayscale brightness-[0.58] contrast-110 blur-[1px]' : 'opacity-100'
-      }`}
-      priority
-    />
-  );
-}
-
 function DroneSpotlight({ part }: { part: DronePart }) {
   const radius = part.spotlightRadius ?? '16%';
   const maskImage = `radial-gradient(circle at ${part.right} ${part.down}, #000 0 ${radius}, transparent calc(${radius} + 8%))`;
@@ -116,33 +112,4 @@ function DroneSpotlight({ part }: { part: DronePart }) {
       />
     </>
   );
-}
-
-type DroneHotspotsProps = {
-  parts: DronePart[];
-  selectedPart: DronePart | null;
-  onSelectPart: (index: number) => void;
-};
-
-function DroneHotspots({ parts, selectedPart, onSelectPart }: DroneHotspotsProps) {
-  return parts.map((part, index) => (
-    <button
-      key={part.id}
-      className="absolute z-30 flex cursor-pointer items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white"
-      style={{
-        top: part.down,
-        left: part.right,
-        width: 'clamp(1.9rem, 3.5%, 2.5rem)',
-        aspectRatio: '1 / 1',
-        transform: 'translate(-50%, -50%)',
-      }}
-      onClick={(event) => {
-        event.stopPropagation();
-        onSelectPart(index);
-      }}
-      aria-label={`Show ${part.title}`}
-    >
-      <DroneHotspot active={selectedPart?.id === part.id} />
-    </button>
-  ));
 }

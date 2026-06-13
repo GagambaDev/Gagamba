@@ -1,3 +1,7 @@
+/**
+ * This is the drone hotspot icon. It handles all the animation/display of it.
+ */
+
 import { DroneHotspotProps } from '@/lib/types';
 
 export default function DroneHotspot({ active = false }: DroneHotspotProps) {
