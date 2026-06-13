@@ -12,7 +12,7 @@ export default function MissionStatement() {
                 }}
             />
 
-            <div className="relative z-10 max-w-6xl mx-auto py-38">
+            <div className="relative z-10 max-w-6xl mx-auto pt-38 pb-8">
 
                 <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
                     Mission Statement
