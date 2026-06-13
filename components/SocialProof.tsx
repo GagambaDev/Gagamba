@@ -9,7 +9,6 @@
  */
 
 import Image from "next/image";
-import Link from "next/link";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import HoverGlow, { GradientConfig } from "@/components/ui/HoverGlow";
 import InfiniteIconScroll from "@/components/ui/InfiniteScroll";
@@ -88,8 +87,8 @@ export default function SocialProof() {
 
                 <div className="max-w-6xl mx-auto px-6">
                     <div style={fadeBottom()} className="mt-20 justify-center flex">
-                        <ShinyButton className="lg:shiny-cta-lg">
-                            <Link href="/contact">Contact Us</Link>
+                        <ShinyButton href="/contact" className="lg:shiny-cta-lg">
+                            Contact Us
                         </ShinyButton>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
 /**
  * InfiniteScroll
@@ -40,6 +40,7 @@ export default function InfiniteScroll({
 
     return (
         <div
+            ref={containerRef}
             className="relative overflow-hidden"
             style={{
                 maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
@@ -58,7 +59,7 @@ export default function InfiniteScroll({
                 }
             `}</style>
 
-            {/* Track — two copies share the same gap so the copy boundary is seamless */}
+            {/* Track — repeated copies share the same gap so each copy boundary is seamless */}
             <div ref={trackRef} className={`scroll-track flex ${gap} w-max`}>
                 <div className={`flex ${gap}`}>
                     {items.map((item, idx) => (

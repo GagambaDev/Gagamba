@@ -3,6 +3,7 @@ import { ClerkProvider } from '@clerk/nextjs'
 import { Syne, DM_Sans, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const syne = Syne({
   weight: ['400','600','700'],
@@ -35,6 +36,7 @@ export default function RootLayout({
         <body>
           <Navbar/>
           {children}
+          <Footer/>
         </body>
       </html>
     </ClerkProvider>

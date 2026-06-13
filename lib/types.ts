@@ -1,0 +1,36 @@
+export type DronePart = {
+  id: string;
+  title: string;
+  down: string;
+  right: string;
+  tourCopy: string;
+  spotlightRadius?: string;
+};
+
+export type PartDescriptionProps = {
+  part: DronePart | null;
+  step?: number;
+  totalSteps?: number;
+  onNext?: () => void;
+  onPrevious?: () => void;
+  onReset?: () => void;
+};
+
+export type TourControlsProps = {
+  isIntro: boolean;
+  step: number;
+  totalSteps: number;
+  nextLabel: string;
+  onNext?: () => void;
+  onPrevious?: () => void;
+};
+
+export type TourContentProps = {
+  title: string;
+  copy: string;
+  isIntro: boolean;
+};
+
+export type PlusPinProps = {
+  active?: boolean;
+};
