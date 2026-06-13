@@ -37,7 +37,7 @@ export default function MissionStatement() {
                         <p 
                             style={{display: 'block', margin: ' 50px 200px ', position: 'relative'}}
                         >
-                            At Gagamba, we aren't just cleaning windows; we are engineering a safer, greener, and more efficient future for high-rise property maintenance.
+                            At Gagamba, we are engineering a safer, greener, and more efficient future for high-rise property maintenance.
                             By deploying advanced drone technology, we eliminate the need for traditional at-height crews, ensuring that human lives are never put at risk on 
                             dangerous high-rise structures.
                             <br></br> 
