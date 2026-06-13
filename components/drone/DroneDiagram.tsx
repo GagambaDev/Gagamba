@@ -1,37 +1,46 @@
-import DronePartDropdown from '@/components/drone/DronePartDropdown';
+/**
+ * This is the drone Diagram displayed on our landing page. 
+ * This holds the list of DroneParts and deals with any of the section styling.
+ * If you need to change or add a Drone Part this is where you would do it.
+ * To add a drone Part you simply add it to the list and position it using the
+ * down and right variables. 
+ */
+
+import DronePartExplorer from '@/components/drone/DronePartExplorer';
 import { type DronePart } from '@/lib/types';
 
+// Order the parts so that the lowest right value is first. This will give a smoother tour experience. 
 const DRONE_PARTS: DronePart[] = [
   {
     id: 'propellers',
     title: 'Propellers',
     down: '42%', // % down from top edge of image
     right: '15%', // % right from left edge of image
-    tourCopy: 'Eight coaxial propellers generate the lift and redundancy needed to carry the full 66 lb system and remain airborne even with a single motor failure.',
+    description: 'Eight coaxial propellers generate the lift and redundancy needed to carry the full 66 lb system and remain airborne even with a single motor failure.',
     spotlightRadius: '18%',
-  },
-  {
-    id: 'battery',
-    title: 'Battery',
-    down: '45%',
-    right: '50%',
-    tourCopy: 'High-capacity LiPo batteries power the motors, pump, and onboard compute, delivering roughly 24 minutes of flight time per mission cycle.',
-    spotlightRadius: '12%',
   },
   {
     id: 'water-tank',
     title: 'Water Tank',
     down: '55%',
     right: '47%',
-    tourCopy: 'A 12-liter onboard reservoir eliminates the tether entirely, freeing Gagamba from the ~200 ft altitude ceiling that limits hose-fed competitors.',
+    description: 'A 12-liter onboard reservoir eliminates the tether entirely, freeing Gagamba from the ~200 ft altitude ceiling that limits hose-fed competitors.',
     spotlightRadius: '13%',
+  },
+  {
+    id: 'battery',
+    title: 'Battery',
+    down: '45%',
+    right: '50%',
+    description: 'High-capacity LiPo batteries power the motors, pump, and onboard compute, delivering roughly 24 minutes of flight time per mission cycle.',
+    spotlightRadius: '12%',
   },
   {
     id: 'pressure-nozzle',
     title: 'Pressure Nozzle',
     down: '55%',
     right: '54%',
-    tourCopy: 'A precision nozzle delivers a controlled stream of water onto the glass, keeping spray contained within the detected window boundary while minimizing waste.',
+    description: 'A precision nozzle delivers a controlled stream of water onto the glass, keeping spray contained within the detected window boundary while minimizing waste.',
     spotlightRadius: '12%',
   },
   {
@@ -39,7 +48,7 @@ const DRONE_PARTS: DronePart[] = [
     title: 'Camera',
     down: '44%',
     right: '55%',
-    tourCopy: 'The onboard camera feeds the computer vision system that identifies glass panes, guides docking, and captures the data behind the Post-Flight Report.',
+    description: 'The onboard camera feeds the computer vision system that identifies glass panes, guides docking, and captures the data behind the Post-Flight Report.',
     spotlightRadius: '11%',
   }
 ]
@@ -88,7 +97,7 @@ export default function DroneDiagram() {
             <div className="absolute -inset-px rounded-[inherit] bg-gradient-to-br from-white/25 via-blue-400/20 to-transparent opacity-70 pointer-events-none" />
 
             <div className="relative rounded-[1.25rem] border border-white/10 bg-[#081225] p-3 shadow-[inset_0_1px_0_rgba(165,192,255,0.16)]">
-              <DronePartDropdown parts={DRONE_PARTS} />
+              <DronePartExplorer parts={DRONE_PARTS} />
             </div>
           </div>
         </div>

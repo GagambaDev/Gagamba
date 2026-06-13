@@ -3,7 +3,7 @@ export type DronePart = {
   title: string;
   down: string;
   right: string;
-  tourCopy: string;
+  description: string;
   spotlightRadius?: string;
 };
 
@@ -16,7 +16,7 @@ export type PartDescriptionProps = {
   onReset?: () => void;
 };
 
-export type TourControlsProps = {
+export type PartDescriptionControlsProps = {
   isIntro: boolean;
   step: number;
   totalSteps: number;
@@ -25,12 +25,12 @@ export type TourControlsProps = {
   onPrevious?: () => void;
 };
 
-export type TourContentProps = {
+export type PartDescriptionContentProps = {
   title: string;
-  copy: string;
+  description: string;
   isIntro: boolean;
 };
 
-export type PlusPinProps = {
+export type DroneHotspotProps = {
   active?: boolean;
 };
