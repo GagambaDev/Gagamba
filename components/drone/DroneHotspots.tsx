@@ -1,3 +1,10 @@
+/**
+ * This is the list of clickable hotspot buttons placed over the drone image.
+ * It uses each DronePart's down and right values to position the hotspot.
+ * If you need to change how a hotspot is selected or where the buttons render,
+ * this is the component that connects the part data to the hotspot icon.
+ */
+
 'use client';
 
 import DroneHotspot from '@/components/drone/DroneHotspot';

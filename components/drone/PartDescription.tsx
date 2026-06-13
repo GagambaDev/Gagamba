@@ -1,3 +1,10 @@
+/**
+ * This is the description panel for the selected drone part.
+ * It decides whether the panel should show the intro state or the active tour
+ * state, then passes the correct title, description, progress, and controls to
+ * the smaller PartDescription components.
+ */
+
 import { PartDescriptionProps } from '@/lib/types';
 import PartDescriptionContent from '@/components/drone/PartDescriptionContent';
 import PartDescriptionControls from '@/components/drone/PartDescriptionControls';

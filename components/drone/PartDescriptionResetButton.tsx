@@ -1,3 +1,9 @@
+/**
+ * This is the reset button used to end the active drone tour.
+ * It appears in the description panel once a DronePart is selected and calls
+ * the reset handler passed down from the tour controller.
+ */
+
 type PartDescriptionResetButtonProps = {
   onReset?: () => void;
 };

@@ -1,3 +1,9 @@
+/**
+ * This hook keeps the drone image horizontally aligned with the active tour part.
+ * When the tour has not started it centers the image, and when a DronePart is
+ * selected it scrolls that part toward the middle of the visible image area.
+ */
+
 'use client';
 
 import { RefObject, useEffect } from 'react';

@@ -1,3 +1,11 @@
+/**
+ * This is the drone image stage shown inside the part explorer.
+ * It displays the drone render, places the hotspots over the image, and handles
+ * the spotlight effect when a drone part is selected during the tour.
+ * If you need to change the drone image, stage background, or selected-part
+ * highlight behavior, this is where those display details live.
+ */
+
 'use client';
 
 import Image from 'next/image';

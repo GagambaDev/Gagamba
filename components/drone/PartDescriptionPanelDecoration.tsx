@@ -1,3 +1,9 @@
+/**
+ * This is the decorative background layer for the drone part description panel.
+ * It keeps the glow and top border styling separate from the panel content so
+ * the main PartDescription component can stay focused on layout and state.
+ */
+
 export default function PartDescriptionPanelDecoration() {
   return (
     <>

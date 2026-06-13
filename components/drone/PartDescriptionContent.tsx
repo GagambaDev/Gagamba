@@ -1,3 +1,9 @@
+/**
+ * This is the text content inside the drone part description panel.
+ * It displays the current panel title and description, and adjusts spacing when
+ * the panel is showing the intro instead of a selected DronePart.
+ */
+
 import { Space_Grotesk } from 'next/font/google';
 import { PartDescriptionContentProps } from '@/lib/types';
 

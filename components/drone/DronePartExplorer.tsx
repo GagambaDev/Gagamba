@@ -1,3 +1,10 @@
+/**
+ * This is the interactive controller for the drone part tour.
+ * It keeps track of whether the tour has started, which DronePart is selected,
+ * and how the next, previous, reset, and direct hotspot actions update the tour.
+ * If you need to change the tour flow, this is the component to update.
+ */
+
 'use client';
 import { useRef, useState } from 'react';
 import PartDescription from '@/components/drone/PartDescription';

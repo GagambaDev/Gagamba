@@ -1,3 +1,9 @@
+/**
+ * This is the control area for the drone part description panel.
+ * It displays the tour progress bars and the next or previous buttons.
+ * If the panel is still in the intro state, it only shows the start tour action.
+ */
+
 import { PartDescriptionControlsProps } from '@/lib/types';
 
 export default function PartDescriptionControls({
