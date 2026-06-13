@@ -45,13 +45,16 @@ export default function InfiniteScroll({
         const container = containerRef.current;
         const track = trackRef.current;
         const copy2 = copy2Ref.current;
-        if (!container || !track || !copy2) return;
+        if (!container || !track || !copy2) return;   // Don't attempt to calculate the scroll distance before we have all needed variables
 
         const update = () => {
+            // Measure from the start of the first item set to the start of the second item set.
+            // | Image 1, Image 2, Image 3 | < The bars are the scroll distance.
             const scrollDistance = copy2.offsetLeft;
             if (!scrollDistance) return;
 
             track.style.setProperty("--scroll-dist", `${scrollDistance}px`);
+            // Calculate how many copies of the "scroll images" are needed to fill the scroll area so there are no gaps
             const nextCopyCount = Math.max(3, Math.ceil(container.offsetWidth / scrollDistance) + 2);
             setCopyCount((currentCopyCount) =>
                 currentCopyCount === nextCopyCount ? currentCopyCount : nextCopyCount
@@ -91,6 +94,8 @@ export default function InfiniteScroll({
                 {Array.from({ length: copyCount }).map((_, copyIndex) => (
                     <div
                         key={copyIndex}
+                        // We measure the length of a full loop using the second copy
+                        // copyIndex === 1 is the second copy
                         ref={copyIndex === 1 ? copy2Ref : undefined}
                         className={`flex ${gap}`}
                         aria-hidden={copyIndex > 0 ? "true" : undefined}
