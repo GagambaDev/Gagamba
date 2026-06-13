@@ -14,18 +14,21 @@ export default function About() {
         <div style={{position: 'absolute', top: '70px', display: 'block',
                     transform: 'none', color: '#ffffff', fontSize: '1.25rem', fontWeight: 500,
                     zIndex: 20}}>  
-                </div>
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 75% 65% at 20% 35%, rgba(22,65,185,0.9) 0%, rgba(12,35,110,0.4) 45%, transparent 70%)" }} />
-          <div className="mt-5">
+        </div>
+        
+        <div className="absolute inset-0 pointer-events-none" 
+        style={{ background: "radial-gradient(ellipse 75% 65% at 20% 35%, rgba(22,65,185,0.9) 0%, rgba(12,35,110,0.4) 45%, transparent 70%)" }} />
+{/*         
+        <div className="mt-5">
             <MissionStatement/>
-          </div>
+        </div> */}
         
         {/* Bottom portion of About page will fade into a darker background */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#050810] to-transparent pointer-events-none" />
         
       </section>
-        
+      
+        <MissionStatement/>
         <MeetTheTeam/>
         <MediaGallery/>
       
