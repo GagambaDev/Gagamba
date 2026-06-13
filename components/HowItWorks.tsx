@@ -5,7 +5,6 @@ import Image from "next/image";
 export default function HowItWorks() {
 
   return (
-
 		<section className="relative bg-[#04060f] text-white overflow-hidden py-32 px-6">
 			
 			<div className="relative z-10 max-w-6xl mx-auto">
@@ -97,8 +96,7 @@ export default function HowItWorks() {
 						/>
 					</div>
 				</div>
-			</div>
-			
+			</div>	
 		</section>
 	)
 }
