@@ -19,15 +19,15 @@ export default function MissionStatement() {
                 </p>
 
                 <div className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6">
-                    No Crew.{" "}
+                    Safer.{" "}
                     <span
                         className="text-transparent bg-clip-text"
                         style={{ backgroundImage: "linear-gradient(90deg, #4f8eff 0%, #a5c0ff 100%)" }}
                     >
-                        No Tether.{" "}
+                        Smarter.{" "}
                     </span>
                     <br></br>
-                    No Compromise.
+                    Sustainable.
                 </div>
 
                 <div className="w-16 h-[2px] bg-blue-500 mb-1" />
