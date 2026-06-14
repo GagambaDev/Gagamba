@@ -40,7 +40,6 @@ export default function InfiniteScroll({
 
     return (
         <div
-            ref={containerRef}
             className="relative overflow-hidden"
             style={{
                 maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
