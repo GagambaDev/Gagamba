@@ -6,33 +6,6 @@
  *   factories that animate child elements in from the top or bottom on first reveal.
  *   The observer disconnects after the first intersection so the animation fires
  *   once and never reverses.
- *
- * Usage:
- *   const { ref, fadeTop, fadeBottom } = useScrollReveal();
- *   <div ref={ref}>
- *     <h1 style={fadeTop(0)}>Fades in from above, no delay</h1>
- *     <h2 style={fadeTop(0.15)}>Fades in from above, 150ms later</h2>
- *     <p style={fadeBottom(0.3)}>Fades in from below, 300ms later</p>
- *   </div>
- *
- *   // Attach to any element type via the generic:
- *   const { ref } = useScrollReveal<HTMLSectionElement>();
- *   <section ref={ref}>...</section>
- *
- *   // Custom options:
- *   const { ref, fadeTop } = useScrollReveal({ threshold: 0.3, distance: "48px", duration: "1s" });
- *
- * Returns:
- * - ref      — attach to the container element to observe.
- * - inView   — boolean, true once the container has entered the viewport.
- * - fadeTop(delay?)    — inline styles for a top-entry fade with optional delay (seconds).
- * - fadeBottom(delay?) — inline styles for a bottom-entry fade with optional delay (seconds).
- *
- * Options:
- * - threshold?: number — visible fraction required to trigger (default 0.15).
- * - distance?: string  — translateY offset before reveal (default "32px").
- * - duration?: string  — transition duration (default "0.7s").
- * - easing?: string    — CSS easing function (default "ease-out").
  */
 
 import { CSSProperties, useEffect, useRef, useState } from "react";
