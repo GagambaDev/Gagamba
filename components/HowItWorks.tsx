@@ -1,12 +1,11 @@
 "use client"
 
 import Image from "next/image";
+import SectionDivider  from "./SectionDivider";
 
 export default function HowItWorks() {
-
   return (
 		<section className="relative bg-[#04060f] text-white overflow-hidden py-32 px-6">
-			
 			<div className="relative z-10 max-w-6xl mx-auto">
 				<p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
         			How it Works
@@ -21,8 +20,8 @@ export default function HowItWorks() {
                     </span>
                 </h2>
 
-				<div className="w-16 h-[2px] bg-blue-500 mb-16" />
-
+				<SectionDivider className="mb-16"/>
+				
 				<div className="grid lg:grid-cols-4 gap-6">
 					<div className="flex flex-col items-center rounded-2xl p-6 border border-gray-400 bg-white/[0.03]">
 						{/* This is the first step of the drone's sequential process*/}
