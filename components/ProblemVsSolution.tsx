@@ -1,5 +1,6 @@
 "use client"
 import "@/styles/ProblemVsSolutionStyling.css";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 // stats for the pitch deck cards
 const stats = [
   {
@@ -42,13 +43,20 @@ const rows = [
 ];
 
 export default function ProblemVsSolution() {
+  const { ref, fadeTop } = useScrollReveal();
   return (
     <section className="pvs-section">
       <div className="pvs-inner">
-        <div className="pvs-intro">
-          <p className="pvs-eyebrow">Why Gagamba</p>
-          <h2 className="pvs-title">The old way is expensive,
-            <br />dangerous, and slow.
+        <div ref={ref} className="pvs-intro">
+          <p style={fadeTop(0)} className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">Why Gagamba</p>
+          <h2 style={fadeTop(0.1)} className="text-5xl md:text-6xl font-black tracking-tight leading-tight text-white mb-6">
+            The old way is expensive,{" "}
+            <span
+              className="text-transparent bg-clip-text"
+              style={{ backgroundImage: "linear-gradient(90deg, #4f8eff 0%, #a5c0ff 100%)" }}
+            >
+              dangerous, and slow.
+            </span>
           </h2>
           <p className="pvs-desc">Traditional high-rise cleaning puts workers at risk,
             drains budgets, and loses days to weather.

@@ -8,6 +8,7 @@ import memberimg5 from '@/public/images/headshots/Narek Tonoyan.png'
 import memberimg6 from '@/public/images/headshots/Maddox Dolor.png'
 import memberimg7 from '@/public/images/headshots/Khristian Ordonio.png'
 import memberimg8 from '@/public/images/headshots/Tony Ferrar.png'
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const team = [
     {
@@ -15,62 +16,63 @@ const team = [
         role: "Mechanical Engineering",
         bio: "Leads the physical design and build of the Gagamba drone. Focused on making sure the hardware is sturdy, precise, and flight-ready.",
         initials: "VG",
-        img: <img src={memberimg1.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)'}}></img>
+        src: memberimg1
     },
     {
         name: "Richies Huynh",
         role: "Computer Science",
         bio: "Works on the software side of the drone. Helps connect the different systems together and keeps the codebase running smoothly.",
         initials: "RH",
-        img: <img src={memberimg2.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)'}}></img>,
+        src: memberimg2,
     },
     {
         name: "Aarash Gohari",
         role: "Computer Science",
         bio: "One of the hands-on builders of the drone's software. Helped develop and put together the codebase that powers how the drone thinks and operates.",
         initials: "AG",
-        img: <img src={memberimg3.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)'}}></img>,
+        src: memberimg3,
     },
     {
         name: "Nathaniel Ordonio",
         role: "Civil Engineering",
         bio: "Brings a structural perspective to the project. Helps the team understand how the drone will interact with real buildings and surfaces.",
         initials: "NO",
-        img: <img src={memberimg4.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)'}}></img>,
+        src: memberimg4,
     },
     {
         name: "Tony Tonoyan",
         role: "Computer Science",
         bio: "Contributes to the software and embedded systems work. Helps bridge the gap between code and the physical hardware on the drone.",
         initials: "TT",
-        img: <img src={memberimg5.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)'}}></img>,
+        src: memberimg5,
     },
     {
         name: "Maddox Dolor",
         role: "Civil Engineering",
         bio: "Focused on how the drone applies to real-world infrastructure. Thinks about deployment from a practical, on-the-ground perspective.",
         initials: "MD",
-        img: <img src={memberimg6.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)'}}></img>,
+        src: memberimg6,
     },
     {
         name: "Khristian Ordonio",
         role: "Political Science",
         bio: "Handles the regulatory and policy side of the project. Researches the legal landscape around drone usage and helps navigate compliance requirements.",
         initials: "KO",
-        img: <img src={memberimg7.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)'}}></img>,
+        src: memberimg7,
     },
     {
         name: "Tony Ferrar",
         role: "Mentor",
         bio: "Mathematics professor specializing in aerospace. Brings deep technical expertise to the team, guiding the math and physics behind the drone's flight and control systems.",
         initials: "TF",
-        img: <img src={memberimg8.src} alt="member photo" width={150} height={300} style={{ clipPath: 'inset(7px round 7px)'}}></img>,
+        src: memberimg8,
     },
 ];
 
 export default function MeetTheTeam() {
+    const { ref, fadeTop } = useScrollReveal();
     return (
-        <section className="relative bg-[#04060f] text-white overflow-hidden py-32 px-6">
+        <section className="relative text-white overflow-hidden py-32 px-6">
 
             {/* Glow — left side, echoing the Hero */}
             <div
@@ -90,23 +92,23 @@ export default function MeetTheTeam() {
                 }}
             />
 
-            <div className="relative z-10 max-w-6xl mx-auto">
+            <div ref={ref} className="relative z-10 max-w-6xl mx-auto">
 
-                <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
+                <p style={fadeTop(0)} className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
                     The People Behind Gagamba
                 </p>
 
-                <h2 className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6">
+                <h2 style={fadeTop(0.1)} className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6">
                     Meet the{" "}
                     <span
                         className="text-transparent bg-clip-text"
                         style={{ backgroundImage: "linear-gradient(90deg, #4f8eff 0%, #a5c0ff 100%)" }}
                     >
-                        team
+                        founders
                     </span>
                 </h2>
 
-                <div className="w-16 h-[2px] bg-blue-500 mb-16" />
+                <div style={fadeTop(0.2)} className="w-16 h-[2px] bg-blue-500 mb-16" />
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {team.map((member) => (
@@ -114,9 +116,14 @@ export default function MeetTheTeam() {
                             key={member.name}
                             className="group relative rounded-2xl p-6 border border-white/[0.07] bg-white/[0.03] hover:bg-white/[0.06] hover:border-blue-500/40 transition-all duration-300"
                         >
-                            <div
-                            >
-                                {member.img}
+                            <div>
+                                <img
+                                    src={member.src.src}
+                                    alt={`${member.name} headshot`}
+                                    width={150}
+                                    height={300}
+                                    style={{ clipPath: 'inset(7px round 7px)' }}
+                                />
                             </div>
                             <br></br>
                             <div
@@ -148,7 +155,6 @@ export default function MeetTheTeam() {
                 </div>
             </div>
 
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#050810] to-transparent pointer-events-none" />
         </section>
     );
 }

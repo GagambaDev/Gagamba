@@ -6,12 +6,14 @@ import React, { useState } from "react";
 import FormLabel from "@/components/FormLabel";
 import { useForm } from "react-hook-form";
 import { Quote } from "@/types/forms/quote";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export default function Contact() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<Quote>();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { ref, fadeTop } = useScrollReveal();
 
   const onSubmit = async (quote: Quote) => {
     setLoading(true);
@@ -33,7 +35,7 @@ export default function Contact() {
   };
 
   return (
-    <main className="relative min-h-screen bg-[#04060f] text-white flex items-center justify-center px-6 py-32 overflow-hidden">
+    <main className="relative min-h-screen text-white flex items-center justify-center px-6 py-32 overflow-hidden">
 
       {/* Glow */}
       <div
@@ -54,25 +56,25 @@ export default function Contact() {
         }}
       />
 
-      <div className="relative z-10 w-full max-w-2xl">
+      <div ref={ref} className="relative z-10 w-full max-w-2xl">
 
-        <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
+        <p style={fadeTop(0)} className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
           Get in Touch
         </p>
-        <h1 className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-3">
+        <h1 style={fadeTop(0.1)} className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-3 whitespace-nowrap">
           Reach Out to{" "}
           <span
             className="text-transparent bg-clip-text"
             style={{ backgroundImage: "linear-gradient(90deg, #4f8eff 0%, #a5c0ff 100%)" }}
           >
-            Team Gagamba
+            Gagamba
           </span>
         </h1>
-        <p className="text-gray-400 text-lg mb-10 leading-relaxed">
+        <p style={fadeTop(0.2)} className="text-gray-400 text-lg mb-10 leading-relaxed">
           Have a question, idea, or just want to say hello? Send us a message and we'll get back to you.
         </p>
 
-        <div className="w-16 h-[2px] bg-blue-500 mb-10" />
+        <div style={fadeTop(0.3)} className="w-16 h-[2px] bg-blue-500 mb-10" />
 
         {submitted ? (
           <div className="rounded-2xl border border-blue-500/30 bg-blue-500/10 px-8 py-10 text-center">
@@ -150,8 +152,6 @@ export default function Contact() {
           </form>
         )}
       </div>
-
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#04060f] to-transparent pointer-events-none" />
     </main>
   );
 }

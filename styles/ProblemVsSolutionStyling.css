@@ -6,14 +6,14 @@ theme colors, and desktop alignments*/
     width: 100%;
     --color-ink-black: #05030D;
     --color-dark-amethyst: #120A33;
-    background: var(--color-ink-black);
+    background: transparent;
     color: var(--color-periwinkle);
 }
 
 .pvs-inner {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 6rem 2rem;
+    padding: 8rem 2rem;
     box-sizing: border-box;
 }
 
@@ -30,17 +30,8 @@ theme colors, and desktop alignments*/
     font-weight: 500;
 }
 
-.pvs-title {
-    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.15;
-    color: #ffffff;
-    margin: 0 0 1rem;
-}
-
 .pvs-desc {
-    font-size: 1rem;
+    font-size: 1.125rem;
     color: var(--color-periwinkle);
     opacity: 0.6;
     max-width: 520px;

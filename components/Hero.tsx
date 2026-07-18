@@ -6,8 +6,8 @@ import PrimaryButton from "./PrimaryButton";
 import PageTitle from "./PageTitle";
 import Subtitle from "./Subtitle";
 import AboutUs from "./AboutUs";
-import MeetTheTeam from "./MeetTheTeam";
 import DroneDiagram from "./drone/DroneDiagram";
+import ProblemVsSolution from "./ProblemVsSolution";
 import SocialProof from "./SocialProof";
 
 export default function Hero() {
@@ -59,13 +59,11 @@ export default function Hero() {
           </Link>
         </div>
 
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--color-ink-black)] to-transparent pointer-events-none" />
       </section>
 
       <AboutUs />
       <DroneDiagram />
-      <MeetTheTeam />
+      <ProblemVsSolution />
       <SocialProof />
     </>
   );
