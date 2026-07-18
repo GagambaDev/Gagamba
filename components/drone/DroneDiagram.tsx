@@ -1,5 +1,8 @@
+"use client";
+
 import DronePartDropdown from '@/components/drone/DronePartDropdown';
 import { type DronePart } from '@/lib/types';
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const DRONE_PARTS: DronePart[] = [
   {
@@ -45,8 +48,9 @@ const DRONE_PARTS: DronePart[] = [
 ]
 
 export default function DroneDiagram() {
+  const { ref, fadeTop } = useScrollReveal();
   return (
-    <section className="relative bg-[#04060f] text-white overflow-hidden py-32 px-6">
+    <section className="relative text-white overflow-hidden py-32 px-6">
 
       {/* Glow — left side, echoing the Hero */}
       <div
@@ -65,13 +69,13 @@ export default function DroneDiagram() {
         }}
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto">
+      <div ref={ref} className="relative z-10 max-w-6xl mx-auto">
 
-        <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
-          The Drone 
+        <p style={fadeTop(0)} className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
+          The Drone
         </p>
 
-        <h2 className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6">
+        <h2 style={fadeTop(0.1)} className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6">
           Meet {" "}
           <span
             className="text-transparent bg-clip-text"
@@ -81,7 +85,7 @@ export default function DroneDiagram() {
           </span>
         </h2>
 
-        <div className="w-16 h-[2px] bg-blue-500 mb-16" />
+        <div style={fadeTop(0.2)} className="w-16 h-[2px] bg-blue-500 mb-16" />
 
         <div className="flex justify-center">
           <div className="relative w-full max-w-6xl rounded-[1.75rem] border border-white/15 bg-white/[0.04] p-2 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-sm">
@@ -94,8 +98,6 @@ export default function DroneDiagram() {
         </div>
 
       </div>
-
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#050810] to-transparent pointer-events-none" />
     </section>
   );
 }

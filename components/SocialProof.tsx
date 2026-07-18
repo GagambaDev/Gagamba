@@ -51,7 +51,7 @@ export default function SocialProof() {
             element="section"
             gradients={GLOW_GRADIENTS}
             className="overflow-hidden text-white py-32"
-            style={{ background: "linear-gradient(to bottom, #09061A 0%, #04060f 220px, #04060f 100%)" }}
+            style={{ background: "transparent" }}
             breatheAmplitude={0.9}
             breathePeriodMs={4000}
         >
@@ -65,11 +65,11 @@ export default function SocialProof() {
             />
 
             <div ref={ref} className="relative z-10">
-                <div className="max-w-7xl mx-auto px-6 text-center lg:text-left">
+                <div className="max-w-6xl mx-auto px-6">
                     <p style={fadeTop(0)} className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
                         Trusted Technology
                     </p>
-                    <h2 style={fadeTop(0.1)} className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-tight mb-6">
+                    <h2 style={fadeTop(0.1)} className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6">
                         Our Co-Innovation{" "}
                         <span
                             className="text-transparent bg-clip-text"
@@ -78,7 +78,7 @@ export default function SocialProof() {
                             Partners
                         </span>
                     </h2>
-                    <div style={fadeTop(0.2)} className="mx-auto lg:mx-0 w-16 h-0.5 bg-blue-500 mb-16" />
+                    <div style={fadeTop(0.2)} className="w-16 h-0.5 bg-blue-500 mb-16" />
                 </div>
 
                 <div className="w-full md:w-[90%] mx-auto my-16">
@@ -93,8 +93,6 @@ export default function SocialProof() {
                     </div>
                 </div>
             </div>
-
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-[#050810] to-transparent pointer-events-none" />
         </HoverGlow>
     );
 }

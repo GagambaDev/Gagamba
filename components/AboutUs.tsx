@@ -1,8 +1,11 @@
 "use client";
 
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+
 export default function AboutUs() {
+    const { ref, fadeTop } = useScrollReveal();
     return (
-        <section className="relative bg-[#04060f] text-white overflow-hidden py-32 px-6">
+        <section className="relative text-white overflow-hidden py-32 px-6">
 
             {/* Glow — right side for variety */}
             <div
@@ -15,13 +18,13 @@ export default function AboutUs() {
 
 
 
-            <div className="relative z-10 max-w-6xl mx-auto">
+            <div ref={ref} className="relative z-10 max-w-6xl mx-auto">
 
-                <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
+                <p style={fadeTop(0)} className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
                     Who We Are
                 </p>
 
-                <h2 className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6">
+                <h2 style={fadeTop(0.1)} className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6">
                     Built for the{" "}
                     <span
                         className="text-transparent bg-clip-text"
@@ -31,7 +34,7 @@ export default function AboutUs() {
                     </span>
                 </h2>
 
-                <div className="w-16 h-[2px] bg-blue-500 mb-10" />
+                <div style={fadeTop(0.2)} className="w-16 h-[2px] bg-blue-500 mb-10" />
 
                 <div className="grid md:grid-cols-2 gap-12 items-start">
                     <div className="space-y-5 text-gray-300 text-lg leading-relaxed">
@@ -65,7 +68,6 @@ export default function AboutUs() {
 
             </div>
 
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#04060f] to-transparent pointer-events-none" />
         </section>
     );
 }
