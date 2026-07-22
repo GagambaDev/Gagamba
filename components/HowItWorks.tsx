@@ -33,7 +33,7 @@ export default function HowItWorks() {
 						</p>
 						{/* An image tag that will showcase a 3d render of the drone when provided */}
 						<Image
-							src = "/images/drone.jpg"
+							src = "/images/howitworks.jpg"
 							width={180}
 							height={180}
 							alt="Step 1: Drone placeholder"
@@ -42,7 +42,7 @@ export default function HowItWorks() {
 					</div>
 					
 					<div className="flex flex-col items-center rounded-2xl p-6 border border-gray-400 bg-white/[0.03]">
-						{/* This is the second step of the dron'es sequential process*/}
+						{/* This is the second step of the drone's sequential process*/}
 						<h2 className="min-h-[4rem] text-blue-400 font-medium">
 							Assessment
 						</h2>
@@ -51,7 +51,7 @@ export default function HowItWorks() {
 						</p>
 						{/* An image tag that will showcase a 3d render of the drone when provided */}
 						<Image
-							src = "/images/drone.jpg"
+							src = "/images/howitworks.jpg"
 							width={180}
 							height={120}
 							alt="Step 2: Drone placeholder"
@@ -69,7 +69,7 @@ export default function HowItWorks() {
 						</p>
 						{/* An image tag that will showcase a 3d render of the drone when provided */}
 						<Image
-							src = "/images/drone.jpg"
+							src = "/images/howitworks.jpg"
 							width={180}
 							height={120}
 							alt="Step 3: Drone placeholder"
@@ -87,7 +87,7 @@ export default function HowItWorks() {
 						</p>
 						{/* An image tag that will showcase a 3d render of the drone when provided */}
 						<Image
-							src = "/images/drone.jpg"
+							src = "/images/howitworks.jpg"
 							width={180}
 							height={120}
 							alt="Step 4: Drone placeholder"
