@@ -43,18 +43,16 @@ const rows = [
 
 export default function ProblemVsSolution() {
   return (
-    <section className="pvs-section">
-      <div className="pvs-inner">
-        <div className="pvs-intro">
-          <p className="pvs-eyebrow">Why Gagamba</p>
-          <h2 className="pvs-title">The old way is expensive,
-            <br />dangerous, and slow.
-          </h2>
-          <p className="pvs-desc">Traditional high-rise cleaning puts workers at risk,
-            drains budgets, and loses days to weather.
-            Gagamba eliminates every one of those constraints.
-          </p>
-        </div>
+    <section className="pvs-section py-32 px-6">
+      <div className="pvs-intro relative z-10 max-w-6xl mx-auto">
+        <p className="pvs-eyebrow">Why Gagamba</p>
+        <h2 className="pvs-title">The old way is expensive,
+          <br/>dangerous, and slow.
+        </h2>
+        <p className="pvs-desc">Traditional high-rise cleaning puts workers at risk,
+          drains budgets, and loses days to weather.
+          Gagamba eliminates every one of those constraints.
+        </p>
 
         <div className="pvs-stats">
           {/*Loops through stats to build the pitch deck cards*/}
