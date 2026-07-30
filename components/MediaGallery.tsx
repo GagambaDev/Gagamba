@@ -58,7 +58,6 @@ export default function MediaGallery() {
 
     return (
         <section className="relative bg-[#04060f] text-white overflow-hidden py-32 px-6">
-
             {/* Glow — left side, echoing the Hero */}
             <div
                 className="absolute inset-0 pointer-events-none"
@@ -78,7 +77,6 @@ export default function MediaGallery() {
             />
 
             <div className="relative z-10 max-w-6xl mx-auto">
-
                 <p className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
                     Company and Event Photos
                 </p>
@@ -93,28 +91,26 @@ export default function MediaGallery() {
                     </span>
                 </h2>
             </div>
-            <div className="relative w-fit mx-auto">
-            <div className="flex flex-col items-center justify-center min-h-[400px] p-6">
-            <div className="relative w-800 h-96 md:h-[500px] border rounded-xl overflow-hidden shadow-lg bg-gray-900">            
-                
-                <Image
-                    src={currentImage.source}
-                    alt={currentImage.alt}
-                    className="object-contain rounded-xl"
-                    style={{ maxWidth: '800px', maxHeight: '550px', height: 'auto', display: 'block', margin: '0 auto', position: 'relative', zIndex: 0 }}
-                    key={currentIndex} // Forces smooth fade or reset on change
-                    
-                />
-                <div style={{position: 'absolute', bottom: '16px', right: '16px', left: 'auto',
-                    transform: 'none', backgroundColor: 'rgba(0, 0, 0, 0.6)', color: '#ffffff',
-                    padding: '4px 12px', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 500,
-                    zIndex: 20}}>            
-                    {currentIndex + 1} / {gallery.length}
+            <div className="m-auto">
+              <div className="flex flex-col items-center justify-center min-h-[400px]">
+                <div className="relative md:h-[500px] border rounded-xl overflow-hidden shadow-lg bg-gray-900">
+                    <Image
+                        src={currentImage.source}
+                        alt={currentImage.alt}
+                        className="object-contain rounded-xl"
+                        style={{ maxWidth: '800px', maxHeight: '550px', height: 'auto', display: 'block', margin: '0 auto', position: 'relative', zIndex: 0 }}
+                        key={currentIndex} // Forces smooth fade or reset on change
+
+                    />
+                    <div style={{position: 'absolute', bottom: '16px', right: '16px', left: 'auto',
+                        transform: 'none', backgroundColor: 'rgba(0, 0, 0, 0.6)', color: '#ffffff',
+                        padding: '4px 12px', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 500,
+                        zIndex: 20}}>
+                        {currentIndex + 1} / {gallery.length}
+                    </div>
                 </div>
-            </div> 
-            </div>
-            
-                <div className="flex justify-center items-center gap-6 mt-3 w-full hover:bg-black/95 hover:scale-105 hover:shadow-md active:scale-95">
+              </div>
+                <div className="flex justify-center items-center gap-6 mt-3 w-full">
                     <button
                         onClick={handlePrev}
                         className="bg-black/70 text-white p-2 rounded-full flex items-center justify-center w-10 h-10 border-none cursor-pointer shadow-sm transition-all duration-200 hover:bg-black/95 hover:scale-105 hover:shadow-md active:scale-95"
@@ -134,23 +130,11 @@ export default function MediaGallery() {
                             <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l6.75 6.75a.75.75 0 010 1.06l-6.75 6.75a.75.75 0 11-1.06-1.06l5.47-5.47H3a.75.75 0 010-1.5h15.44l-5.47-5.47a.75.75 0 010-1.06z" clipRule="evenodd" />
                         </svg>
                     </button>
-                
-            
-            </div>
-               
-                
-            
-                
-               
+              </div>
             <p className="mt-4 text-gray-600 font-medium text-center">
                 {currentImage.alt}
             </p>
-            
-            </div>
-             
-            
-            
-            
+          </div>
         </section>
         
     );

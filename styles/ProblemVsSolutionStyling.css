@@ -12,13 +12,11 @@ theme colors, and desktop alignments*/
 
 .pvs-inner {
     max-width: 1100px;
-    margin: 0 auto;
-    padding: 6rem 2rem;
     box-sizing: border-box;
 }
 
 .pvs-intro {
-    margin-bottom: 4rem;
+    margin: 0 auto 4rem;
 }
 
 .pvs-eyebrow {
