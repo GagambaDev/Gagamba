@@ -24,12 +24,12 @@ interface StaticImageItem {
 
 export default function MediaGallery() {
     const gallery: StaticImageItem[] = [
-        { source: img1, alt: "Presidential Innovation Challenge" },
-        { source: img5, alt: "Presidential Innovation Challenge" },
-        { source: img6, alt: "Presidential Innovation Challenge" },
-        { source: img4, alt: "Presidential Innovation Challenge" },
-        { source: img7, alt: "Presidential Innovation Challenge" },
-        { source: img3, alt: "Presidential Innovation Challenge" },
+        { source: img1, alt: "President's Innovation Challenge" },
+        { source: img5, alt: "President's Innovation Challenge" },
+        { source: img6, alt: "President's Innovation Challenge" },
+        { source: img4, alt: "President's Innovation Challenge" },
+        { source: img7, alt: "President's Innovation Challenge" },
+        { source: img3, alt: "President's Innovation Challenge" },
 
         { source: img11, alt: "Securing the Office" },
         { source: img2, alt: "Securing the Office" },
