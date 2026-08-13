@@ -18,23 +18,23 @@ import img11 from '@/public/images/gallery/Blackfire1.png'
 import img12 from '@/public/images/gallery/Blackfire2.png'
 
 interface StaticImageItem {
-  source: StaticImageData; 
+  source: StaticImageData;
   alt: string;
 }
 
 export default function MediaGallery() {
-    const gallery: StaticImageItem[]=[
+    const gallery: StaticImageItem[] = [
         { source: img1, alt: "Presidential Innovation Challenge" },
         { source: img5, alt: "Presidential Innovation Challenge" },
         { source: img6, alt: "Presidential Innovation Challenge" },
         { source: img4, alt: "Presidential Innovation Challenge" },
         { source: img7, alt: "Presidential Innovation Challenge" },
         { source: img3, alt: "Presidential Innovation Challenge" },
-        
+
         { source: img11, alt: "Securing the Office" },
         { source: img2, alt: "Securing the Office" },
         { source: img12, alt: "Securing the Office" },
-    
+
         { source: img9, alt: "Behind the Scenes" },
         { source: img10, alt: "Behind the Scenes" },
         { source: img8, alt: "Behind the Scenes" }
@@ -51,7 +51,7 @@ export default function MediaGallery() {
     //logic to navigate to the next image
     const handleNext = () => {
         setCurrentIndex((prevIndex) =>
-        prevIndex === gallery.length - 1 ? 0 : prevIndex + 1
+            prevIndex === gallery.length - 1 ? 0 : prevIndex + 1
         );
     };
 
@@ -81,11 +81,9 @@ export default function MediaGallery() {
             />
 
             <div ref={ref} className="relative z-10 max-w-6xl mx-auto">
-
                 <p style={fadeTop(0)} className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
                     Company and Event Photos
                 </p>
-
                 <h2 style={fadeTop(0.1)} className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6">
                     Media{" "}
                     <span
@@ -96,30 +94,29 @@ export default function MediaGallery() {
                     </span>
                 </h2>
             </div>
+
             <div className="relative w-fit mx-auto">
-            <div className="flex flex-col items-center justify-center min-h-[400px] p-6">
-            <div className="relative inline-block border rounded-xl overflow-hidden shadow-lg bg-gray-900">
-
-                <Image
-                    src={currentImage.source}
-                    alt={currentImage.alt}
-                    className="block rounded-xl"
-                    style={{ width: 'auto', height: '500px' }}
-                    key={currentIndex} // Forces smooth fade or reset on change
-
-                />
-                <div style={{position: 'absolute', bottom: '16px', right: '16px', left: 'auto',
-                    transform: 'none', backgroundColor: 'rgba(0, 0, 0, 0.6)', color: '#ffffff',
-                    padding: '4px 12px', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 500,
-                    zIndex: 20}}>            
-                    {currentIndex + 1} / {gallery.length}
+                <div className="flex flex-col items-center justify-center min-h-[400px] p-6">
+                    <div className="relative inline-block border rounded-xl overflow-hidden shadow-lg bg-gray-900">
+                        <Image
+                            src={currentImage.source}
+                            alt={currentImage.alt}
+                            className="block rounded-xl"
+                            style={{ width: 'auto', height: '500px' }}
+                            key={currentIndex} // Forces smooth fade or reset on change
+                        />
+                        <div style={{position: 'absolute', bottom: '16px', right: '16px', left: 'auto',
+                            transform: 'none', backgroundColor: 'rgba(0, 0, 0, 0.6)', color: '#ffffff',
+                            padding: '4px 12px', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 500,
+                            zIndex: 20}}>
+                            {currentIndex + 1} / {gallery.length}
+                        </div>
+                    </div>
                 </div>
-            </div> 
-            </div>
-            
-            <p className="-mt-2 text-gray-400 font-medium text-center">
-                {currentImage.alt}
-            </p>
+
+                <p className="-mt-2 text-gray-400 font-medium text-center">
+                    {currentImage.alt}
+                </p>
 
                 <div className="flex justify-center items-center gap-6 mt-3 w-full">
                     <button
@@ -131,7 +128,6 @@ export default function MediaGallery() {
                             <path fillRule="evenodd" d="M11.03 3.97a.75.75 0 010 1.06L5.56 10.5H21a.75.75 0 010 1.5H5.56l5.47 5.47a.75.75 0 11-1.06 1.06l-6.75-6.75a.75.75 0 010-1.06l6.75-6.75a.75.75 0 011.06 0z" clipRule="evenodd" />
                         </svg>
                     </button>
-                        
                     <button
                         onClick={handleNext}
                         className="bg-black/70 hover:bg-black/90 text-white p-2 rounded-full flex items-center justify-center w-10 h-10 border-none cursor-pointer transition-colors"
@@ -141,16 +137,8 @@ export default function MediaGallery() {
                             <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l6.75 6.75a.75.75 0 010 1.06l-6.75 6.75a.75.75 0 11-1.06-1.06l5.47-5.47H3a.75.75 0 010-1.5h15.44l-5.47-5.47a.75.75 0 010-1.06z" clipRule="evenodd" />
                         </svg>
                     </button>
-                
-            
+                </div>
             </div>
-
-            </div>
-             
-            
-            
-            
         </section>
-        
     );
 }

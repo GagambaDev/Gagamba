@@ -20,8 +20,6 @@ export default function MissionStatement() {
                 }}
             /> */}
 
-
-
             <div ref={ref} className="relative z-10 max-w-6xl mx-auto">
 
                 <p style={fadeTop(0)} className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
@@ -42,20 +40,20 @@ export default function MissionStatement() {
 
                 <div style={fadeTop(0.2)} className="w-16 h-[2px] bg-blue-500 mb-1" />
 
-                
-                    <div className="space-y-5 text-gray-300 text-lg leading-relaxed flex justify-center items-center">
-                        <p className="max-w-3xl my-12">
-                            At Gagamba, we aren't just cleaning windows; we are engineering a safer, greener, and more efficient future for high-rise property maintenance.
-                            By deploying advanced drone technology, we eliminate the need for traditional at-height crews, ensuring that human lives are never put at risk on
-                            dangerous high-rise structures.
-                            <br></br>
-                            <br></br>
-                            Our EPA 608, OSHA 10 Construction, OSHA 10 Manufacturing, and forklift led engineering team is qualified to work through a FAA part 107 license.
-                            Utilizing eco-friendly design to minimize our environmental impact, our drone uses AI-powered software, calculating optimal cleaning patterns
-                            to maximize efficiency and conserving up to 29 times more water than current cleaning drones in the market.
-                        </p>
-                    </div>
-              
-            </div>        </section>
+                <div className="space-y-5 text-gray-300 text-lg leading-relaxed flex justify-center items-center">
+                    <p className="max-w-3xl my-12">
+                        At Gagamba, we aren't just cleaning windows; we are engineering a safer, greener, and more efficient future for high-rise property maintenance.
+                        By deploying advanced drone technology, we eliminate the need for traditional at-height crews, ensuring that human lives are never put at risk on
+                        dangerous high-rise structures.
+                        <br></br>
+                        <br></br>
+                        Our EPA 608, OSHA 10 Construction, OSHA 10 Manufacturing, and forklift led engineering team is qualified to work through a FAA part 107 license.
+                        Utilizing eco-friendly design to minimize our environmental impact, our drone uses AI-powered software, calculating optimal cleaning patterns
+                        to maximize efficiency and conserving up to 29 times more water than current cleaning drones in the market.
+                    </p>
+                </div>
+
+            </div>
+        </section>
     );
 }

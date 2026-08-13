@@ -16,56 +16,56 @@ const team = [
         role: "Mechanical Engineering",
         bio: "Leads the physical design and build of the Gagamba drone. Focused on making sure the hardware is sturdy, precise, and flight-ready.",
         initials: "VG",
-        src: memberimg1
+        img: memberimg1
     },
     {
         name: "Richies Huynh",
         role: "Computer Science",
         bio: "Works on the software side of the drone. Helps connect the different systems together and keeps the codebase running smoothly.",
         initials: "RH",
-        src: memberimg2,
+        img: memberimg2,
     },
     {
         name: "Aarash Gohari",
         role: "Computer Science",
         bio: "One of the hands-on builders of the drone's software. Helped develop and put together the codebase that powers how the drone thinks and operates.",
         initials: "AG",
-        src: memberimg3,
+        img: memberimg3,
     },
     {
         name: "Nathaniel Ordonio",
         role: "Civil Engineering",
         bio: "Brings a structural perspective to the project. Helps the team understand how the drone will interact with real buildings and surfaces.",
         initials: "NO",
-        src: memberimg4,
+        img: memberimg4,
     },
     {
         name: "Tony Tonoyan",
         role: "Computer Science",
         bio: "Contributes to the software and embedded systems work. Helps bridge the gap between code and the physical hardware on the drone.",
         initials: "TT",
-        src: memberimg5,
+        img: memberimg5,
     },
     {
         name: "Maddox Dolor",
         role: "Civil Engineering",
         bio: "Focused on how the drone applies to real-world infrastructure. Thinks about deployment from a practical, on-the-ground perspective.",
         initials: "MD",
-        src: memberimg6,
+        img: memberimg6,
     },
     {
         name: "Khristian Ordonio",
         role: "Political Science",
         bio: "Handles the regulatory and policy side of the project. Researches the legal landscape around drone usage and helps navigate compliance requirements.",
         initials: "KO",
-        src: memberimg7,
+        img: memberimg7,
     },
     {
         name: "Tony Ferrar",
         role: "Mentor",
         bio: "Mathematics professor specializing in aerospace. Brings deep technical expertise to the team, guiding the math and physics behind the drone's flight and control systems.",
         initials: "TF",
-        src: memberimg8,
+        img: memberimg8,
     },
 ];
 
@@ -118,7 +118,7 @@ export default function MeetTheTeam() {
                         >
                             <div>
                                 <img
-                                    src={member.src.src}
+                                    src={member.img.src}
                                     alt={`${member.name} headshot`}
                                     width={150}
                                     height={300}
