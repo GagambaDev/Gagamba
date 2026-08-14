@@ -126,27 +126,13 @@ export default function MeetTheTeam() {
                                 />
                             </div>
                             <br></br>
-                            <div
-                                
-                                className="w-16 h-16 rounded-full flex items-center justify-center text-lg font-bold mb-5 border border-blue-500/30 group-hover:border-blue-400/60 transition-colors duration-300"
-                                style={{
-                                    background:
-                                        "radial-gradient(circle at 30% 30%, rgba(79,142,255,0.25) 0%, rgba(22,65,185,0.1) 100%)",
-                                    color: "#a5c0ff",
-                                }}
-                            >
-                                {member.initials}
-                            </div>
-
                             <h3 className="text-white font-bold text-lg leading-tight mb-1">
                                 {member.name}
                             </h3>
                             <p className="text-blue-400 text-xs uppercase tracking-widest mb-4 font-medium">
                                 {member.role}
                             </p>
-
                             <div className="w-8 h-[1px] bg-blue-500/40 mb-4 group-hover:w-12 transition-all duration-300" />
-
                             <p className="text-gray-400 text-sm leading-relaxed">
                                 {member.bio}
                             </p>
