@@ -21,7 +21,6 @@ export default function MissionStatement() {
             /> */}
 
             <div ref={ref} className="relative z-10 max-w-6xl mx-auto">
-
                 <p style={fadeTop(0)} className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
                     Mission Statement
                 </p>
@@ -52,7 +51,6 @@ export default function MissionStatement() {
                         to maximize efficiency and conserving up to 29 times more water than current cleaning drones in the market.
                     </p>
                 </div>
-
             </div>
         </section>
     );

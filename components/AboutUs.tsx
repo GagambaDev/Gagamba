@@ -16,10 +16,7 @@ export default function AboutUs() {
                 }}
             />
 
-
-
             <div ref={ref} className="relative z-10 max-w-6xl mx-auto">
-
                 <p style={fadeTop(0)} className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
                     Who We Are
                 </p>
@@ -65,9 +62,7 @@ export default function AboutUs() {
                         </p>
                     </div>
                 </div>
-
             </div>
-
         </section>
     );
 }

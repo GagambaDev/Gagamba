@@ -93,7 +93,6 @@ export default function MeetTheTeam() {
             />
 
             <div ref={ref} className="relative z-10 max-w-6xl mx-auto">
-
                 <p style={fadeTop(0)} className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
                     The People Behind Gagamba
                 </p>
@@ -140,7 +139,6 @@ export default function MeetTheTeam() {
                     ))}
                 </div>
             </div>
-
         </section>
     );
 }

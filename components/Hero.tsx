@@ -36,13 +36,12 @@ export default function Hero() {
 
           {/* Logo */}
           <div className="relative -mb-7">
-
             <Image
               src="/images/gagamba_logo.png"
               alt="Gagamba Logo"
               width={180}
               height={180}
-            className="brightness-160"
+              className="brightness-160"
             />
           </div>
 
@@ -58,7 +57,6 @@ export default function Hero() {
             <PrimaryButton message="Get a Quote" />
           </Link>
         </div>
-
       </section>
 
       <AboutUs />

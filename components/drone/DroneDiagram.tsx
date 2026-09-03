@@ -70,7 +70,6 @@ export default function DroneDiagram() {
       />
 
       <div ref={ref} className="relative z-10 max-w-6xl mx-auto">
-
         <p style={fadeTop(0)} className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
           The Drone
         </p>
@@ -96,7 +95,6 @@ export default function DroneDiagram() {
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );

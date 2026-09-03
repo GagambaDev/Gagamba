@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import "@/styles/ProblemVsSolutionStyling.css";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 // stats for the pitch deck cards
