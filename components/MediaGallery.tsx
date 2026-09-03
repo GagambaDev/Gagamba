@@ -4,18 +4,18 @@ import { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-import img1 from '@/public/images/gallery/PresInovChal1.jpg'
-import img2 from '@/public/images/gallery/Photo1.png'
-import img3 from '@/public/images/gallery/PIC1.png'
-import img4 from '@/public/images/gallery/PIC2.png'
-import img5 from '@/public/images/gallery/PIC3.png'
-import img6 from '@/public/images/gallery/PIC4.png'
-import img7 from '@/public/images/gallery/PIC5.png'
-import img8 from '@/public/images/gallery/Early1.png'
-import img9 from '@/public/images/gallery/Early2.png'
-import img10 from '@/public/images/gallery/Early3.png'
-import img11 from '@/public/images/gallery/Blackfire1.png'
-import img12 from '@/public/images/gallery/Blackfire2.png'
+import presInovChal1 from '@/public/images/gallery/PresInovChal1.jpg'
+import photo1 from '@/public/images/gallery/Photo1.png'
+import pic1 from '@/public/images/gallery/PIC1.png'
+import pic2 from '@/public/images/gallery/PIC2.png'
+import pic3 from '@/public/images/gallery/PIC3.png'
+import pic4 from '@/public/images/gallery/PIC4.png'
+import pic5 from '@/public/images/gallery/PIC5.png'
+import early1 from '@/public/images/gallery/Early1.png'
+import early2 from '@/public/images/gallery/Early2.png'
+import early3 from '@/public/images/gallery/Early3.png'
+import blackfire1 from '@/public/images/gallery/Blackfire1.png'
+import blackfire2 from '@/public/images/gallery/Blackfire2.png'
 
 interface StaticImageItem {
   source: StaticImageData;
@@ -24,20 +24,20 @@ interface StaticImageItem {
 
 export default function MediaGallery() {
     const gallery: StaticImageItem[] = [
-        { source: img1, alt: "President's Innovation Challenge" },
-        { source: img5, alt: "President's Innovation Challenge" },
-        { source: img6, alt: "President's Innovation Challenge" },
-        { source: img4, alt: "President's Innovation Challenge" },
-        { source: img7, alt: "President's Innovation Challenge" },
-        { source: img3, alt: "President's Innovation Challenge" },
+        { source: presInovChal1, alt: "President's Innovation Challenge" },
+        { source: pic3, alt: "President's Innovation Challenge" },
+        { source: pic4, alt: "President's Innovation Challenge" },
+        { source: pic2, alt: "President's Innovation Challenge" },
+        { source: pic5, alt: "President's Innovation Challenge" },
+        { source: pic1, alt: "President's Innovation Challenge" },
 
-        { source: img11, alt: "Securing the Office" },
-        { source: img2, alt: "Securing the Office" },
-        { source: img12, alt: "Securing the Office" },
+        { source: blackfire1, alt: "Securing the Office" },
+        { source: photo1, alt: "Securing the Office" },
+        { source: blackfire2, alt: "Securing the Office" },
 
-        { source: img9, alt: "Behind the Scenes" },
-        { source: img10, alt: "Behind the Scenes" },
-        { source: img8, alt: "Behind the Scenes" }
+        { source: early2, alt: "Behind the Scenes" },
+        { source: early3, alt: "Behind the Scenes" },
+        { source: early1, alt: "Behind the Scenes" }
     ];
     const [currentIndex, setCurrentIndex] = useState<number>(0);
 
