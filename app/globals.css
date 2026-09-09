@@ -23,7 +23,7 @@
 }
 
 body {
-  background: linear-gradient(135deg, var(--color-ink-black) 0%, var(--color-dark-amethyst) 100%);
+  background: #04060f;
   color: var(--color-periwinkle);
   font-family: var(--font-body);
 }
