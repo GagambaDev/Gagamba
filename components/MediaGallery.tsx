@@ -61,7 +61,6 @@ export default function MediaGallery() {
 
     return (
         <section className="relative text-white overflow-hidden py-32 px-6">
-
             {/* Glow — left side, echoing the Hero */}
             <div
                 className="absolute inset-0 pointer-events-none"

@@ -9,6 +9,7 @@ import AboutUs from "./AboutUs";
 import DroneDiagram from "./drone/DroneDiagram";
 import ProblemVsSolution from "./ProblemVsSolution";
 import SocialProof from "./SocialProof";
+import ProblemVsSolution from "@/components/ProblemVsSolution";
 
 export default function Hero() {
   return (
@@ -60,6 +61,7 @@ export default function Hero() {
       </section>
 
       <AboutUs />
+      <ProblemVsSolution />
       <DroneDiagram />
       <ProblemVsSolution />
       <SocialProof />
