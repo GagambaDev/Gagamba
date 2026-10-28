@@ -106,6 +106,8 @@ All email addresses are clickable links that open a new email.
 | Labels, names, chips | Elms Sans Semi Bold | 14–18px |
 | Captions, legal | Elms Sans Regular, Onyx 70% | 14px |
 
+Every heading (H1–H6) is Heming automatically: Bold for H1 and H2, Semi Bold for H3–H6. Don't add a font class to headings; just add the size (`text-display`, `text-h2`, `text-subheader`) and the color.
+
 **Rules**
 - Square corners on everything (images, buttons, inputs, cards, tabs).
 - No shadows, glows, blur, gradient text, all-caps text or extra letter spacing.

@@ -26,6 +26,7 @@
 
 6. **Global page styles** (`app/globals.css`):
    - Page background white; default text Onyx in Elms Sans, 16px.
+   - Every heading (H1–H6) in Heming: Bold for H1 and H2, Semi Bold for H3–H6.
    - 72px of top padding on the page body (the new header is 72px tall and fixed).
    - Sections with an id stop 72px below the top when linked to.
    - Smooth scrolling for anchor links.
@@ -78,6 +79,8 @@
 | Body text | Elms Sans Regular, Onyx | 16 → 18px |
 | Labels, names, chips | Elms Sans Semi Bold | 14–18px |
 | Captions, legal | Elms Sans Regular, Onyx 70% | 14px |
+
+Every heading (H1–H6) is Heming automatically: Bold for H1 and H2, Semi Bold for H3–H6. Don't add a font class to headings; just add the size (`text-display`, `text-h2`, `text-subheader`) and the color.
 
 **Rules**
 - Square corners on everything (images, buttons, inputs, cards, tabs).
