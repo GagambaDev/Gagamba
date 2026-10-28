@@ -42,7 +42,7 @@
 
 ### Steps: headshots (Adrian)
 10. Today, ask the team chat for headshots: square, at least 800×800, face centered. Ask everyone in the table above. The current photos for Aarash, Khristian, Maddox, Narek, Nathaniel, Richies and Vaughn are tiny (about 140px), so ask them for bigger ones too.
-11. Crop each photo square, resize it to 800×800, and save it as `public/images/headshots/first-last.png` (for example `reasey-you.png`). Commit it to Ricardo's branch `rebrand/9-about` and add it to that person's entry in the team data. Anyone still missing on 11/3 shows initials.
+11. Crop each photo square, resize it to 800×800, and save it as `public/images/headshots/first-last.png` (for example `reasey-you.png`). Commit it to Ricardo's branch `rebrand-ricardo-9` and add it to that person's entry in the team data. Anyone still missing on 11/3 shows initials.
 
 ### Steps: Media Gallery (Ricardo)
 12. **Smaller gap:** Founders gets no bottom padding; Media Gallery gets 48px of top padding (64px on desktop). Currently it's about 240px.
@@ -96,7 +96,7 @@
 - Sections: content centered at max 1200px wide, 24px side padding (32px on desktop), 64px top/bottom padding (120px on desktop) unless the issue says otherwise.
 
 **How to work**
-- Start Issue 1 first; everything else builds on it. Branch from `rebrand` as `rebrand/` + issue number + short name (e.g. `rebrand/3-hero`) and open your PR into `rebrand`, not `main`.
+- Start Issue 1 first; everything else builds on it. Branch from `rebrand` as `rebrand-<first name>-<issue number>` (e.g. `rebrand-justin-3`) and open your PR into `rebrand`, not `main`.
 - Attach desktop (1440px) and phone (375px) screenshots to your PR. Richies reviews every PR.
 - **Done means:** build and lint pass, no sideways scrolling on a phone, everything clickable is reachable with the Tab key, and every box under "Done when" is checked.
 
