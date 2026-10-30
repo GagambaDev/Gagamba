@@ -1,9 +1,6 @@
-import { Space_Grotesk } from 'next/font/google';
-import { DronePart, PartDescriptionProps } from '@/lib/types';
+import { PartDescriptionProps } from '@/lib/types';
 import TourContent from '@/components/drone/TourContent';
 import TourControl from '@/components/drone/TourControl';
-
-const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
 export default function PartDescription({
   part,

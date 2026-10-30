@@ -1,30 +1,119 @@
 @import "tailwindcss";
 
-:root {
-  /*backgrounds*/
-  --color-ink-black: #09061A;
-  --color-dark-amethyst: #1A0F47;
+/* ==========================================================================
+   Gagamba UAS brand tokens
+   Source: rebrand-kit/brand/UnofficialGagambaUAS_Branding.pdf (colors p.16, type p.18-19)
+   All brand colors and fonts live in this file. Components use the Tailwind
+   names (bg-sapphire, text-onyx, font-heading, text-h2, ...), never hex values.
+   ========================================================================== */
 
-  /*action elements*/
-  --color-violet-twilight: #5B3FD4;
+@theme {
+  /* ---- Colors ---- */
+  --color-sapphire: #4D49BE;   /* headings, links, buttons, stat numbers, selected states */
+  --color-tanzanite: #24125F;  /* button hover / pressed only */
+  --color-onyx: #101820;       /* body text */
+  --color-onyx-70: #585D63;    /* secondary text: captions, roles, legal */
+  --color-onyx-60: #707479;    /* input borders, placeholders */
+  --color-pearl: #DDE5ED;      /* footer, chips, inactive tabs, dividers */
+  --color-error: #B3261E;      /* form validation errors only */
 
-  /*standard text*/
-  --color-periwinkle: #D5D2F7;
+  /* ---- Type scale (phone -> desktop) ----
+     Each size sets its line height, letter spacing and weight together. */
+  --text-stat: clamp(4.25rem, 9vw, 6.875rem);          /* 68 -> 110px */
+  --text-stat--line-height: 1;
+  --text-stat--letter-spacing: 0.01em;
+  --text-stat--font-weight: 700;
 
-  /*highlights*/
-  --color-fresh-sky: #00AAFF;
+  --text-display: clamp(2.625rem, 6vw, 4.25rem);       /* 42 -> 68px (H1) */
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: 0.02em;
+  --text-display--font-weight: 700;
+
+  --text-h2: clamp(1.625rem, 3.5vw, 2.625rem);         /* 26 -> 42px (H2) */
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: 0.02em;
+  --text-h2--font-weight: 700;
+
+  --text-subheader: clamp(1.25rem, 2vw, 1.625rem);     /* 20 -> 26px (H3) */
+  --text-subheader--line-height: 1.25;
+  --text-subheader--letter-spacing: 0.01em;
+  --text-subheader--font-weight: 600;
+
+  --text-body-lg: 1.25rem;                             /* 20px */
+  --text-body-lg--line-height: 1.55;
+
+  --text-body: 1rem;                                   /* 16px */
+  --text-body--line-height: 1.6;
+
+  --text-small: 0.875rem;                              /* 14px */
+  --text-small--line-height: 1.5;
 }
 
 @theme inline {
-  --font-sans: var(--font-body);
-  --font-header: var(--font-header);
-  --font-body: var(--font-body);
-  --font-techy: var(--font-techy);
+  /* --font-heming and --font-elms-sans are set on <html> by next/font in app/layout.tsx */
+  --font-heading: var(--font-heming), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-elms-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-elms-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
-body {
-  background: #04060f;
-  color: var(--color-periwinkle);
-  font-family: var(--font-body);
+/* Site-wide defaults. They sit in the base layer so any Tailwind class can override them. */
+@layer base {
+  :root {
+    --header-height: 72px;
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-white);
+    color: var(--color-onyx);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    padding-top: var(--header-height); /* clears the fixed header */
+  }
+
+  /* Every heading uses Heming: Bold for H1 and H2, Semi Bold for H3-H6 */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+  }
+
+  h1, h2 {
+    font-weight: 700;
+  }
+
+  /* Linked sections stop below the fixed header */
+  section[id] {
+    scroll-margin-top: var(--header-height);
+  }
+
+  /* One focus style for everything focusable */
+  :focus-visible {
+    outline: 2px solid var(--color-sapphire);
+    outline-offset: 3px;
+  }
+
+  /* Visitors with "Reduce motion" on get no smooth scrolling and instant animations */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
+/* Iridescent accent (brand guide p.17). Use only in the Hero and Meet Gagamba. */
+@utility bg-iridescent {
+  background-image: linear-gradient(110deg, #EFBEEF 0%, #C9C3F5 22%, #F7F3F2 45%, #D5D6F4 62%, #ACA8E3 80%, #EDBCF1 100%);
+}
