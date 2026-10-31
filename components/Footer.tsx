@@ -1,3 +1,4 @@
+import { group } from "console";
 import Link from "next/link";
 
 const SOCIAL_LINKS = [
@@ -51,29 +52,28 @@ const LINK_GROUPS = [
 ];
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-
   return (
-    <footer className="border-t border-white/5 bg-[#050810] px-6 py-8">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 sm:flex-row sm:justify-between">
-        <p className="text-sm text-white/50">
-          © 2026 Gagamba. All rights reserved.
-        </p>
-
-        <nav aria-label="Social media" className="flex items-center gap-5">
-          {SOCIAL_LINKS.map(({ href, label, icon }) => (
-            <Link
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="text-white/60 transition-colors hover:text-white"
-            >
-              {icon}
-            </Link>
+    <footer className="bg-pearl text-onyx px-6 pt-16 pb-6 md:px-8 md:pt-24 md:pb-8">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="grid grid-cols-2 gap-12 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+          {/*Brand Column Will go here */}
+          {LINK_GROUPS.map((group) => (
+            <nav key={group.heading} aria-label={group.heading}>
+              <h2 className="text-[18px] text-sapphire">
+                {group.heading}
+              </h2>
+              <ul>
+                {group.links.map((link) => (
+                  <li key={link.label}>
+                    <Link href={link.href} className="hover:text-sapphire hover:underline">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           ))}
-        </nav>
+        </div>
       </div>
     </footer>
   );
