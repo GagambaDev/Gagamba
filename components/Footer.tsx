@@ -20,6 +20,35 @@ const SOCIAL_LINKS = [
     ),
   },
 ];
+const LINK_GROUPS = [
+  {
+    heading: "Explore",
+    links: [
+      { label: "Home", href: "/"},
+      { label: "Who we are", href: "/#who-we-are"},
+      { label: "Meet Gagamba", href: "/#meet-gagamba"},
+      { label: "Why Gagamba", href: "/#why-gagamba"},
+      { label: "Our Partners", href: "/#partners"},
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      {label: "About", href: "/about"},
+      {label: "Founders", href: "/about#founders"},
+      {label: "Media Gallery", href: "/about#media-gallery"},
+      {label: "Contact", href: "/contact"},
+      {label: "Get a Quote", href: "/contact"},
+    ],
+  },
+  {
+    heading: "Legal",
+    links: [
+      {label: "Privacy Policy", href: "/privacy"},
+      {label: "Terms of Use", href: "/terms"},
+    ],
+  },
+];
 
 export default function Footer() {
   const year = new Date().getFullYear();
