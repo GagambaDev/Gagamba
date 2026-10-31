@@ -41,35 +41,44 @@ export default function MeetTheTeam() {
           Founders
         </h2>
 
-        <div
-          style={fadeTop(0.1)}
-          role="tablist"
-          aria-label="Teams"
-          onKeyDown={handleTabKeyDown}
-          className="mt-6 flex gap-2"
-        >
-          {teams.map((team) => {
-            const selected = team.id === selectedTeamId;
-            return (
-              <button
-                key={team.id}
-                id={`founders-tab-${team.id}`}
-                type="button"
-                role="tab"
-                aria-selected={selected}
-                aria-controls="founders-panel"
-                tabIndex={selected ? 0 : -1}
-                onClick={() => setSelectedTeamId(team.id)}
-                className={`h-11 cursor-pointer rounded-none px-5 text-[15px] font-semibold ${
-                  selected
-                    ? "bg-sapphire text-white"
-                    : "bg-pearl text-onyx hover:ring-[1.5px] hover:ring-inset hover:ring-sapphire"
-                }`}
-              >
-                {team.name}
-              </button>
-            );
-          })}
+        <div style={fadeTop(0.1)} className="relative mt-6">
+          {/* Scrolls sideways when the tabs don't fit. The 5px padding (cancelled by the
+              negative margin) leaves room so the focus outline isn't cut off. */}
+          <div
+            role="tablist"
+            aria-label="Teams"
+            onKeyDown={handleTabKeyDown}
+            className="-m-[5px] flex gap-2 overflow-x-auto p-[5px]"
+          >
+            {teams.map((team) => {
+              const selected = team.id === selectedTeamId;
+              return (
+                <button
+                  key={team.id}
+                  id={`founders-tab-${team.id}`}
+                  type="button"
+                  role="tab"
+                  aria-selected={selected}
+                  aria-controls="founders-panel"
+                  tabIndex={selected ? 0 : -1}
+                  onClick={() => setSelectedTeamId(team.id)}
+                  className={`h-11 shrink-0 cursor-pointer rounded-none px-5 text-[15px] font-semibold ${
+                    selected
+                      ? "bg-sapphire text-white"
+                      : "bg-pearl text-onyx hover:ring-[1.5px] hover:ring-inset hover:ring-sapphire"
+                  }`}
+                >
+                  {team.name}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* White fade on the right edge hints that there are more tabs to scroll to */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 -right-[5px] w-12 bg-linear-to-l from-white lg:hidden"
+          />
         </div>
 
         <div
