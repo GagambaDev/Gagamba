@@ -7,6 +7,33 @@ import { teams } from "@/lib/team";
 export default function MeetTheTeam() {
   const { ref, fadeTop } = useScrollReveal();
   const [selectedTeamId, setSelectedTeamId] = useState(teams[0].id);
+
+  // Left/right arrows move to the previous/next tab (wrapping around), Home and End jump to the first/last
+  const handleTabKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const currentIndex = teams.findIndex((team) => team.id === selectedTeamId);
+    let nextIndex: number;
+    switch (event.key) {
+      case "ArrowRight":
+        nextIndex = (currentIndex + 1) % teams.length;
+        break;
+      case "ArrowLeft":
+        nextIndex = (currentIndex - 1 + teams.length) % teams.length;
+        break;
+      case "Home":
+        nextIndex = 0;
+        break;
+      case "End":
+        nextIndex = teams.length - 1;
+        break;
+      default:
+        return;
+    }
+    event.preventDefault(); // stops Home/End from scrolling the page
+    const nextTeam = teams[nextIndex];
+    setSelectedTeamId(nextTeam.id);
+    document.getElementById(`founders-tab-${nextTeam.id}`)?.focus();
+  };
+
   return (
     <section id="founders" className="px-6 pt-16 md:px-8 md:pt-30">
       <div ref={ref} className="mx-auto max-w-[1200px]">
@@ -14,7 +41,13 @@ export default function MeetTheTeam() {
           Founders
         </h2>
 
-        <div style={fadeTop(0.1)} role="tablist" aria-label="Teams" className="mt-6 flex gap-2">
+        <div
+          style={fadeTop(0.1)}
+          role="tablist"
+          aria-label="Teams"
+          onKeyDown={handleTabKeyDown}
+          className="mt-6 flex gap-2"
+        >
           {teams.map((team) => {
             const selected = team.id === selectedTeamId;
             return (
@@ -25,6 +58,7 @@ export default function MeetTheTeam() {
                 role="tab"
                 aria-selected={selected}
                 aria-controls="founders-panel"
+                tabIndex={selected ? 0 : -1}
                 onClick={() => setSelectedTeamId(team.id)}
                 className={`h-11 cursor-pointer rounded-none px-5 text-[15px] font-semibold ${
                   selected
@@ -38,7 +72,12 @@ export default function MeetTheTeam() {
           })}
         </div>
 
-        <div id="founders-panel" role="tabpanel" aria-labelledby={`founders-tab-${selectedTeamId}`}>
+        <div
+          id="founders-panel"
+          role="tabpanel"
+          aria-labelledby={`founders-tab-${selectedTeamId}`}
+          tabIndex={0}
+        >
         </div>
       </div>
     </section>
