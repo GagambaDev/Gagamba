@@ -1,13 +1,12 @@
 "use client";
-
 import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { teams } from "@/lib/team";
+import { people, teams } from "@/lib/team";
 
 export default function MeetTheTeam() {
   const { ref, fadeTop } = useScrollReveal();
   const [selectedTeamId, setSelectedTeamId] = useState(teams[0].id);
-
+  const selectedTeam = teams.find((team) => team.id === selectedTeamId) ?? teams[0];
   const [tabsScrolledToStart, setTabsScrolledToStart] = useState(true);
   const [tabsScrolledToEnd, setTabsScrolledToEnd] = useState(false);
 
@@ -106,7 +105,15 @@ export default function MeetTheTeam() {
           role="tabpanel"
           aria-labelledby={`founders-tab-${selectedTeamId}`}
           tabIndex={0}
+          className="mt-10"
         >
+          <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-8 lg:grid-cols-5">
+            {selectedTeam.members.map((member) => (
+              <li key={member.person}>
+                {people[member.person].name}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
