@@ -77,6 +77,41 @@ export default function MediaGallery() {
                     <p className="mt-3 text-center text-small text-onyx-70">
                         {currentImage.alt}
                     </p>
+
+                    <div className="mt-6 flex items-center justify-center gap-6">
+                        <button
+                            type="button"
+                            onClick={handlePrev}
+                            aria-label="Previous image"
+                            className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-none border-[1.5px] border-sapphire bg-white text-sapphire transition-colors duration-200 hover:bg-pearl"
+                        >
+                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+                                <path fillRule="evenodd" d="M11.03 3.97a.75.75 0 010 1.06L5.56 10.5H21a.75.75 0 010 1.5H5.56l5.47 5.47a.75.75 0 11-1.06 1.06l-6.75-6.75a.75.75 0 010-1.06l6.75-6.75a.75.75 0 011.06 0z" clipRule="evenodd" />
+                            </svg>
+                        </button>
+
+                        {/* aria-live makes screen readers announce the new count whenever it changes.
+                            They hear "Image 2 of 12" while everyone else sees "2 / 12". */}
+                        <p aria-live="polite" className="w-16 text-center text-small font-semibold text-onyx-70 tabular-nums">
+                            <span className="sr-only">
+                                Image {currentIndex + 1} of {gallery.length}
+                            </span>
+                            <span aria-hidden="true">
+                                {currentIndex + 1} / {gallery.length}
+                            </span>
+                        </p>
+
+                        <button
+                            type="button"
+                            onClick={handleNext}
+                            aria-label="Next image"
+                            className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-none border-[1.5px] border-sapphire bg-white text-sapphire transition-colors duration-200 hover:bg-pearl"
+                        >
+                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+                                <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l6.75 6.75a.75.75 0 010 1.06l-6.75 6.75a.75.75 0 11-1.06-1.06l5.47-5.47H3a.75.75 0 010-1.5h15.44l-5.47-5.47a.75.75 0 010-1.06z" clipRule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
