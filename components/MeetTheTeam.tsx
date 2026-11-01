@@ -8,6 +8,17 @@ export default function MeetTheTeam() {
   const { ref, fadeTop } = useScrollReveal();
   const [selectedTeamId, setSelectedTeamId] = useState(teams[0].id);
 
+  const [tabsScrolledToStart, setTabsScrolledToStart] = useState(true);
+  const [tabsScrolledToEnd, setTabsScrolledToEnd] = useState(false);
+
+  // Hides each edge fade once the tabs are scrolled all the way to that side.
+  // The 1px leeway allows for browsers that report sub-pixel scroll positions.
+  const handleTabsScroll = (event: React.UIEvent<HTMLDivElement>) => {
+    const { scrollLeft, clientWidth, scrollWidth } = event.currentTarget;
+    setTabsScrolledToStart(scrollLeft <= 1);
+    setTabsScrolledToEnd(scrollLeft + clientWidth >= scrollWidth - 1);
+  };
+
   // Left/right arrows move to the previous/next tab (wrapping around), Home and End jump to the first/last
   const handleTabKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     const currentIndex = teams.findIndex((team) => team.id === selectedTeamId);
@@ -48,6 +59,7 @@ export default function MeetTheTeam() {
             role="tablist"
             aria-label="Teams"
             onKeyDown={handleTabKeyDown}
+            onScroll={handleTabsScroll}
             className="-m-[5px] flex gap-2 overflow-x-auto p-[5px]"
           >
             {teams.map((team) => {
@@ -74,10 +86,18 @@ export default function MeetTheTeam() {
             })}
           </div>
 
-          {/* White fade on the right edge hints that there are more tabs to scroll to */}
+          {/* White fades on each edge hint that there are more tabs to scroll to in that direction */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 -right-[5px] w-12 bg-linear-to-l from-white lg:hidden"
+            className={`pointer-events-none absolute inset-y-0 -left-[5px] w-12 bg-linear-to-r from-white transition-opacity duration-200 lg:hidden ${
+              tabsScrolledToStart ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <div
+            aria-hidden="true"
+            className={`pointer-events-none absolute inset-y-0 -right-[5px] w-12 bg-linear-to-l from-white transition-opacity duration-200 lg:hidden ${
+              tabsScrolledToEnd ? "opacity-0" : "opacity-100"
+            }`}
           />
         </div>
 
