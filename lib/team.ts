@@ -53,6 +53,19 @@ export interface Team {
   members: TeamMember[];
 }
 
+// Leads first, then everyone else. Each group goes A-Z by last name,
+// then by full name if two people share a last name.
+export function sortMembers(members: TeamMember[]): TeamMember[] {
+  return [...members].sort((a, b) => {
+    if (Boolean(a.lead) !== Boolean(b.lead)) {
+      return a.lead ? -1 : 1;
+    }
+    const personA = people[a.person];
+    const personB = people[b.person];
+    return personA.lastName.localeCompare(personB.lastName) || personA.name.localeCompare(personB.name);
+  });
+}
+
 // Tabs show in this order. Members can be listed in any order; they're sorted on screen.
 export const teams: Team[] = [
   {

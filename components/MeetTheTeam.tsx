@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { people, teams } from "@/lib/team";
+import { people, sortMembers, teams } from "@/lib/team";
 
 export default function MeetTheTeam() {
   const { ref, fadeTop } = useScrollReveal();
@@ -108,7 +108,7 @@ export default function MeetTheTeam() {
           className="mt-10"
         >
           <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-8 lg:grid-cols-5">
-            {selectedTeam.members.map((member) => (
+            {sortMembers(selectedTeam.members).map((member) => (
               <li key={member.person}>
                 {people[member.person].name}
               </li>
