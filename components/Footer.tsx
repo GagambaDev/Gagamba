@@ -101,6 +101,11 @@ export default function Footer() {
             </nav>
           ))}
         </div>
+        {/*Bottom Row */}
+        <div className="mt-12 flex flex-col gap-2 border-t border-onyx/12 pt-6 text-[14px] text-onyx-70 md:flex-row md:justify-between">
+          <p>© 2026 Gagamba UAS. All rights reserved.</p>
+          <p>Las Vegas, Nevada</p>
+        </div>
       </div>
     </footer>
   );
