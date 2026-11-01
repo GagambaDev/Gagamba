@@ -65,25 +65,19 @@ export default function MediaGallery() {
                 <h2 style={fadeTop(0)} className="text-h2 text-sapphire">
                     Media Gallery
                 </h2>
-            </div>
 
-            <div className="relative w-fit mx-auto">
-                <div className="flex flex-col items-center justify-center min-h-[400px] p-6">
-                    <div className="relative inline-block overflow-hidden">
-                        <Image
-                            src={currentImage.source}
-                            alt={currentImage.alt}
-                            className="block"
-                            style={{ width: 'auto', height: '500px' }}
-                            key={currentIndex} // Forces smooth fade or reset on change
-                        />
-                    </div>
+                <div className="mt-10">
+                    {/* Shrinks to fit the screen width, up to 500px tall, keeping the photo's shape */}
+                    <Image
+                        src={currentImage.source}
+                        alt={currentImage.alt}
+                        className="mx-auto block h-auto max-h-[500px] w-auto max-w-full"
+                        key={currentIndex} // Forces smooth fade or reset on change
+                    />
+                    <p className="mt-3 text-center text-small text-onyx-70">
+                        {currentImage.alt}
+                    </p>
                 </div>
-
-                <p className="-mt-2 text-gray-400 font-medium text-center">
-                    {currentImage.alt}
-                </p>
-
             </div>
         </section>
     );
