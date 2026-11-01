@@ -66,6 +66,21 @@ export function sortMembers(members: TeamMember[]): TeamMember[] {
   });
 }
 
+// First letter of the first and last name, ignoring nicknames in parentheses.
+// "Narek (Tony) Tonoyan" -> "NT", "Kayra H." -> "KH"
+export function getInitials(name: string): string {
+  const words = name
+    .replace(/\(.*?\)/g, "")
+    .split(" ")
+    .filter((word) => word !== "");
+  const firstWord = words[0];
+  const lastWord = words[words.length - 1];
+  if (words.length === 1) {
+    return firstWord[0].toUpperCase();
+  }
+  return (firstWord[0] + lastWord[0]).toUpperCase();
+}
+
 // Tabs show in this order. Members can be listed in any order; they're sorted on screen.
 export const teams: Team[] = [
   {

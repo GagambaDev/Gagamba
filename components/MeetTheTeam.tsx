@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { people, sortMembers, teams, type Person } from "@/lib/team";
+import { getInitials, people, sortMembers, teams, type Person } from "@/lib/team";
 
 export default function MeetTheTeam() {
   const { ref, fadeTop } = useScrollReveal();
@@ -113,9 +113,10 @@ export default function MeetTheTeam() {
               const person: Person = people[member.person];
               return (
                 <li key={member.person}>
+                  {/* The headshot and initials are hidden from screen readers (empty alt / aria-hidden)
+                      because the name is right below, so it would otherwise be read twice */}
                   <div className="relative aspect-square bg-pearl">
-                    {person.headshot && (
-                      // Empty alt: the name is right below, so screen readers would otherwise read it twice
+                    {person.headshot ? (
                       <Image
                         src={person.headshot}
                         alt=""
@@ -123,6 +124,13 @@ export default function MeetTheTeam() {
                         sizes="(min-width: 1024px) 20vw, (min-width: 768px) 33vw, 50vw"
                         className="object-cover"
                       />
+                    ) : (
+                      <span
+                        aria-hidden="true"
+                        className="absolute inset-0 flex items-center justify-center font-heading text-5xl font-semibold text-sapphire"
+                      >
+                        {getInitials(person.name)}
+                      </span>
                     )}
                   </div>
                   <p className="mt-4 text-lg font-semibold">
