@@ -67,13 +67,17 @@ export default function MediaGallery() {
                 </h2>
 
                 <div className="mt-10">
-                    {/* Shrinks to fit the screen width, up to 500px tall, keeping the photo's shape */}
-                    <Image
-                        src={currentImage.source}
-                        alt={currentImage.alt}
-                        className="mx-auto block h-auto max-h-[500px] w-auto max-w-full"
-                        key={currentIndex} // Forces smooth fade or reset on change
-                    />
+                    {/* Fixed 3:2 frame (the shape of most photos), up to 500px tall, so the caption and
+                        controls stay in place. Each photo fits inside it without cropping. */}
+                    <div className="relative mx-auto aspect-[3/2] max-h-[500px] w-full">
+                        <Image
+                            src={currentImage.source}
+                            alt={currentImage.alt}
+                            fill
+                            sizes="(min-width: 768px) 750px, 100vw"
+                            className="object-contain"
+                        />
+                    </div>
                     <p className="mt-3 text-center text-small text-onyx-70">
                         {currentImage.alt}
                     </p>
