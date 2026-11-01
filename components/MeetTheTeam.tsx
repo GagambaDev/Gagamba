@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { people, sortMembers, teams } from "@/lib/team";
+import { people, sortMembers, teams, type Person } from "@/lib/team";
 
 export default function MeetTheTeam() {
   const { ref, fadeTop } = useScrollReveal();
@@ -108,11 +109,31 @@ export default function MeetTheTeam() {
           className="mt-10"
         >
           <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-8 lg:grid-cols-5">
-            {sortMembers(selectedTeam.members).map((member) => (
-              <li key={member.person}>
-                {people[member.person].name}
-              </li>
-            ))}
+            {sortMembers(selectedTeam.members).map((member) => {
+              const person: Person = people[member.person];
+              return (
+                <li key={member.person}>
+                  <div className="relative aspect-square bg-pearl">
+                    {person.headshot && (
+                      // Empty alt: the name is right below, so screen readers would otherwise read it twice
+                      <Image
+                        src={person.headshot}
+                        alt=""
+                        fill
+                        sizes="(min-width: 1024px) 20vw, (min-width: 768px) 33vw, 50vw"
+                        className="object-cover"
+                      />
+                    )}
+                  </div>
+                  <p className="mt-4 text-lg font-semibold">
+                    {person.name}
+                  </p>
+                  <p className="text-small text-onyx-70">
+                    {member.role}
+                  </p>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
