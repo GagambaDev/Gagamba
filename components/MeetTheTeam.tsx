@@ -1,13 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { getInitials, people, sortMembers, teams, type Person } from "@/lib/team";
 
+// Which team the link points to, e.g. "software" for /about#founders-software (null if none)
+function getLinkedTeamId(): string | null {
+  const linkedTeam = teams.find((team) => window.location.hash === `#founders-${team.id}`);
+  if (!linkedTeam) {
+    return null;
+  }
+  return linkedTeam.id;
+}
+
+// The server can't see the # part of the link, so it always starts with no linked team
+function getServerLinkedTeamId(): string | null {
+  return null;
+}
+
+// Re-reads the link whenever its # part changes: typing a new one, Back/Forward, or selecting a tab
+function subscribeToLinkChanges(onChange: () => void) {
+  window.addEventListener("hashchange", onChange);
+  return () => {
+    window.removeEventListener("hashchange", onChange);
+  };
+}
+
 export default function MeetTheTeam() {
   const { ref, fadeTop } = useScrollReveal();
-  const [selectedTeamId, setSelectedTeamId] = useState(teams[0].id);
+  // The link decides which tab is selected; with no team in the link, C-Suite is selected
+  const linkedTeamId = useSyncExternalStore(subscribeToLinkChanges, getLinkedTeamId, getServerLinkedTeamId);
+  const selectedTeamId = linkedTeamId ?? teams[0].id;
   const selectedTeam = teams.find((team) => team.id === selectedTeamId) ?? teams[0];
   const [tabsScrolledToStart, setTabsScrolledToStart] = useState(true);
   const [tabsScrolledToEnd, setTabsScrolledToEnd] = useState(false);
@@ -18,6 +42,21 @@ export default function MeetTheTeam() {
     const { scrollLeft, clientWidth, scrollWidth } = event.currentTarget;
     setTabsScrolledToStart(scrollLeft <= 1);
     setTabsScrolledToEnd(scrollLeft + clientWidth >= scrollWidth - 1);
+  };
+
+  // Opening a link like /about#founders-software scrolls down to the Founders section
+  // Only works on page load
+  useEffect(() => {
+    if (getLinkedTeamId() !== null) {
+      document.getElementById("founders")?.scrollIntoView();
+    }
+  }, []);
+
+  // Selects a tab by updating the link, without jumping the page or adding a Back-button step.
+  // replaceState doesn't fire "hashchange" on its own, so we fire it to update the selected tab.
+  const selectTeam = (teamId: string) => {
+    window.history.replaceState(null, "", `#founders-${teamId}`);
+    window.dispatchEvent(new HashChangeEvent("hashchange"));
   };
 
   // Left/right arrows move to the previous/next tab (wrapping around), Home and End jump to the first/last
@@ -42,7 +81,7 @@ export default function MeetTheTeam() {
     }
     event.preventDefault(); // stops Home/End from scrolling the page
     const nextTeam = teams[nextIndex];
-    setSelectedTeamId(nextTeam.id);
+    selectTeam(nextTeam.id);
     document.getElementById(`founders-tab-${nextTeam.id}`)?.focus();
   };
 
@@ -74,7 +113,7 @@ export default function MeetTheTeam() {
                   aria-selected={selected}
                   aria-controls="founders-panel"
                   tabIndex={selected ? 0 : -1}
-                  onClick={() => setSelectedTeamId(team.id)}
+                  onClick={() => selectTeam(team.id)}
                   className={`h-11 shrink-0 cursor-pointer rounded-none px-5 text-[15px] font-semibold ${
                     selected
                       ? "bg-sapphire text-white"
