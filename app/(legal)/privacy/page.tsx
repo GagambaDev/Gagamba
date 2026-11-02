@@ -12,11 +12,15 @@ export default function PrivacyPage() {
         gagamba.co, how we use it, and the choices you have.
       </p>
       <h2>Information we collect</h2>
+      <p>When you use our contact form, we collect the information you choose to give us:</p>
+      <ul>
+        <li>Your name</li>
+        <li>Your email address</li>
+        <li>Your message</li>
+      </ul>
       <p>
-        When you use our contact form, we collect the information you choose to give us: your name, your email address,
-        and your message. Like most websites, our hosting and security providers automatically process technical information
-        such as your IP address, browser type, and pages visited in order to deliver and protect the site. We do not use
-        advertising cookies.
+        Like most websites, our hosting and security providers automatically process technical information such as your IP
+        address, browser type, and pages visited in order to deliver and protect the site. We do not use advertising cookies.
       </p>
       <h2>How we use your information</h2>
       <ul>
@@ -26,23 +30,46 @@ export default function PrivacyPage() {
       </ul>
       <h2>Who we share it with</h2>
       <p>
-        We do not sell your personal information. We share it only with service providers that help us run the site,
-        and only for that purpose: Resend, which delivers contact-form emails to our team and your confirmation email;
-        Clerk, a security and authentication service that may set strictly necessary cookies; and our website hosting provider.
-        We may also disclose information if required by law.
+        We do not sell your personal information. We share it only with service providers that help us run the site, and only
+        for that purpose:
       </p>
+      <ul>
+        <li>
+          <strong>Resend</strong>, which delivers contact-form emails to our team and your confirmation email. See
+          Resend&apos;s{" "}
+          <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and{" "}
+          <a href="https://resend.com/legal/terms-of-service" target="_blank" rel="noopener noreferrer">Terms of Service</a>.
+        </li>
+        <li>
+          <strong>Clerk</strong>, a security and authentication service that may set strictly necessary cookies. See
+          Clerk&apos;s{" "}
+          <a href="https://clerk.com/legal/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and{" "}
+          <a href="https://clerk.com/legal/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>.
+        </li>
+        <li>
+          <strong>Vercel</strong>, which hosts our website. See Vercel&apos;s{" "}
+          <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and{" "}
+          <a href="https://vercel.com/legal/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>.
+        </li>
+      </ul>
+      <p>We may also disclose information if required by law.</p>
       <h2>How long we keep it</h2>
       <p>
-        We keep contact-form messages for as long as needed to respond to you and follow up on your request, and no longer than 24 months.
+        We do not store contact-form submissions in a database. When you send us a message, it is delivered by email to our
+        team inbox. Resend, our email provider, also keeps a record of the emails it sends, under its own privacy policy.
+      </p>
+      <p>
+        We keep your message only as long as we need it to respond to you and follow up on your request, and no longer than
+        24 months after our last contact with you. After that, we delete it from our inbox. If you ask us to delete your
+        information sooner, we will do so within 30 days of your request.
       </p>
       <h2>Your choices</h2>
       <p>
-        You can ask us to review, correct, or delete the information you sent us by emailing{" "}
-        <a href="mailto:vaughn.guintu.ggb@gmail.com">
-          vaughn.guintu.ggb@gmail.com
-        </a>.
-        Nevada residents may also submit a request to opt out of the sale of their covered information to the same address;
-        we do not sell covered information.
+        You can ask us to review, correct, or delete the information you sent us, or opt out of any sale or sharing of your
+        personal information, by emailing{" "}
+        <a href="mailto:vaughn.guintu.ggb@gmail.com">vaughn.guintu.ggb@gmail.com</a>. This applies to everyone who uses our
+        site, wherever you live. We do not sell or share personal information for advertising, but we will honor any opt-out
+        request we receive.
       </p>
       <h2>Children</h2>
       <p>
@@ -50,14 +77,14 @@ export default function PrivacyPage() {
       </p>
       <h2>Changes to this policy</h2>
       <p>
-        If we change this policy, we will post the updated version on this page and update the date above.
+        If we change this policy, we will post the updated version on this page and update the date above. If a change
+        materially affects how we use information you have already given us, we will also notify you by email at the address
+        you provided.
       </p>
       <h2>Contact us</h2>
       <p>
         Questions about this policy? Email{" "}
-        <a href="mailto:vaughn.guintu.ggb@gmail.com">
-          vaughn.guintu.ggb@gmail.com
-        </a>.
+        <a href="mailto:vaughn.guintu.ggb@gmail.com">vaughn.guintu.ggb@gmail.com</a>.
       </p>
     </>
   );
