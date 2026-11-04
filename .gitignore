@@ -48,3 +48,9 @@ next-env.d.ts
 
 # claude code local settings
 /.claude/
+
+# tour frames: kept locally, not committed (the poster frames are the exception)
+/public/images/tour/desktop/*
+!/public/images/tour/desktop/frame_000001.webp
+/public/images/tour/mobile/*
+!/public/images/tour/mobile/frame_000001.webp
