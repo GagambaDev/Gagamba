@@ -1,0 +1,165 @@
+{
+  "title": "Gagamba ? Production Product Tour",
+  "status": "ready",
+  "total_frames": 480,
+  "frame_count": 480,
+  "original_start_frame": 1,
+  "original_end_frame": 480,
+  "frame_start": 1,
+  "frame_end": 480,
+  "fps": 30.0,
+  "fps_numerator": 30,
+  "fps_base": 1.0,
+  "duration_seconds": 16.0,
+  "filename_pattern": "frame_{frame:06d}",
+  "padding": 6,
+  "color_space": "sRGB",
+  "alpha_mode": "straight",
+  "master": {
+    "location": "master/",
+    "pattern": "frame_%06d.png",
+    "width": 2560,
+    "height": 1440,
+    "format": "PNG",
+    "channels": "RGBA",
+    "bit_depth": 8,
+    "lossless": true,
+    "alpha": true,
+    "frame_count": 480,
+    "total_bytes": 855956602,
+    "average_frame_bytes": 1783243
+  },
+  "desktop": {
+    "location": "web/desktop/",
+    "pattern": "frame_%06d.webp",
+    "width": 1920,
+    "height": 1080,
+    "format": "WebP",
+    "quality": 92,
+    "alpha": true,
+    "frame_count": 480,
+    "total_bytes": 60935334,
+    "average_frame_bytes": 126949
+  },
+  "mobile": {
+    "location": "web/mobile/",
+    "pattern": "frame_%06d.webp",
+    "width": 960,
+    "height": 540,
+    "format": "WebP",
+    "quality": 90,
+    "alpha": true,
+    "frame_count": 480,
+    "total_bytes": 25022926,
+    "average_frame_bytes": 52131
+  },
+  "poster": {
+    "file": "gagamba-tour-poster.webp",
+    "source_frame": 480,
+    "width": 2560,
+    "height": 1440,
+    "alpha": true,
+    "quality": 96,
+    "bytes": 149684,
+    "sha256": "e53e51392bd6679f681d7f9dbf28cd5765717553ded78b6203a988077df77115"
+  },
+  "video": {
+    "file": "gagamba-tour.mp4",
+    "codec": "H.264",
+    "width": 2560,
+    "height": 1440,
+    "fps": 30.0,
+    "background": "#FFFFFF",
+    "alpha": false,
+    "bytes": 15323078,
+    "sha256": "dc48b9e56a8dc1b6f79ed8ff7b3a489f0525712d8317ebfadb78cb5454bb57a3"
+  },
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Meet Gagamba",
+      "source_marker": "Meet Gagamba",
+      "start_frame": 1,
+      "end_frame": 60,
+      "scroll_start": 0.0,
+      "scroll_end": 0.12317327766179541
+    },
+    {
+      "id": 2,
+      "title": "Propellers",
+      "source_marker": "Propellers",
+      "start_frame": 61,
+      "end_frame": 120,
+      "scroll_start": 0.12526096033402923,
+      "scroll_end": 0.24843423799582465
+    },
+    {
+      "id": 3,
+      "title": "Battery",
+      "source_marker": "Battery",
+      "start_frame": 121,
+      "end_frame": 180,
+      "scroll_start": 0.25052192066805845,
+      "scroll_end": 0.3736951983298539
+    },
+    {
+      "id": 4,
+      "title": "Water Tank",
+      "source_marker": "Water System",
+      "start_frame": 181,
+      "end_frame": 300,
+      "scroll_start": 0.3757828810020877,
+      "scroll_end": 0.6242171189979123
+    },
+    {
+      "id": 5,
+      "title": "Spray & Squeegee",
+      "source_marker": "Spray and Squeegee",
+      "start_frame": 301,
+      "end_frame": 420,
+      "scroll_start": 0.6263048016701461,
+      "scroll_end": 0.8747390396659708
+    },
+    {
+      "id": 6,
+      "title": "Camera / Vision System",
+      "source_marker": "Vision System and Final Reveal",
+      "start_frame": 421,
+      "end_frame": 480,
+      "scroll_start": 0.8768267223382046,
+      "scroll_end": 1.0
+    }
+  ],
+  "render": {
+    "engine": "Cycles",
+    "device": "NVIDIA OptiX",
+    "samples": 192,
+    "adaptive_sampling": true,
+    "noise_threshold": 0.01,
+    "denoising": "OptiX",
+    "animated_seed": false,
+    "view_transform": "AgX",
+    "look": "Medium High Contrast",
+    "exposure": 0.0,
+    "depth_of_field": false,
+    "motion_blur": false,
+    "film_transparent": true
+  },
+  "scroll": {
+    "formula": "frame = 1 + round(clamp(progress, 0, 1) * 479)",
+    "reverse_supported": true,
+    "simulation_history_required": false,
+    "presentation": "contain full16:9 frame; use desktop or mobile sequence with identical frame index",
+    "reduced_motion": "poster only"
+  },
+  "preservation": {
+    "approved_project": "../../gagamba-tour.blend",
+    "production_project": "../../gagamba-tour-production.blend",
+    "animation_sha256": "d92dc7f9248170c69e0664ae4265f47ed689d390a5c688d5dff0ce9715e387a7",
+    "mesh_sha256": "87e4b9e576493c29582e13e4a72aed3dbb93bf16ac69397c01f6e64fd04bcd67",
+    "geometry_and_animation_unchanged": true,
+    "verified": true
+  },
+  "source_model_note": "Approved source has4 single-propeller assemblies; lower coaxial propellers absent. Geometry preserved.",
+  "validation": "production-validation.json"
+}
