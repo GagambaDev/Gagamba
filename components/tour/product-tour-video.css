@@ -1,0 +1,24 @@
+/* Extras for the video version of the tour; layout, type and rail come from product-tour.css. */
+
+/* The MP4 has a solid white background, so it sits on the white page without a visible box. */
+.tour-video {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #fff;
+  opacity: 0;
+  transform: translateY(-50%) scale(var(--tour-fit));
+  /* Close-ups fill the frame, so dissolve the video's top and bottom edges into the page. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 8%, #000 92%, transparent 100%);
+  pointer-events: none;
+}
+.tour--animated .tour-video { display: block; }
+.tour--rendered .tour-video { opacity: 1; }
+
+/* The video is opaque, so the iridescent wash goes on top and multiplies into the white instead of sitting behind. */
+.tour-sequence--video .tour-glow { mix-blend-mode: multiply; }
