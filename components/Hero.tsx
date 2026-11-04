@@ -6,7 +6,7 @@ import PrimaryButton from "./PrimaryButton";
 import PageTitle from "./PageTitle";
 import Subtitle from "./Subtitle";
 import AboutUs from "./AboutUs";
-import DroneDiagram from "./drone/DroneDiagram";
+import ProductTour from "./tour/ProductTour";
 import ProblemVsSolution from "./ProblemVsSolution";
 import SocialProof from "./SocialProof";
 
@@ -60,7 +60,7 @@ export default function Hero() {
       </section>
 
       <AboutUs />
-      <DroneDiagram />
+      <ProductTour />
       <ProblemVsSolution />
       <SocialProof />
     </>

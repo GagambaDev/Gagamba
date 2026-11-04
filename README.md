@@ -34,3 +34,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Product tour assets
+
+The homepage tour reads its frame range and chapter timings from `public/images/tour/gagamba-tour-manifest.json`. The desktop and mobile WebP sequences are served directly from `public/images/tour/`, without the Next.js image optimizer. To serve them from a CDN, set `NEXT_PUBLIC_TOUR_ASSET_BASE` at build time to the public URL containing the `desktop/` and `mobile/` folders (for example, `https://cdn.example.com/tour`). The CDN must allow cross-origin frame requests and serve the files as WebP. Rebuild the application after changing this variable.
+
+Both sequences are 16:9, including the mobile sequence. On portrait screens the full drone is contained, so it can appear smaller; a portrait-rendered sequence would be needed for a closer composition. The tour is client-side and does not add a server requirement. The existing application uses API routes and Clerk middleware and is not configured for static export; changing hosting or enabling static export requires addressing those existing server features separately.
