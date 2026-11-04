@@ -1,9 +1,39 @@
-// Chapter descriptions are intentionally separate from the sequence renderer.
-export const chapterCopy: Record<number, string> = {
-  1: "A closer look at the components that make up Gagamba.",
-  2: "The propellers take center stage.",
-  3: "Meet the battery at the heart of the system.",
-  4: "Explore the onboard water tank.",
-  5: "A closer look at the spray and squeegee assembly.",
-  6: "See the camera and vision system.",
+// Step text is intentionally separate from the sequence renderer. Keys are the chapter ids in gagamba-tour-manifest.json.
+export type TourStep = {
+  title: string;
+  body: string;
+  chips: string[];
+};
+
+export const tourSteps: Record<number, TourStep> = {
+  1: {
+    title: "Meet Gagamba",
+    body: "Scroll to explore every part of the drone.",
+    chips: [],
+  },
+  2: {
+    title: "Propellers",
+    body: "Four high-thrust propellers deliver the powerful lift and precision thrust control needed to carry the full 66 lb system while maintaining rock-solid stability against facade winds.",
+    chips: ["4 high-thrust propellers", "66 lb system", "Precision flight control"],
+  },
+  3: {
+    title: "Battery",
+    body: "High-capacity LiPo batteries power the motors, pump, and onboard compute, delivering roughly 24 minutes of flight time per mission cycle.",
+    chips: ["LiPo", "~24 min flight time"],
+  },
+  4: {
+    title: "Water Tank",
+    body: "A 12-liter onboard reservoir eliminates the tether entirely, freeing Gagamba from the ~200 ft altitude ceiling that limits hose-fed competitors.",
+    chips: ["12 L reservoir", "No tether", "No 200 ft ceiling"],
+  },
+  5: {
+    title: "Pressure Nozzle",
+    body: "A precision nozzle delivers a controlled stream of water onto the glass, keeping spray contained within the detected window boundary while minimizing waste.",
+    chips: ["0.07 GPM", "29x less water"],
+  },
+  6: {
+    title: "Camera",
+    body: "The onboard camera feeds the computer vision system that identifies glass panes, guides docking, and captures the data behind the Post-Flight Report.",
+    chips: ["Computer vision", "Post-Flight Report"],
+  },
 };

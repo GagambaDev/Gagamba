@@ -1,17 +1,30 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 import manifest from "@/public/images/tour/gagamba-tour-manifest.json";
-import { chapterCopy } from "./tour-content";
+import { elmsSans, heming } from "./fonts";
+import { tourSteps } from "./tour-content";
 import "./product-tour.css";
 
 // The base may be an absolute CDN URL; frame files must retain their variant folders.
 const assetBase = (process.env.NEXT_PUBLIC_TOUR_ASSET_BASE || "/images/tour").replace(/\/$/, "");
 const frameUrl = (variant: string, frame: number) =>
   `${assetBase}/${variant}/frame_${String(frame).padStart(manifest.padding, "0")}.webp`;
-const chapters = manifest.chapters.map((chapter) => ({ ...chapter, copy: chapterCopy[chapter.id] }));
+const chapters = manifest.chapters.map((chapter) => ({ ...chapter, ...tourSteps[chapter.id] }));
 type Frame = ImageBitmap | HTMLImageElement;
+
+// Where in a chapter (0 to 1) the progress rail lands: past the fade-in, so the text is fully visible.
+const RAIL_LANDING = 0.35;
+// Text fades in over the first and out over the last 20% of its chapter and travels this many px.
+const TEXT_FADE = 0.2;
+const TEXT_TRAVEL = 24;
+// Phones show a 16:9 render in a short box; a slight zoom keeps the drone from looking tiny. Mirrors --tour-fit in the CSS.
+const MOBILE_FIT = 1.3;
+
+// Share of the frame's height, at its top and bottom, that fades to transparent.
+const EDGE_FADE = 0.08;
+
+const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
 
 function closeFrame(frame: Frame) {
   if ("close" in frame) frame.close();
@@ -22,12 +35,14 @@ function ScrollSequence() {
   const rootRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const railRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const root = rootRef.current;
     const canvas = canvasRef.current;
     const overlay = overlayRef.current;
-    if (!root || !canvas || !overlay) return;
+    const rail = railRef.current;
+    if (!root || !canvas || !overlay || !rail) return;
     const context = canvas.getContext("2d");
     if (!context) return;
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -64,10 +79,22 @@ function ScrollSequence() {
           canvas.height = height;
         }
         context.clearRect(0, 0, width, height);
-        const scale = Math.min(width / image.width, height / image.height);
+        const fit = variant === "mobile" ? MOBILE_FIT : 1;
+        const scale = Math.min(width / image.width, height / image.height) * fit;
         const w = image.width * scale;
         const h = image.height * scale;
-        context.drawImage(image, (width - w) / 2, (height - h) / 2, w, h);
+        const top = (height - h) / 2;
+        context.drawImage(image, (width - w) / 2, top, w, h);
+        // Close-ups fill the whole frame, so dissolve the render's top and bottom edges into the white page.
+        const fade = context.createLinearGradient(0, top, 0, top + h);
+        fade.addColorStop(0, "rgba(0,0,0,0)");
+        fade.addColorStop(EDGE_FADE, "#000");
+        fade.addColorStop(1 - EDGE_FADE, "#000");
+        fade.addColorStop(1, "rgba(0,0,0,0)");
+        context.globalCompositeOperation = "destination-in";
+        context.fillStyle = fade;
+        context.fillRect(0, 0, width, height);
+        context.globalCompositeOperation = "source-over";
         root.classList.add("tour--rendered");
       };
 
@@ -156,24 +183,46 @@ function ScrollSequence() {
         raf = 0;
         if (!near) return;
         const rect = root.getBoundingClientRect();
-        const distance = Math.max(1, rect.height - root.querySelector(".tour-stage")!.getBoundingClientRect().height);
-        const progress = Math.max(0, Math.min(1, -rect.top / distance));
+        const stage = root.querySelector<HTMLElement>(".tour-stage")!;
+        // The stage sticks below the header, so progress starts when the section reaches that offset, not the viewport top.
+        const stickyTop = parseFloat(getComputedStyle(stage).top) || 0;
+        const distance = Math.max(1, rect.height - stage.getBoundingClientRect().height);
+        const progress = clamp01((stickyTop - rect.top) / distance);
         requested = manifest.frame_start + Math.round(progress * (manifest.frame_end - manifest.frame_start));
         if (requested !== previous) direction = requested > previous ? 1 : -1;
         previous = requested;
         const image = touch(requested);
         if (image && requested !== lastDrawn) { draw(image); lastDrawn = requested; }
+        let active = 0;
         overlay.querySelectorAll<HTMLElement>("[data-chapter]").forEach((element, index) => {
           const chapter = chapters[index];
           const span = chapter.end_frame - chapter.start_frame + 1;
           const local = (requested - chapter.start_frame) / span;
-          const fadeIn = index === 0 ? 1 : Math.max(0, Math.min(1, local / 0.16));
-          const fadeOut = index === chapters.length - 1 ? 1 : Math.max(0, Math.min(1, (1 - local) / 0.16));
-          const opacity = local >= 0 && local < 1 ? Math.min(fadeIn, fadeOut) : 0;
+          if (local >= 0 && local < 1) active = index;
+          // Rises into place, then lifts away; the first and last steps never fade in from / out to nothing.
+          const enter = index === 0 ? 1 : clamp01(local / TEXT_FADE);
+          const exit = index === chapters.length - 1 ? 1 : clamp01((1 - local) / TEXT_FADE);
+          const opacity = local >= 0 && local < 1 ? Math.min(enter, exit) : 0;
+          const offset = enter < 1 ? (1 - enter) * TEXT_TRAVEL : -(1 - exit) * TEXT_TRAVEL;
           element.style.opacity = String(opacity);
-          element.style.transform = `translateY(${(1 - opacity) * 12}px)`;
+          element.style.transform = `translateY(${offset}px)`;
+        });
+        rail.querySelectorAll<HTMLElement>("[data-step]").forEach((button, index) => {
+          if (index === active) button.setAttribute("aria-current", "step");
+          else button.removeAttribute("aria-current");
         });
         pump();
+      };
+      const jump = (event: MouseEvent) => {
+        const button = (event.target as Element).closest<HTMLElement>("[data-step]");
+        if (!button) return;
+        const chapter = chapters[Number(button.dataset.step)];
+        const stage = root.querySelector<HTMLElement>(".tour-stage")!;
+        const distance = Math.max(1, root.offsetHeight - stage.offsetHeight);
+        const progress = chapter.scroll_start + (chapter.scroll_end - chapter.scroll_start) * (chapter.id === 1 ? 0 : RAIL_LANDING);
+        const rootTop = root.getBoundingClientRect().top + window.scrollY;
+        const stickyTop = parseFloat(getComputedStyle(stage).top) || 0;
+        window.scrollTo({ top: rootTop - stickyTop + progress * distance, behavior: "smooth" });
       };
       const schedule = () => { if (!raf) raf = requestAnimationFrame(update); };
       const resize = () => {
@@ -194,11 +243,13 @@ function ScrollSequence() {
       observer.observe(root);
       window.addEventListener("scroll", schedule, { passive: true });
       window.addEventListener("resize", resize);
+      rail.addEventListener("click", jump);
       stop = () => {
         disposed = true;
         observer.disconnect();
         window.removeEventListener("scroll", schedule);
         window.removeEventListener("resize", resize);
+        rail.removeEventListener("click", jump);
         cancelAnimationFrame(raf);
         clear();
       };
@@ -210,9 +261,12 @@ function ScrollSequence() {
 
   return (
     <div ref={rootRef} className="tour-sequence">
+      {/* The visible heading in reduced-motion mode; the animated tour opens with the same title as step 1. */}
+      <h2 id="product-tour-heading" className="tour-heading">{chapters[0].title}</h2>
       <div className="tour-stage">
         <div className="tour-stage-inner">
           <div className="tour-visual">
+            <div className="tour-glow" aria-hidden="true" />
             <picture className="tour-poster">
               <source media="(max-width: 767px)" srcSet={frameUrl("mobile", manifest.frame_start)} />
               {/* Native image loading avoids per-frame Next.js optimization. */}
@@ -222,21 +276,29 @@ function ScrollSequence() {
             <canvas ref={canvasRef} aria-hidden="true" className="tour-canvas" />
           </div>
           <div ref={overlayRef} className="tour-overlays" aria-hidden="true">
-            {chapters.map((chapter) => (
+            {chapters.map((chapter, index) => (
               <div className="tour-overlay" data-chapter key={chapter.id}>
-                <p className="tour-eyebrow">The Drone · {String(chapter.id).padStart(2, "0")}</p>
-                <p className="tour-title">{chapter.title}</p>
-                <p className="tour-copy">{chapter.copy}</p>
+                <p className={`tour-title ${index === 0 ? "tour-title--lead" : ""}`}>{chapter.title}</p>
+                <p className="tour-copy">{chapter.body}</p>
+                <TourChips chips={chapter.chips} />
               </div>
             ))}
           </div>
+          <nav ref={railRef} className="tour-rail" aria-label="Drone tour steps">
+            {chapters.map((chapter, index) => (
+              <button type="button" className="tour-rail-step" data-step={index} key={chapter.id} aria-label={chapter.title}>
+                <span className="tour-rail-label" aria-hidden="true">{chapter.title}</span>
+              </button>
+            ))}
+          </nav>
         </div>
       </div>
       <div className="tour-chapters">
-        {chapters.map((chapter) => (
+        {chapters.slice(1).map((chapter) => (
           <section key={chapter.id}>
             <h3>{chapter.title}</h3>
-            <p>{chapter.copy}</p>
+            <p>{chapter.body}</p>
+            <TourChips chips={chapter.chips} />
           </section>
         ))}
       </div>
@@ -244,15 +306,19 @@ function ScrollSequence() {
   );
 }
 
+function TourChips({ chips }: { chips: string[] }) {
+  if (!chips.length) return null;
+  return (
+    <ul className="tour-chips">
+      {chips.map((chip) => <li key={chip}>{chip}</li>)}
+    </ul>
+  );
+}
+
 export default function ProductTour() {
   return (
-    <section className="product-tour" aria-labelledby="product-tour-heading">
-      <h2 id="product-tour-heading" className="tour-sr-only">Explore Gagamba</h2>
+    <section id="meet-gagamba" className={`product-tour ${heming.variable} ${elmsSans.variable}`} aria-labelledby="product-tour-heading">
       <ScrollSequence />
-      <div className="tour-cta">
-        <p>See what Gagamba can do for your building.</p>
-        <Link href="/contact">Get a Quote <span aria-hidden="true">→</span></Link>
-      </div>
     </section>
   );
 }
