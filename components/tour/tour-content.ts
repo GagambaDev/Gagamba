@@ -13,8 +13,8 @@ export const tourSteps: Record<number, TourStep> = {
   },
   2: {
     title: "Propellers",
-    body: "Four high-thrust propellers deliver the powerful lift and precision thrust control needed to carry the full 66 lb system while maintaining rock-solid stability against facade winds.",
-    chips: ["4 high-thrust propellers", "66 lb system", "Precision flight control"],
+    body: "Eight coaxial propellers generate the lift and redundancy needed to carry the full 66 lb system and remain airborne even with a single motor failure.",
+    chips: ["8 coaxial propellers", "66 lb system", "Single-motor-failure tolerant"],
   },
   3: {
     title: "Battery",

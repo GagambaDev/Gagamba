@@ -1,16 +1,16 @@
 {
-  "title": "Gagamba ? Production Product Tour",
+  "title": "Gagamba - Updated Production Product Tour",
   "status": "ready",
-  "total_frames": 480,
-  "frame_count": 480,
+  "total_frames": 720,
+  "frame_count": 720,
   "original_start_frame": 1,
-  "original_end_frame": 480,
+  "original_end_frame": 720,
   "frame_start": 1,
-  "frame_end": 480,
+  "frame_end": 720,
   "fps": 30.0,
   "fps_numerator": 30,
   "fps_base": 1.0,
-  "duration_seconds": 16.0,
+  "duration_seconds": 24.0,
   "filename_pattern": "frame_{frame:06d}",
   "padding": 6,
   "color_space": "sRGB",
@@ -25,9 +25,9 @@
     "bit_depth": 8,
     "lossless": true,
     "alpha": true,
-    "frame_count": 480,
-    "total_bytes": 855956602,
-    "average_frame_bytes": 1783243
+    "frame_count": 720,
+    "total_bytes": 1306725046,
+    "average_frame_bytes": 1814896
   },
   "desktop": {
     "location": "web/desktop/",
@@ -37,9 +37,9 @@
     "format": "WebP",
     "quality": 92,
     "alpha": true,
-    "frame_count": 480,
-    "total_bytes": 60935334,
-    "average_frame_bytes": 126949
+    "frame_count": 720,
+    "total_bytes": 96561664,
+    "average_frame_bytes": 134113
   },
   "mobile": {
     "location": "web/mobile/",
@@ -49,19 +49,19 @@
     "format": "WebP",
     "quality": 90,
     "alpha": true,
-    "frame_count": 480,
-    "total_bytes": 25022926,
-    "average_frame_bytes": 52131
+    "frame_count": 720,
+    "total_bytes": 39986412,
+    "average_frame_bytes": 55537
   },
   "poster": {
     "file": "gagamba-tour-poster.webp",
-    "source_frame": 480,
+    "source_frame": 720,
     "width": 2560,
     "height": 1440,
     "alpha": true,
     "quality": 96,
-    "bytes": 149684,
-    "sha256": "e53e51392bd6679f681d7f9dbf28cd5765717553ded78b6203a988077df77115"
+    "bytes": 184250,
+    "sha256": "a82d6bd60fbc2a8e08874b107b7301261de6d60e8389cf532740099d184bcd60"
   },
   "video": {
     "file": "gagamba-tour.mp4",
@@ -71,63 +71,75 @@
     "fps": 30.0,
     "background": "#FFFFFF",
     "alpha": false,
-    "bytes": 15323078,
-    "sha256": "dc48b9e56a8dc1b6f79ed8ff7b3a489f0525712d8317ebfadb78cb5454bb57a3"
+    "bytes": 19525649,
+    "sha256": "fe5c7b4b34ebc0229ec50a362b25b87bf12c957c46fde9e9e8a4ba78067a5796"
   },
   "chapters": [
     {
       "id": 1,
       "title": "Meet Gagamba",
-      "source_marker": "Meet Gagamba",
       "start_frame": 1,
       "end_frame": 60,
       "scroll_start": 0.0,
-      "scroll_end": 0.12317327766179541
+      "scroll_end": 0.08205841446453407,
+      "start_seconds": 0.0,
+      "duration_seconds": 2.0,
+      "source_marker": "Meet Gagamba"
     },
     {
       "id": 2,
       "title": "Propellers",
-      "source_marker": "Propellers",
       "start_frame": 61,
       "end_frame": 120,
-      "scroll_start": 0.12526096033402923,
-      "scroll_end": 0.24843423799582465
+      "scroll_start": 0.08344923504867872,
+      "scroll_end": 0.16550764951321278,
+      "start_seconds": 2.0,
+      "duration_seconds": 2.0,
+      "source_marker": "Propellers"
     },
     {
       "id": 3,
       "title": "Battery",
-      "source_marker": "Battery",
       "start_frame": 121,
       "end_frame": 180,
-      "scroll_start": 0.25052192066805845,
-      "scroll_end": 0.3736951983298539
+      "scroll_start": 0.16689847009735745,
+      "scroll_end": 0.24895688456189152,
+      "start_seconds": 4.0,
+      "duration_seconds": 2.0,
+      "source_marker": "Battery"
     },
     {
       "id": 4,
-      "title": "Water Tank",
-      "source_marker": "Water System",
+      "title": "Water System",
       "start_frame": 181,
       "end_frame": 300,
-      "scroll_start": 0.3757828810020877,
-      "scroll_end": 0.6242171189979123
+      "scroll_start": 0.25034770514603616,
+      "scroll_end": 0.41585535465924894,
+      "start_seconds": 6.0,
+      "duration_seconds": 4.0,
+      "source_marker": "Water System"
     },
     {
       "id": 5,
-      "title": "Spray & Squeegee",
-      "source_marker": "Spray and Squeegee",
+      "title": "Spray and Squeegee",
       "start_frame": 301,
-      "end_frame": 420,
-      "scroll_start": 0.6263048016701461,
-      "scroll_end": 0.8747390396659708
+      "end_frame": 660,
+      "scroll_start": 0.4172461752433936,
+      "scroll_end": 0.9165507649513213,
+      "start_seconds": 10.0,
+      "duration_seconds": 12.0,
+      "source_marker": "Spray and Squeegee"
     },
     {
       "id": 6,
-      "title": "Camera / Vision System",
-      "source_marker": "Vision System and Final Reveal",
-      "start_frame": 421,
-      "end_frame": 480,
-      "scroll_start": 0.8768267223382046,
-      "scroll_end": 1.0
+      "title": "Vision System and Final Reveal",
+      "start_frame": 661,
+      "end_frame": 720,
+      "scroll_start": 0.9179415855354659,
+      "scroll_end": 1.0,
+      "start_seconds": 22.0,
+      "duration_seconds": 2.0,
+      "source_marker": "Vision System and Final Reveal"
     }
   ],
   "render": {
@@ -146,20 +158,102 @@
     "film_transparent": true
   },
   "scroll": {
-    "formula": "frame = 1 + round(clamp(progress, 0, 1) * 479)",
+    "formula": "frame = 1 + round(clamp(progress, 0, 1) * 719)",
     "reverse_supported": true,
     "simulation_history_required": false,
-    "presentation": "contain full16:9 frame; use desktop or mobile sequence with identical frame index",
-    "reduced_motion": "poster only"
+    "presentation": "Contain the complete16:9 image; desktop/mobile use identical1-based frame numbers.",
+    "reduced_motion": "poster only",
+    "decode_strategy": "Decode before drawing, discard stale requests, bounded image cache, requestAnimationFrame."
   },
   "preservation": {
-    "approved_project": "../../gagamba-tour.blend",
-    "production_project": "../../gagamba-tour-production.blend",
-    "animation_sha256": "d92dc7f9248170c69e0664ae4265f47ed689d390a5c688d5dff0ce9715e387a7",
-    "mesh_sha256": "87e4b9e576493c29582e13e4a72aed3dbb93bf16ac69397c01f6e64fd04bcd67",
+    "approved_project": "gagamba-tour-production.blend",
+    "production_project": "gagamba-tour-production.blend",
+    "original_approved_source": "Gagamba_Tour_Rotation_v002.blend",
+    "approved_file_sha256": "e29e4b7fafc8e0f16f1223065433ea0b03b5f27600c2c13c3078285ce11cddc4",
+    "production_file_sha256": "e29e4b7fafc8e0f16f1223065433ea0b03b5f27600c2c13c3078285ce11cddc4",
+    "animation_sha256": "faccbd841ceafebd72c0e6c9b13082e023522275d1724f093faae9b802d2ed31",
+    "mesh_sha256": "9f9fe9e8c88b7358c0d1b4e7bac3bedecfeefac43b5eac691325c37f4a7b8d86",
     "geometry_and_animation_unchanged": true,
-    "verified": true
+    "verified": true,
+    "note": "Production .blend is a byte-for-byte copy of the approved updated720-frame scene."
   },
-  "source_model_note": "Approved source has4 single-propeller assemblies; lower coaxial propellers absent. Geometry preserved.",
-  "validation": "production-validation.json"
+  "source_model_note": "Approved updated Gagamba tour retained exactly, including installed belt-drive head, existing propulsion, fluid system and all other hardware.",
+  "validation": "production-validation.json",
+  "version": "rotation-v002-production",
+  "events": [
+    {
+      "title": "Scissor establishment",
+      "start_frame": 301,
+      "end_frame": 320
+    },
+    {
+      "title": "Original lead-screw extension",
+      "start_frame": 321,
+      "end_frame": 390
+    },
+    {
+      "title": "Extended arm hold",
+      "start_frame": 391,
+      "end_frame": 405
+    },
+    {
+      "title": "Approach rotation assembly",
+      "start_frame": 406,
+      "end_frame": 450
+    },
+    {
+      "title": "Neutral close-up hold",
+      "start_frame": 451,
+      "end_frame": 465
+    },
+    {
+      "title": "Gradual 15 degree head roll",
+      "start_frame": 466,
+      "end_frame": 525
+    },
+    {
+      "title": "Rotated position hold",
+      "start_frame": 526,
+      "end_frame": 550
+    },
+    {
+      "title": "Gradual return to neutral",
+      "start_frame": 551,
+      "end_frame": 610
+    },
+    {
+      "title": "Neutral head hold",
+      "start_frame": 611,
+      "end_frame": 630
+    },
+    {
+      "title": "Return to original vision transition",
+      "start_frame": 631,
+      "end_frame": 660
+    },
+    {
+      "title": "Preserved vision and final reveal",
+      "start_frame": 661,
+      "end_frame": 720
+    }
+  ],
+  "mechanical": {
+    "control": "ROTATION_CONTROL | head roll degrees",
+    "property": "angle_deg",
+    "axis": "Retained output shaft +Y",
+    "demonstration_degrees": [
+      0,
+      15,
+      0
+    ],
+    "measured_belt_stage": "Lower 13-groove / upper 32-groove pulley",
+    "bevel_stage": "Existing 1:1 visual synchronization retained; tooth ratio remains provisional.",
+    "travel_note": "15 degree presentation excursion within prior +/-20 degree sampled range; no claimed mechanical hard-stop limits.",
+    "stationary_housing": "Fixed relative to scissor terminal",
+    "hose": "Native ideal constant-length 160 mm flex loop"
+  },
+  "integration": "WEBSITE-INTEGRATION.txt",
+  "approved_animation_validation": "validation/approved-animation-validation.json",
+  "review": "gagamba-tour-review.html",
+  "archive": "website-assets.zip"
 }
