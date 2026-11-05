@@ -1,144 +1,190 @@
 "use client";
 
-import memberimg1 from '@/public/images/headshots/Vaughn Guintu.png'
-import memberimg2 from '@/public/images/headshots/Richies Huynh.png'
-import memberimg3 from '@/public/images/headshots/Aarash Gohari.png'
-import memberimg4 from '@/public/images/headshots/Nathaniel Ordonio.png'
-import memberimg5 from '@/public/images/headshots/Narek Tonoyan.png'
-import memberimg6 from '@/public/images/headshots/Maddox Dolor.png'
-import memberimg7 from '@/public/images/headshots/Khristian Ordonio.png'
-import memberimg8 from '@/public/images/headshots/Tony Ferrar.png'
+import { useEffect, useState, useSyncExternalStore } from "react";
+import Image from "next/image";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { getInitials, people, sortMembers, teams, type Person } from "@/lib/team";
 
-const team = [
-    {
-        name: "Vaughn Guintu",
-        role: "Mechanical Engineering",
-        bio: "Leads the physical design and build of the Gagamba drone. Focused on making sure the hardware is sturdy, precise, and flight-ready.",
-        initials: "VG",
-        img: memberimg1
-    },
-    {
-        name: "Richies Huynh",
-        role: "Computer Science",
-        bio: "Works on the software side of the drone. Helps connect the different systems together and keeps the codebase running smoothly.",
-        initials: "RH",
-        img: memberimg2,
-    },
-    {
-        name: "Aarash Gohari",
-        role: "Computer Science",
-        bio: "One of the hands-on builders of the drone's software. Helped develop and put together the codebase that powers how the drone thinks and operates.",
-        initials: "AG",
-        img: memberimg3,
-    },
-    {
-        name: "Nathaniel Ordonio",
-        role: "Civil Engineering",
-        bio: "Brings a structural perspective to the project. Helps the team understand how the drone will interact with real buildings and surfaces.",
-        initials: "NO",
-        img: memberimg4,
-    },
-    {
-        name: "Tony Tonoyan",
-        role: "Computer Science",
-        bio: "Contributes to the software and embedded systems work. Helps bridge the gap between code and the physical hardware on the drone.",
-        initials: "TT",
-        img: memberimg5,
-    },
-    {
-        name: "Maddox Dolor",
-        role: "Civil Engineering",
-        bio: "Focused on how the drone applies to real-world infrastructure. Thinks about deployment from a practical, on-the-ground perspective.",
-        initials: "MD",
-        img: memberimg6,
-    },
-    {
-        name: "Khristian Ordonio",
-        role: "Political Science",
-        bio: "Handles the regulatory and policy side of the project. Researches the legal landscape around drone usage and helps navigate compliance requirements.",
-        initials: "KO",
-        img: memberimg7,
-    },
-    {
-        name: "Tony Ferrar",
-        role: "Mentor",
-        bio: "Mathematics professor specializing in aerospace. Brings deep technical expertise to the team, guiding the math and physics behind the drone's flight and control systems.",
-        initials: "TF",
-        img: memberimg8,
-    },
-];
+// Which team the link points to, e.g. "software" for /about#founders-software (null if none)
+function getLinkedTeamId(): string | null {
+  const linkedTeam = teams.find((team) => window.location.hash === `#founders-${team.id}`);
+  if (!linkedTeam) {
+    return null;
+  }
+  return linkedTeam.id;
+}
+
+// The server can't see the # part of the link, so it always starts with no linked team
+function getServerLinkedTeamId(): string | null {
+  return null;
+}
+
+// Re-reads the link whenever its # part changes: typing a new one, Back/Forward, or selecting a tab
+function subscribeToLinkChanges(onChange: () => void) {
+  window.addEventListener("hashchange", onChange);
+  return () => {
+    window.removeEventListener("hashchange", onChange);
+  };
+}
 
 export default function MeetTheTeam() {
-    const { ref, fadeTop } = useScrollReveal();
-    return (
-        <section className="relative text-white overflow-hidden py-32 px-6">
+  const { ref, fadeTop } = useScrollReveal();
+  // The link decides which tab is selected; with no team in the link, C-Suite is selected
+  const linkedTeamId = useSyncExternalStore(subscribeToLinkChanges, getLinkedTeamId, getServerLinkedTeamId);
+  const selectedTeamId = linkedTeamId ?? teams[0].id;
+  const selectedTeam = teams.find((team) => team.id === selectedTeamId) ?? teams[0];
+  const [tabsScrolledToStart, setTabsScrolledToStart] = useState(true);
+  const [tabsScrolledToEnd, setTabsScrolledToEnd] = useState(false);
 
-            {/* Glow — left side, echoing the Hero */}
-            <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                    background:
-                        "radial-gradient(ellipse 70% 50% at 15% 70%, rgba(22,65,185,0.6) 0%, rgba(12,35,110,0.25) 50%, transparent 72%)",
-                }}
-            />
+  // Hides each edge fade once the tabs are scrolled all the way to that side.
+  // The 1px leeway allows for browsers that report sub-pixel scroll positions.
+  const handleTabsScroll = (event: React.UIEvent<HTMLDivElement>) => {
+    const { scrollLeft, clientWidth, scrollWidth } = event.currentTarget;
+    setTabsScrolledToStart(scrollLeft <= 1);
+    setTabsScrolledToEnd(scrollLeft + clientWidth >= scrollWidth - 1);
+  };
 
-            {/* Dot grid texture */}
-            <div
-                className="absolute inset-0 pointer-events-none opacity-[0.06]"
-                style={{
-                    backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
-                    backgroundSize: "32px 32px",
-                }}
-            />
+  // Opening a link like /about#founders-software scrolls down to the Founders section
+  // Only works on page load
+  useEffect(() => {
+    if (getLinkedTeamId() !== null) {
+      document.getElementById("founders")?.scrollIntoView();
+    }
+  }, []);
 
-            <div ref={ref} className="relative z-10 max-w-6xl mx-auto">
-                <p style={fadeTop(0)} className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
-                    The People Behind Gagamba
-                </p>
+  // Selects a tab by updating the link, without jumping the page or adding a Back-button step.
+  // replaceState doesn't fire "hashchange" on its own, so we fire it to update the selected tab.
+  const selectTeam = (teamId: string) => {
+    window.history.replaceState(null, "", `#founders-${teamId}`);
+    window.dispatchEvent(new HashChangeEvent("hashchange"));
+  };
 
-                <h2 style={fadeTop(0.1)} className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6">
-                    Meet the{" "}
-                    <span
-                        className="text-transparent bg-clip-text"
-                        style={{ backgroundImage: "linear-gradient(90deg, #4f8eff 0%, #a5c0ff 100%)" }}
-                    >
-                        founders
-                    </span>
-                </h2>
+  // Left/right arrows move to the previous/next tab (wrapping around), Home and End jump to the first/last
+  const handleTabKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const currentIndex = teams.findIndex((team) => team.id === selectedTeamId);
+    let nextIndex: number;
+    switch (event.key) {
+      case "ArrowRight":
+        nextIndex = (currentIndex + 1) % teams.length;
+        break;
+      case "ArrowLeft":
+        nextIndex = (currentIndex - 1 + teams.length) % teams.length;
+        break;
+      case "Home":
+        nextIndex = 0;
+        break;
+      case "End":
+        nextIndex = teams.length - 1;
+        break;
+      default:
+        return;
+    }
+    event.preventDefault(); // stops Home/End from scrolling the page
+    const nextTeam = teams[nextIndex];
+    selectTeam(nextTeam.id);
+    document.getElementById(`founders-tab-${nextTeam.id}`)?.focus();
+  };
 
-                <div style={fadeTop(0.2)} className="w-16 h-[2px] bg-blue-500 mb-16" />
+  return (
+    <section id="founders" className="px-6 pt-16 md:px-8 md:pt-30">
+      <div ref={ref} className="mx-auto max-w-[1200px]">
+        <h2 style={fadeTop(0)} className="text-h2 text-sapphire">
+          Founders
+        </h2>
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {team.map((member) => (
-                        <div
-                            key={member.name}
-                            className="group relative rounded-2xl p-6 border border-white/[0.07] bg-white/[0.03] hover:bg-white/[0.06] hover:border-blue-500/40 transition-all duration-300"
-                        >
-                            <div>
-                                <img
-                                    src={member.img.src}
-                                    alt={`${member.name} headshot`}
-                                    width={150}
-                                    height={300}
-                                    style={{ clipPath: 'inset(7px round 7px)' }}
-                                />
-                            </div>
-                            <br></br>
-                            <h3 className="text-white font-bold text-lg leading-tight mb-1">
-                                {member.name}
-                            </h3>
-                            <p className="text-blue-400 text-xs uppercase tracking-widest mb-4 font-medium">
-                                {member.role}
-                            </p>
-                            <div className="w-8 h-[1px] bg-blue-500/40 mb-4 group-hover:w-12 transition-all duration-300" />
-                            <p className="text-gray-400 text-sm leading-relaxed">
-                                {member.bio}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+        <div style={fadeTop(0.1)} className="relative mt-6">
+          {/* Scrolls sideways when the tabs don't fit. The 5px padding (cancelled by the
+              negative margin) leaves room so the focus outline isn't cut off. */}
+          <div
+            role="tablist"
+            aria-label="Teams"
+            onKeyDown={handleTabKeyDown}
+            onScroll={handleTabsScroll}
+            className="-m-[5px] flex gap-2 overflow-x-auto p-[5px]"
+          >
+            {teams.map((team) => {
+              const selected = team.id === selectedTeamId;
+              return (
+                <button
+                  key={team.id}
+                  id={`founders-tab-${team.id}`}
+                  type="button"
+                  role="tab"
+                  aria-selected={selected}
+                  aria-controls="founders-panel"
+                  tabIndex={selected ? 0 : -1}
+                  onClick={() => selectTeam(team.id)}
+                  className={`h-11 shrink-0 cursor-pointer rounded-none px-5 text-[15px] font-semibold ${
+                    selected
+                      ? "bg-sapphire text-white"
+                      : "bg-pearl text-onyx hover:ring-[1.5px] hover:ring-inset hover:ring-sapphire"
+                  }`}
+                >
+                  {team.name}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* White fades on each edge hint that there are more tabs to scroll to in that direction */}
+          <div
+            aria-hidden="true"
+            className={`pointer-events-none absolute inset-y-0 -left-[5px] w-12 bg-linear-to-r from-white transition-opacity duration-200 lg:hidden ${
+              tabsScrolledToStart ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <div
+            aria-hidden="true"
+            className={`pointer-events-none absolute inset-y-0 -right-[5px] w-12 bg-linear-to-l from-white transition-opacity duration-200 lg:hidden ${
+              tabsScrolledToEnd ? "opacity-0" : "opacity-100"
+            }`}
+          />
+        </div>
+
+        <div
+          id="founders-panel"
+          role="tabpanel"
+          aria-labelledby={`founders-tab-${selectedTeamId}`}
+          tabIndex={0}
+          className="mt-10"
+        >
+          <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-8 lg:grid-cols-5">
+            {sortMembers(selectedTeam.members).map((member) => {
+              const person: Person = people[member.person];
+              return (
+                <li key={member.person}>
+                  {/* The headshot and initials are hidden from screen readers (empty alt / aria-hidden)
+                      because the name is right below, so it would otherwise be read twice */}
+                  <div className="relative aspect-square bg-pearl">
+                    {person.headshot ? (
+                      <Image
+                        src={person.headshot}
+                        alt=""
+                        fill
+                        sizes="(min-width: 1024px) 20vw, (min-width: 768px) 33vw, 50vw"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <span
+                        aria-hidden="true"
+                        className="absolute inset-0 flex items-center justify-center font-heading text-5xl font-semibold text-sapphire"
+                      >
+                        {getInitials(person.name)}
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-4 text-lg font-semibold">
+                    {person.name}
+                  </p>
+                  <p className="text-small text-onyx-70">
+                    {member.role}
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
 }
