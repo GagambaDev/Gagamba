@@ -10,9 +10,14 @@ import "./product-tour-video.css";
 // Video version of the drone tour. Same layout, copy and rail as ProductTour, but scroll scrubs one MP4 instead of
 // swapping 480 WebP frames. The base may be an absolute CDN URL.
 const assetBase = (process.env.NEXT_PUBLIC_TOUR_ASSET_BASE || "/images/tour").replace(/\/$/, "");
-// Two encodes with a keyframe every 8 frames so seeks are cheap: 1080p (~5 MB) for desktop, 720p (~3 MB) for phones.
-const videoUrls = { desktop: `${assetBase}/video/gagamba-tour-desktop.mp4`, mobile: `${assetBase}/video/gagamba-tour-mobile.mp4` };
-const videoUrl = () => (window.innerWidth < 768 ? videoUrls.mobile : videoUrls.desktop);
+// Full 2560x1440 render for desktop, optimized 960x540 for phones. Both are 24 s at 30 FPS with identical timing,
+// so the same time maps to the same frame. Desktop falls back to the optimized file if the full render is unavailable.
+const mobileUrl = `${assetBase}/video/gagamba-tour-mobile.mp4`;
+const fullUrl = `${assetBase}/video/gagamba-tour.mp4`;
+// Picked once per load (never on resize) so crossing the breakpoint does not reload the video.
+const videoCandidates = () => (window.innerWidth < 768 ? [mobileUrl] : [fullUrl, mobileUrl]);
+// Fastest rate at which currentTime is rewritten: one frame at 30 FPS.
+const MIN_SEEK_INTERVAL = 1000 / 30;
 const posterUrl = `${assetBase}/desktop/frame_${String(manifest.frame_start).padStart(manifest.padding, "0")}.webp`;
 const chapters = manifest.chapters.map((chapter) => ({ ...chapter, ...tourSteps[chapter.id] }));
 
@@ -55,6 +60,8 @@ function ScrollVideo() {
 
       let near = false;
       let raf = 0;
+      let lastSeek = 0;
+      const candidates = videoCandidates();
       const span = manifest.frame_end - manifest.frame_start;
       const stage = root.querySelector<HTMLElement>(".tour-stage")!;
 
@@ -73,10 +80,19 @@ function ScrollVideo() {
         const progress = clamp01((stickyTop - root.getBoundingClientRect().top) / distance);
         const frame = manifest.frame_start + Math.round(progress * span);
 
-        // Seek to the wanted time, one seek at a time; each "seeked" event re-runs this and chases the latest position.
+        // Seek to the wanted time, one seek at a time and at most once per frame interval; each "seeked" event
+        // re-runs this and chases the latest position, and a throttled seek is retried on the next animation frame.
         if (video.readyState >= 1 && !video.seeking) {
           const target = Math.min(video.duration, (progress * span + 0.5) / manifest.fps);
-          if (Math.abs(video.currentTime - target) > 0.5 / manifest.fps) video.currentTime = target;
+          if (Math.abs(video.currentTime - target) > 0.5 / manifest.fps) {
+            const now = performance.now();
+            if (now - lastSeek >= MIN_SEEK_INTERVAL) {
+              lastSeek = now;
+              video.currentTime = target;
+            } else {
+              schedule();
+            }
+          }
         }
 
         let active = 0;
@@ -120,8 +136,14 @@ function ScrollVideo() {
       const preload = async () => {
         if (constrained) return;
         try {
-          const response = await fetch(videoUrl());
-          if (!response.ok) return;
+          let response: Response | undefined;
+          for (const candidate of candidates) {
+            try {
+              const attempt = await fetch(candidate);
+              if (attempt.ok) { response = attempt; break; }
+            } catch { /* try the next candidate */ }
+          }
+          if (!response) return;
           const url = URL.createObjectURL(await response.blob());
           if (disposed) { URL.revokeObjectURL(url); return; }
           // Swapping the source resets the video; loadedmetadata re-runs update(), which seeks back to the right frame.
@@ -142,7 +164,14 @@ function ScrollVideo() {
       // If the visitor is already here and the download has not finished, stream the file after a short grace period
       // instead of showing only the poster. Constrained connections stream straight away.
       let nearTimer = 0;
-      const stream = () => { if (!video.getAttribute("src")) video.src = videoUrl(); };
+      let streamIndex = 0;
+      const stream = () => { if (!video.getAttribute("src")) video.src = candidates[streamIndex]; };
+      // A streamed file that fails to load falls back to the next candidate (the optimized video).
+      const failed = () => {
+        if (blobUrl || streamIndex >= candidates.length - 1) return;
+        streamIndex += 1;
+        video.src = candidates[streamIndex];
+      };
       const observer = new IntersectionObserver(([entry]) => {
         near = entry.isIntersecting;
         if (!near) { window.clearTimeout(nearTimer); return; }
@@ -163,6 +192,7 @@ function ScrollVideo() {
       video.addEventListener("loadedmetadata", schedule);
       video.addEventListener("loadeddata", loaded);
       video.addEventListener("seeked", schedule);
+      video.addEventListener("error", failed);
       stop = () => {
         observer.disconnect();
         window.removeEventListener("scroll", schedule);
@@ -178,6 +208,7 @@ function ScrollVideo() {
         video.removeEventListener("loadedmetadata", schedule);
         video.removeEventListener("loadeddata", loaded);
         video.removeEventListener("seeked", schedule);
+        video.removeEventListener("error", failed);
         cancelAnimationFrame(raf);
       };
     };
@@ -204,7 +235,7 @@ function ScrollVideo() {
               className="tour-video"
               muted
               playsInline
-              preload="auto"
+              preload="metadata"
               disablePictureInPicture
               disableRemotePlayback
               tabIndex={-1}
