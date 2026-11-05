@@ -6,9 +6,12 @@
  *   factories that animate child elements in from the top or bottom on first reveal.
  *   The observer disconnects after the first intersection so the animation fires
  *   once and never reverses.
+ * - Respects "Reduce motion": if the visitor has it on, content shows right away
+ *   with no movement.
  */
 
 import { CSSProperties, useEffect, useRef, useState } from "react";
+import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
 
 interface ScrollRevealOptions {
     threshold?: number;
@@ -26,20 +29,22 @@ interface ScrollReveal<T extends HTMLElement> {
 
 export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
     threshold = 0.15,
-    distance = "32px",
-    duration = "0.7s",
-    easing = "ease-out",
+    distance = "24px",
+    duration = "0.6s",
+    easing = "cubic-bezier(0.2, 0.8, 0.2, 1)",
 }: ScrollRevealOptions = {}): ScrollReveal<T> {
     const ref = useRef<T>(null);
-    const [inView, setInView] = useState(false);
+    const [observedInView, setObservedInView] = useState(false);
+    const reducedMotion = usePrefersReducedMotion();
+    const inView = observedInView || reducedMotion;
 
     useEffect(() => {
         const el = ref.current;
-        if (!el) return;
+        if (!el || reducedMotion) return;
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    setInView(true);
+                    setObservedInView(true);
                     observer.disconnect();
                 }
             },
@@ -47,7 +52,7 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
         );
         observer.observe(el);
         return () => observer.disconnect();
-    }, [threshold]);
+    }, [threshold, reducedMotion]);
 
     const transition = `opacity ${duration} ${easing}, transform ${duration} ${easing}`;
 

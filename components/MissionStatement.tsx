@@ -3,55 +3,37 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export default function MissionStatement() {
-    const { ref, fadeTop } = useScrollReveal();
-    return (
-        // Commented out below code to remove overlay that clashes with background
-        // <section className="relative bg-[#04060f] text-white overflow-hidden py-32 px-6">
-        // One line below is its replacement.
-        <section>
+  const { ref, fadeTop } = useScrollReveal();
+  return (
+    <section className="px-6 pt-16 md:px-8 md:pt-24">
+      <div ref={ref} className="mx-auto max-w-[1200px]">
+        <h1 style={fadeTop(0)} className="text-display text-sapphire">
+          The answer is clear.
+        </h1>
 
-            {/* Disabling top right glow near mission statement for now. */}
-            {/* Glow — right side for variety */}
-            {/* <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                    background:
-                        "radial-gradient(ellipse 65% 55% at 80% 55%, rgba(22,65,185,0.75) 0%, rgba(12,35,110,0.35) 45%, transparent 70%)",
-                }}
-            /> */}
-
-            <div ref={ref} className="relative z-10 max-w-6xl mx-auto">
-                <p style={fadeTop(0)} className="text-xs uppercase tracking-[0.3em] text-blue-400 font-semibold mb-4">
-                    Mission Statement
-                </p>
-
-                <div style={fadeTop(0.1)} className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6">
-                    No Crew.{" "}
-                    <span
-                        className="text-transparent bg-clip-text"
-                        style={{ backgroundImage: "linear-gradient(90deg, #4f8eff 0%, #a5c0ff 100%)" }}
-                    >
-                        No Tether.{" "}
-                    </span>
-                    <br></br>
-                    No Compromise.
-                </div>
-
-                <div style={fadeTop(0.2)} className="w-16 h-[2px] bg-blue-500 mb-1" />
-
-                <div className="space-y-5 text-gray-300 text-lg leading-relaxed flex justify-center items-center">
-                    <p className="max-w-3xl my-12">
-                        At Gagamba, we aren't just cleaning windows; we are engineering a safer, greener, and more efficient future for high-rise property maintenance.
-                        By deploying advanced drone technology, we eliminate the need for traditional at-height crews, ensuring that human lives are never put at risk on
-                        dangerous high-rise structures.
-                        <br></br>
-                        <br></br>
-                        Our EPA 608, OSHA 10 Construction, OSHA 10 Manufacturing, and forklift led engineering team is qualified to work through a FAA part 107 license.
-                        Utilizing eco-friendly design to minimize our environmental impact, our drone uses AI-powered software, calculating optimal cleaning patterns
-                        to maximize efficiency and conserving up to 29 times more water than current cleaning drones in the market.
-                    </p>
-                </div>
-            </div>
-        </section>
-    );
+        <div className="mt-8 max-w-[62ch] space-y-6 text-body md:text-lg">
+          <p style={fadeTop(0.1)}>
+            Inspired by crystals and spiders, Gagamba UAS is redefining what it
+            means for a drone company to be both trustworthy and innovative.
+            Drone companies often earn trust through strength, speed,
+            adaptability, or durability. Gagamba UAS earns it through clarity of
+            strategy: lower cost, human connection, materials, autonomy, and
+            environmental consciousness.
+          </p>
+          <p style={fadeTop(0.2)}>
+            &quot;Gagamba&quot; means &quot;spider&quot; in Tagalog. Rather than
+            the spider itself, we focus on its webbing. Spidroins, the main
+            proteins in spider silk, contain crystalline structures that make
+            webbing flexible, durable, and strong, which is why spiders trust it
+            to catch prey, move, and build their homes.
+          </p>
+          <p style={fadeTop(0.3)}>
+            Gagamba UAS is more than drones. We strategically improve our
+            clients&apos; businesses through automation and improve human
+            quality of life along the way.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
 }
