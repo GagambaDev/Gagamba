@@ -1,7 +1,14 @@
-export default function FormLabel({ label }: { label: string }) {
+type FormLabelProps = {
+  label: string;
+  htmlFor: string;
+  required?: boolean;
+};
+
+export default function FormLabel({ label, htmlFor, required = false }: FormLabelProps) {
   return (
-    <p className="text-sm font-medium text-white/70 tracking-wide">
+    <label htmlFor={htmlFor} className="block font-body text-sm font-semibold text-onyx">
       {label}
-    </p>
+      {required && <span className="text-onyx-70"> (required)</span>}
+    </label>
   );
 }

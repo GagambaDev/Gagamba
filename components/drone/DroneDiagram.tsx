@@ -50,7 +50,7 @@ const DRONE_PARTS: DronePart[] = [
 export default function DroneDiagram() {
   const { ref, fadeTop } = useScrollReveal();
   return (
-    <section className="relative text-white overflow-hidden py-32 px-6">
+    <section id="meet-gagamba" className="relative text-white overflow-hidden py-32 px-6">
 
       {/* Glow — left side, echoing the Hero */}
       <div

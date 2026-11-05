@@ -1,7 +1,4 @@
-import { Space_Grotesk } from "next/font/google";
 import { TourContentProps } from "@/lib/types";
-
-const spaceGrotesk = Space_Grotesk({ subsets: ['latin']});
 
 export default function TourContent ({title, copy, isIntro}: TourContentProps) {
   return (
@@ -12,7 +9,7 @@ export default function TourContent ({title, copy, isIntro}: TourContentProps) {
       >
         {title}
       </h3>
-      <p className={`${spaceGrotesk.className} mt-2 text-sm leading-6 text-[#D5D2F7]/85 sm:mt-3 md:text-base md:leading-7`}>
+      <p className="mt-2 text-sm leading-6 text-[#D5D2F7]/85 sm:mt-3 md:text-base md:leading-7">
         {copy}
       </p>
     </div>

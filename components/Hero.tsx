@@ -1,68 +1,52 @@
-"use client";
-
 import Image from "next/image";
-import Link from "next/link";
+import HeroBackground from "./HeroBackground";
 import PrimaryButton from "./PrimaryButton";
-import PageTitle from "./PageTitle";
-import Subtitle from "./Subtitle";
-import AboutUs from "./AboutUs";
-import DroneDiagram from "./drone/DroneDiagram";
-import ProblemVsSolution from "./ProblemVsSolution";
-import SocialProof from "./SocialProof";
+import SecondaryButton from "./SecondaryButton";
 
 export default function Hero() {
   return (
-    <>
-      <section className="flex min-h-screen flex-col items-center justify-center bg-background text-white text-center px-4 relative overflow-hidden">
+    <section className="relative flex min-h-[calc(100svh-var(--header-height))] items-center overflow-hidden">
+      <HeroBackground />
 
-        {/* Single unified glow — center, bleeds into black */}
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 75% 65% at 48% 54%, rgba(22,65,185,0.9) 0%, rgba(12,35,110,0.4) 45%, transparent 70%)" }} />
-
-        {/* Grid overlay: Adjust opacity and backgroundSize to tune grid visibility and density */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, rgb(0,170,255,1) 1.5px, transparent 1.5px), \
-              linear-gradient(rgba(0,170,255,0.25) 1px, transparent 1px), \
-              linear-gradient(90deg, rgba(0,170,255,0.25) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-            backgroundPosition: "-32px -32px, 0 0, 0 0",
-          }}
-        />
-
-        <div className="relative z-10 max-w-3xl flex flex-col items-center">
-
-          {/* Logo */}
-          <div className="relative -mb-7">
-            <Image
-              src="/images/gagamba_logo.png"
-              alt="Gagamba Logo"
-              width={180}
-              height={180}
-              className="brightness-160"
-            />
-          </div>
-
-          <div className="mt-5">
-            <PageTitle prefix="" highlight="GAGAMBA" />
-          </div>
-
-          <div className="mt-4">
-            <Subtitle normal="No Crew. No Tether." highlight="No Compromise." />
-          </div>
-
-          <Link href="/contact" className="mt-7">
-            <PrimaryButton message="Get a Quote" />
-          </Link>
+      <div className="relative mx-auto grid w-full max-w-300 grid-cols-1 gap-10 px-6 py-16 lg:grid-cols-12 lg:items-center lg:gap-6 lg:px-8 lg:py-30">
+        <div className="flex justify-center lg:col-span-5">
+          <Image
+            src="/brand/icon-sapphire.svg"
+            alt=""
+            width={440}
+            height={428}
+            preload
+            className="h-auto w-[clamp(160px,30vw,440px)]"
+          />
         </div>
-      </section>
 
-      <AboutUs />
-      <DroneDiagram />
-      <ProblemVsSolution />
-      <SocialProof />
-    </>
+        <div className="lg:col-span-6 lg:col-start-7">
+          <h1>
+            <Image
+              src="/brand/wordmark-sapphire.svg"
+              alt="Gagamba UAS"
+              width={520}
+              height={100}
+              preload
+              className="h-auto w-[clamp(240px,34vw,520px)]"
+            />
+          </h1>
+
+          <p className="mt-6 max-w-[34ch] text-body-lg text-balance text-onyx">
+            Gagamba UAS builds autonomous, tetherless drones that clean{" "}
+            <span className="whitespace-nowrap">high-rise</span> windows with no
+            crew and a fraction of the water.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-4">
+            <PrimaryButton label="Get a Quote" href="/contact" />
+            {/* White backing keeps the label readable as the shards drift behind it */}
+            <div className="flex bg-white">
+              <SecondaryButton label="See how it works" href="#meet-gagamba" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
