@@ -10,7 +10,7 @@ const DRONE_PARTS: DronePart[] = [
     title: 'Propellers',
     down: '42%', // % down from top edge of image
     right: '15%', // % right from left edge of image
-    tourCopy: 'Eight coaxial propellers generate the lift and redundancy needed to carry the full 66 lb system and remain airborne even with a single motor failure.',
+    tourCopy: 'Four high-thrust propellers deliver the powerful lift and precision thrust control needed to carry the full 66 lb system while maintaining rock-solid stability against facade winds.',
     spotlightRadius: '18%',
   },
   {
