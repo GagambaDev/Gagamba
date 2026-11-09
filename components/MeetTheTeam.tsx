@@ -89,7 +89,7 @@ export default function MeetTheTeam() {
     <section id="founders" className="px-6 pt-16 md:px-8 md:pt-30">
       <div ref={ref} className="mx-auto max-w-[1200px]">
         <h2 style={fadeTop(0)} className="text-h2 text-sapphire">
-          Founders
+          Founding Team
         </h2>
 
         <div style={fadeTop(0.1)} className="relative mt-6">
@@ -176,7 +176,8 @@ export default function MeetTheTeam() {
                   <p className="mt-4 text-lg font-semibold">
                     {person.name}
                   </p>
-                  <p className="text-small text-onyx-70">
+                  {/* whitespace-pre-line shows a "\n" in a role (see lib/team.ts) as a line break */}
+                  <p className="whitespace-pre-line text-small text-onyx-70">
                     {member.role}
                   </p>
                 </li>

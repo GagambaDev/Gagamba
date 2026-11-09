@@ -90,7 +90,7 @@ export const teams: Team[] = [
       { person: "vaughnGuintu", role: "Chief Executive Officer (CEO)" },
       { person: "edwinAlvarez", role: "Chief Operating Officer (COO)" },
       { person: "reaseyYou", role: "Chief Financial Officer (CFO)" },
-      { person: "khristianOrdonio", role: "Chief Product Officer (CPO)" },
+      { person: "khristianOrdonio", role: "Chief Policy Officer (CPO)" },
     ],
   },
   {
@@ -110,7 +110,6 @@ export const teams: Team[] = [
     id: "outreach",
     name: "Outreach",
     members: [
-      { person: "reaseyYou", role: "Outreach Lead", lead: true },
       { person: "nateTran", role: "Outreach" },
       { person: "cindyDao", role: "Outreach" },
       { person: "callieTaylor", role: "Outreach" },
@@ -121,7 +120,6 @@ export const teams: Team[] = [
     id: "finance",
     name: "Finance",
     members: [
-      { person: "reaseyYou", role: "Finance Lead", lead: true },
       { person: "aarashGohari", role: "Finance" },
       { person: "aliceDao", role: "Finance" },
       { person: "maddoxDolor", role: "Finance" },
@@ -144,20 +142,20 @@ export const teams: Team[] = [
     id: "wall-interface",
     name: "Wall Interface",
     members: [
-      { person: "edwinAlvarez", role: "Wall Interface Lead", lead: true },
-      { person: "ashlynnRingham", role: "Wall Interface" },
-      { person: "christianCaingcoy", role: "Wall Interface" },
-      { person: "jettJoncich", role: "Wall Interface" },
-      { person: "reaseyYou", role: "Wall Interface" },
+      { person: "edwinAlvarez", role: "Wall Interface System\nLead Engineer", lead: true },
+      { person: "ashlynnRingham", role: "Wall Interface System Engineer" },
+      { person: "christianCaingcoy", role: "Wall Interface System Engineer" },
+      { person: "jettJoncich", role: "Wall Interface System Engineer" },
+      { person: "reaseyYou", role: "Wall Interface System Engineer" },
     ],
   },
   {
     id: "drone-bay",
     name: "Drone Bay",
     members: [
-      { person: "nathanielOrdonio", role: "Drone Bay Lead", lead: true },
-      { person: "callieTaylor", role: "Drone Bay" },
-      { person: "maddoxDolor", role: "Drone Bay" },
+      { person: "nathanielOrdonio", role: "Drone Bay Lead Engineer", lead: true },
+      { person: "callieTaylor", role: "Drone Bay Engineer" },
+      { person: "maddoxDolor", role: "Drone Bay Engineer" },
     ],
   },
 ];
