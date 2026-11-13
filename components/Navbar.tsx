@@ -11,6 +11,8 @@ const NAV_LINKS = [
   { href: "/contact", label: "Contact" },
 ];
 
+const DONATE_URL = "https://www.gofundme.com/f/ggbprototype";
+
 const SCROLL_THRESHOLD = 8;
 const DESKTOP_QUERY = "(min-width: 768px)";
 
@@ -89,45 +91,60 @@ export default function Navbar() {
           />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              aria-current={isActive(href) ? "page" : undefined}
-              className={`text-body font-medium transition-colors duration-200 ${
-                isActive(href)
-                  ? "text-sapphire underline decoration-2 underline-offset-6"
-                  : "text-onyx hover:text-sapphire"
-              }`}
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
+        <div className="flex items-center gap-3 md:gap-8">
+          <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
+            {NAV_LINKS.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                aria-current={isActive(href) ? "page" : undefined}
+                className={`text-body font-medium transition-colors duration-200 ${
+                  isActive(href)
+                    ? "text-sapphire underline decoration-2 underline-offset-6"
+                    : "text-onyx hover:text-sapphire"
+                }`}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
 
-        {/* The negative margin lines the icon up with the page edge while keeping the 44px tap area */}
-        <button
-          ref={menuButtonRef}
-          type="button"
-          onClick={() => setOpen((isOpen) => !isOpen)}
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          className="-mr-2.5 flex size-11 cursor-pointer items-center justify-center text-onyx md:hidden"
-        >
-          <svg
-            aria-hidden="true"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="square"
+          {/* Shown at every width, so on phones it sits beside the menu button instead of inside the menu.
+              A shorter version of PrimaryButton (40px tall) so it fits the 72px header. */}
+          <a
+            href={DONATE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+            className="inline-flex h-10 items-center justify-center bg-sapphire px-4 text-[15px] font-semibold text-white transition-colors duration-200 hover:bg-tanzanite active:bg-tanzanite md:px-5"
           >
-            {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
-          </svg>
-        </button>
+            Donate
+            <span className="sr-only"> (opens in a new tab)</span>
+          </a>
+
+          {/* The negative margin lines the icon up with the page edge while keeping the 44px tap area */}
+          <button
+            ref={menuButtonRef}
+            type="button"
+            onClick={() => setOpen((isOpen) => !isOpen)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            className="-mr-2.5 flex size-11 cursor-pointer items-center justify-center text-onyx md:hidden"
+          >
+            <svg
+              aria-hidden="true"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="square"
+            >
+              {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {open && (
