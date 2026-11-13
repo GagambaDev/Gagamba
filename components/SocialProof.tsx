@@ -34,7 +34,7 @@ export default function SocialProof() {
     const { ref, fadeTop, fadeBottom } = useScrollReveal();
 
     return (
-        <section id="partners" className="bg-white px-6 py-16 md:px-8 md:py-30">
+        <section id="partners" className="bg-white px-6 py-12 md:px-8 md:py-20">
             <div ref={ref} className="mx-auto max-w-[1200px] text-center">
                 <h2 style={fadeTop(0)} className="text-h2 text-sapphire">
                     Our Partners

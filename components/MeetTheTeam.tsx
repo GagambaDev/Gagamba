@@ -86,7 +86,7 @@ export default function MeetTheTeam() {
   };
 
   return (
-    <section id="founders" className="px-6 pt-16 md:px-8 md:pt-30">
+    <section id="founders" className="px-6 pt-12 md:px-8 md:pt-20">
       <div ref={ref} className="mx-auto max-w-[1200px]">
         <h2 style={fadeTop(0)} className="text-h2 text-sapphire">
           Founding Team
