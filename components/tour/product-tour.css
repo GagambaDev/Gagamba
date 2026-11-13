@@ -128,7 +128,7 @@
 }
 
 @media (min-width: 768px) {
-  .tour-sequence { padding: 7.5rem 2rem; }
+  .tour-sequence { padding: 5rem 2rem; }
   .tour-copy, .tour-chapters p { font-size: 1.125rem; }
   .tour-chapters { grid-template-columns: repeat(2, 1fr); gap: 3.5rem 4rem; margin-top: 4rem; }
 

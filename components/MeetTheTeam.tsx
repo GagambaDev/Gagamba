@@ -3,7 +3,7 @@
 import { useEffect, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { getInitials, people, sortMembers, teams, type Person } from "@/lib/team";
+import { people, sortMembers, teams, type Person } from "@/lib/team";
 
 // Which team the link points to, e.g. "software" for /about#founders-software (null if none)
 function getLinkedTeamId(): string | null {
@@ -86,7 +86,7 @@ export default function MeetTheTeam() {
   };
 
   return (
-    <section id="founders" className="px-6 pt-16 md:px-8 md:pt-30">
+    <section id="founders" className="px-6 pt-12 md:px-8 md:pt-20">
       <div ref={ref} className="mx-auto max-w-[1200px]">
         <h2 style={fadeTop(0)} className="text-h2 text-sapphire">
           Founding Team
@@ -153,7 +153,7 @@ export default function MeetTheTeam() {
               const person: Person = people[member.person];
               return (
                 <li key={member.person}>
-                  {/* The headshot and initials are hidden from screen readers (empty alt / aria-hidden)
+                  {/* The headshot and logo are hidden from screen readers (empty alt)
                       because the name is right below, so it would otherwise be read twice */}
                   <div className="relative aspect-square bg-pearl">
                     {person.headshot ? (
@@ -165,12 +165,14 @@ export default function MeetTheTeam() {
                         className="object-cover"
                       />
                     ) : (
-                      <span
-                        aria-hidden="true"
-                        className="absolute inset-0 flex items-center justify-center font-heading text-5xl font-semibold text-sapphire"
-                      >
-                        {getInitials(person.name)}
-                      </span>
+                      // Stand-in until their headshot arrives
+                      <Image
+                        src="/brand/icon-sapphire.svg"
+                        alt=""
+                        width={440}
+                        height={428}
+                        className="absolute inset-0 m-auto h-auto w-2/5"
+                      />
                     )}
                   </div>
                   <p className="mt-4 text-lg font-semibold">
