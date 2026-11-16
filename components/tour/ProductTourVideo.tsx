@@ -10,14 +10,21 @@ import "./product-tour-video.css";
 // Video version of the drone tour. Same layout, copy and rail as ProductTour, but scroll scrubs one MP4 instead of
 // swapping 480 WebP frames. The base may be an absolute CDN URL.
 const assetBase = (process.env.NEXT_PUBLIC_TOUR_ASSET_BASE || "/images/tour").replace(/\/$/, "");
-// Full 2560x1440 render for desktop, optimized 960x540 for phones. Both are 24 s at 30 FPS with identical timing,
+// 1920x1080 for desktop, optimized 960x540 for phones. Both are 24 s at 30 FPS with identical timing,
 // so the same time maps to the same frame. Desktop falls back to the optimized file if the full render is unavailable.
+// The desktop file is encoded for scrubbing: every frame is a keyframe and there are no B-frames, so any seek decodes
+// a single frame (~8 ms instead of ~37 ms with the original 30-frame keyframe spacing). Re-encode new renders with:
+//   ffmpeg -i render.mp4 -vf scale=1920:1080:flags=lanczos -c:v libx264 -preset slow -crf 23 -g 1 -keyint_min 1
+//     -sc_threshold 0 -bf 0 -pix_fmt yuv420p -movflags +faststart -an gagamba-tour.mp4
 const mobileUrl = `${assetBase}/video/gagamba-tour-mobile.mp4`;
 const fullUrl = `${assetBase}/video/gagamba-tour.mp4`;
 // Picked once per load (never on resize) so crossing the breakpoint does not reload the video.
 const videoCandidates = () => (window.innerWidth < 768 ? [mobileUrl] : [fullUrl, mobileUrl]);
 // Fastest rate at which currentTime is rewritten: one frame at 30 FPS.
 const MIN_SEEK_INTERVAL = 1000 / 30;
+// Instead of jumping straight to the scroll position (a mouse wheel moves ~100px per notch, which skips frames),
+// the shown position closes this share of the remaining gap every 60 Hz frame, so each notch becomes a short glide.
+const SMOOTHING = 0.15;
 const posterUrl = `${assetBase}/desktop/frame_${String(manifest.frame_start).padStart(manifest.padding, "0")}.webp`;
 const chapters = manifest.chapters.map((chapter) => ({ ...chapter, ...tourSteps[chapter.id] }));
 
@@ -28,6 +35,28 @@ const TEXT_FADE = 0.2;
 const TEXT_TRAVEL = 24;
 
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
+
+// Every chapter gets the same share of the scroll, however long its part of the video is
+// (Spray and Squeegee runs 12 s against 2 s for most others, so it simply plays faster as you scroll).
+const SHARE = 1 / chapters.length;
+const chapterLength = (chapter: (typeof chapters)[number]) => chapter.end_frame - chapter.start_frame + 1;
+
+// Which chapter a scroll position (0 to 1) is in, and how far through that chapter's share it is (0 to 1)
+function chapterAt(progress: number) {
+  const index = Math.min(chapters.length - 1, Math.floor(progress / SHARE));
+  return { index, local: progress / SHARE - index };
+}
+
+// The video position, in frames from the first frame, for a scroll position
+function frameOffsetAt(progress: number) {
+  const { index, local } = chapterAt(progress);
+  const chapter = chapters[index];
+  const start = chapter.start_frame - manifest.frame_start;
+  return Math.min(manifest.frame_end - manifest.frame_start, start + local * chapterLength(chapter));
+}
+
+// A quarter of a frame in the chapter that packs the most frames into its share; closer than this counts as arrived
+const ARRIVED = (0.25 * SHARE) / Math.max(...chapters.map(chapterLength));
 
 function TourChips({ chips }: { chips: string[] }) {
   if (!chips.length) return null;
@@ -62,7 +91,6 @@ function ScrollVideo() {
       let raf = 0;
       let lastSeek = 0;
       const candidates = videoCandidates();
-      const span = manifest.frame_end - manifest.frame_start;
       const stage = root.querySelector<HTMLElement>(".tour-stage")!;
 
       // Layout numbers only change on resize, so measure them there instead of on every scroll frame.
@@ -74,16 +102,37 @@ function ScrollVideo() {
         distance = Math.max(1, root.offsetHeight - stage.offsetHeight);
       };
 
-      const update = () => {
+      // The eased position actually shown (-1 until the first update), and when it last moved.
+      let shown = -1;
+      let lastStep = 0;
+
+      const update = (now: number = performance.now()) => {
         raf = 0;
-        if (!near || document.hidden) return;
-        const progress = clamp01((stickyTop - root.getBoundingClientRect().top) / distance);
-        const frame = manifest.frame_start + Math.round(progress * span);
+        if (!near || document.hidden) {
+          lastStep = 0;
+          return;
+        }
+        const scrolled = clamp01((stickyTop - root.getBoundingClientRect().top) / distance);
+        if (shown < 0) {
+          shown = scrolled;
+        } else {
+          // Frame-rate independent: a 120 Hz screen takes two smaller steps where a 60 Hz one takes one.
+          const elapsed = lastStep ? Math.min(100, now - lastStep) : 1000 / 60;
+          shown += (scrolled - shown) * (1 - Math.pow(1 - SMOOTHING, elapsed / (1000 / 60)));
+        }
+        // Within a quarter frame counts as arrived; otherwise keep gliding on the next animation frame.
+        if (Math.abs(scrolled - shown) < ARRIVED) {
+          shown = scrolled;
+          lastStep = 0;
+        } else {
+          lastStep = now;
+          schedule();
+        }
 
         // Seek to the wanted time, one seek at a time and at most once per frame interval; each "seeked" event
         // re-runs this and chases the latest position, and a throttled seek is retried on the next animation frame.
         if (video.readyState >= 1 && !video.seeking) {
-          const target = Math.min(video.duration, (progress * span + 0.5) / manifest.fps);
+          const target = Math.min(video.duration, (frameOffsetAt(shown) + 0.5) / manifest.fps);
           if (Math.abs(video.currentTime - target) > 0.5 / manifest.fps) {
             const now = performance.now();
             if (now - lastSeek >= MIN_SEEK_INTERVAL) {
@@ -95,12 +144,11 @@ function ScrollVideo() {
           }
         }
 
-        let active = 0;
+        const { index: active } = chapterAt(shown);
         overlay.querySelectorAll<HTMLElement>("[data-chapter]").forEach((element, index) => {
-          const chapter = chapters[index];
-          const length = chapter.end_frame - chapter.start_frame + 1;
-          const local = (frame - chapter.start_frame) / length;
-          if (local >= 0 && local < 1) active = index;
+          // How far through this chapter's equal share the scroll is (below 0 = not reached, 1 or more = passed).
+          // The last chapter stays at its end (just under 1) once the scroll reaches the bottom.
+          const local = Math.min(shown / SHARE - index, index === chapters.length - 1 ? 0.999 : Infinity);
           // Rises into place, then lifts away; the first and last steps never fade in from / out to nothing.
           const enter = index === 0 ? 1 : clamp01(local / TEXT_FADE);
           const exit = index === chapters.length - 1 ? 1 : clamp01((1 - local) / TEXT_FADE);
@@ -115,12 +163,13 @@ function ScrollVideo() {
         });
       };
       const schedule = () => { if (!raf) raf = requestAnimationFrame(update); };
-      const resize = () => { measure(); schedule(); };
+      // A resize changes the scroll distance, so snap to the new position instead of gliding across it.
+      const resize = () => { measure(); shown = -1; schedule(); };
       const jump = (event: MouseEvent) => {
         const button = (event.target as Element).closest<HTMLElement>("[data-step]");
         if (!button) return;
-        const chapter = chapters[Number(button.dataset.step)];
-        const progress = chapter.scroll_start + (chapter.scroll_end - chapter.scroll_start) * (chapter.id === 1 ? 0 : RAIL_LANDING);
+        const index = Number(button.dataset.step);
+        const progress = (index + (index === 0 ? 0 : RAIL_LANDING)) * SHARE;
         const rootTop = root.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({ top: rootTop - stickyTop + progress * distance, behavior: "smooth" });
       };
@@ -174,7 +223,8 @@ function ScrollVideo() {
       };
       const observer = new IntersectionObserver(([entry]) => {
         near = entry.isIntersecting;
-        if (!near) { window.clearTimeout(nearTimer); return; }
+        // Coming back from far away should snap to the right frame, not glide from wherever it was left.
+        if (!near) { window.clearTimeout(nearTimer); shown = -1; return; }
         if (!video.getAttribute("src")) {
           if (constrained) stream();
           else nearTimer = window.setTimeout(stream, 4000);

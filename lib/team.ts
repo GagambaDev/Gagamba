@@ -1,8 +1,8 @@
 // Everyone shown in the Founders section of the About page, and the teams they're on.
 //
-// To add a headshot: save it as public/images/headshots/first-last.png (square, 800x800)
-// and add `headshot: "/images/headshots/first-last.png"` to that person below.
-// People without a headshot show their initials instead.
+// To add a headshot: save it as public/images/headshots/first-last.jpg (square, 800x800)
+// and add `headshot: "/images/headshots/first-last.jpg"` to that person below.
+// People without a headshot show the Gagamba logo as a stand-in.
 
 export interface Person {
   name: string;
@@ -11,32 +11,31 @@ export interface Person {
 }
 
 export const people = {
-  aarashGohari: { name: "Aarash Gohari", lastName: "Gohari", headshot: "/images/headshots/aarash-gohari.png" },
-  adrianOrtega: { name: "Adrian Ortega", lastName: "Ortega" },
-  aliceDao: { name: "Alice Dao", lastName: "Dao" },
-  andreTiu: { name: "Andre Tiu", lastName: "Tiu" },
-  andrewL: { name: "Andrew L.", lastName: "L" },
-  ashlynnRingham: { name: "Ashlynn Ringham", lastName: "Ringham" },
-  callieTaylor: { name: "Callie Taylor", lastName: "Taylor" },
-  christianCaingcoy: { name: "Christian Caingcoy", lastName: "Caingcoy" },
-  cindyDao: { name: "Cindy Dao", lastName: "Dao" },
+  aarashGohari: { name: "Aarash Gohari", lastName: "Gohari", headshot: "/images/headshots/aarash-gohari.jpg" },
+  adrianOrtega: { name: "Adrian Ortega", lastName: "Ortega", headshot: "/images/headshots/adrian-ortega.jpg" },
+  aliceDao: { name: "Alice Dao", lastName: "Dao", headshot: "/images/headshots/alice-dao.jpg" },
+  andreTiu: { name: "Andre Tiu", lastName: "Tiu", headshot: "/images/headshots/andre-tiu.jpg" },
+  andrewL: { name: "Andrew L.", lastName: "L", headshot: "/images/headshots/andrew-l.jpg" },
+  ashlynnRingham: { name: "Ashlynn Ringham", lastName: "Ringham", headshot: "/images/headshots/ashlynn-ringham.jpg" },
+  christianCaingcoy: { name: "Christian Caingcoy", lastName: "Caingcoy", headshot: "/images/headshots/christian-caingcoy.jpg" },
+  cindyDao: { name: "Cindy Dao", lastName: "Dao", headshot: "/images/headshots/cindy-dao.jpg" },
   danielLopez: { name: "Daniel Lopez", lastName: "Lopez" },
-  edwinAlvarez: { name: "Edwin Alvarez", lastName: "Alvarez" },
-  henokWondem: { name: "Henok Wondem", lastName: "Wondem" },
-  jettJoncich: { name: "Jett Joncich", lastName: "Joncich" },
-  justinPanopio: { name: "Justin Panopio", lastName: "Panopio" },
-  kayraH: { name: "Kayra H.", lastName: "H" },
-  khristianOrdonio: { name: "Khristian Ordonio", lastName: "Ordonio", headshot: "/images/headshots/khristian-ordonio.png" },
-  maddoxDolor: { name: "Maddox Dolor", lastName: "Dolor", headshot: "/images/headshots/maddox-dolor.png" },
-  narekTonoyan: { name: "Narek (Tony) Tonoyan", lastName: "Tonoyan", headshot: "/images/headshots/narek-tonoyan.png" },
-  nateTran: { name: "Nate Tran", lastName: "Tran" },
-  nathanielOrdonio: { name: "Nathaniel (Yul) Ordonio", lastName: "Ordonio", headshot: "/images/headshots/nathaniel-ordonio.png" },
-  nicholasMartinez: { name: "Nicholas Martinez", lastName: "Martinez" },
-  patrickChiong: { name: "Patrick Chiong", lastName: "Chiong" },
-  reaseyYou: { name: "Reasey You", lastName: "You" },
-  ricardoVazquez: { name: "Ricardo Vazquez", lastName: "Vazquez" },
-  richiesHuynh: { name: "Richies Huynh", lastName: "Huynh", headshot: "/images/headshots/richies-huynh.png" },
-  vaughnGuintu: { name: "Vaughn Guintu", lastName: "Guintu", headshot: "/images/headshots/vaughn-guintu.png" },
+  edwinAlvarez: { name: "Edwin Alvarez", lastName: "Alvarez", headshot: "/images/headshots/edwin-alvarez.jpg" },
+  henokWondem: { name: "Henok Wondem", lastName: "Wondem", headshot: "/images/headshots/henok-wondem.jpg" },
+  jettJoncich: { name: "Jett Joncich", lastName: "Joncich", headshot: "/images/headshots/jett-joncich.jpg" },
+  justinPanopio: { name: "Justin Panopio", lastName: "Panopio", headshot: "/images/headshots/justin-panopio.jpg" },
+  kayraH: { name: "Kayra H.", lastName: "H", headshot: "/images/headshots/kayra-h.jpg" },
+  khristianOrdonio: { name: "Khristian Ordonio", lastName: "Ordonio", headshot: "/images/headshots/khristian-ordonio.jpg" },
+  maddoxDolor: { name: "Maddox Dolor", lastName: "Dolor", headshot: "/images/headshots/maddox-dolor.jpg" },
+  narekTonoyan: { name: "Narek (Tony) Tonoyan", lastName: "Tonoyan", headshot: "/images/headshots/narek-tonoyan.jpg" },
+  nateTran: { name: "Nate Tran", lastName: "Tran", headshot: "/images/headshots/nate-tran.jpg" },
+  nathanielOrdonio: { name: "Nathaniel (Yul) Ordonio", lastName: "Ordonio", headshot: "/images/headshots/nathaniel-ordonio.jpg" },
+  nicholasMartinez: { name: "Nicholas Martinez", lastName: "Martinez", headshot: "/images/headshots/nicholas-martinez.jpg" },
+  patrickChiong: { name: "Patrick Chiong", lastName: "Chiong", headshot: "/images/headshots/patrick-chiong.jpg" },
+  reaseyYou: { name: "Reasey You", lastName: "You", headshot: "/images/headshots/reasey-you.jpg" },
+  ricardoVazquez: { name: "Ricardo Vazquez", lastName: "Vazquez", headshot: "/images/headshots/ricardo-vazquez.jpg" },
+  richiesHuynh: { name: "Richies Huynh", lastName: "Huynh", headshot: "/images/headshots/richies-huynh.jpg" },
+  vaughnGuintu: { name: "Vaughn Guintu", lastName: "Guintu", headshot: "/images/headshots/vaughn-guintu.jpg" },
 } satisfies Record<string, Person>;
 
 export type PersonId = keyof typeof people;
@@ -66,21 +65,6 @@ export function sortMembers(members: TeamMember[]): TeamMember[] {
   });
 }
 
-// First letter of the first and last name, ignoring nicknames in parentheses.
-// "Narek (Tony) Tonoyan" -> "NT", "Kayra H." -> "KH"
-export function getInitials(name: string): string {
-  const words = name
-    .replace(/\(.*?\)/g, "")
-    .split(" ")
-    .filter((word) => word !== "");
-  const firstWord = words[0];
-  const lastWord = words[words.length - 1];
-  if (words.length === 1) {
-    return firstWord[0].toUpperCase();
-  }
-  return (firstWord[0] + lastWord[0]).toUpperCase();
-}
-
 // Tabs show in this order. Members can be listed in any order; they're sorted on screen.
 export const teams: Team[] = [
   {
@@ -97,8 +81,8 @@ export const teams: Team[] = [
     id: "software",
     name: "Software",
     members: [
-      { person: "narekTonoyan", role: "Software Lead", lead: true },
-      { person: "richiesHuynh", role: "Software Lead", lead: true },
+      { person: "narekTonoyan", role: "Lead Software Engineer", lead: true },
+      { person: "richiesHuynh", role: "Lead Software Engineer", lead: true },
       { person: "ricardoVazquez", role: "Software Developer" },
       { person: "justinPanopio", role: "Software Developer" },
       { person: "henokWondem", role: "Software Developer" },
@@ -112,7 +96,6 @@ export const teams: Team[] = [
     members: [
       { person: "nateTran", role: "Outreach" },
       { person: "cindyDao", role: "Outreach" },
-      { person: "callieTaylor", role: "Outreach" },
       { person: "nathanielOrdonio", role: "Outreach" },
     ],
   },
@@ -154,7 +137,6 @@ export const teams: Team[] = [
     name: "Drone Bay",
     members: [
       { person: "nathanielOrdonio", role: "Drone Bay Lead Engineer", lead: true },
-      { person: "callieTaylor", role: "Drone Bay Engineer" },
       { person: "maddoxDolor", role: "Drone Bay Engineer" },
     ],
   },

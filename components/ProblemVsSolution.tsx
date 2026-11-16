@@ -16,7 +16,7 @@ export default function ProblemVsSolution() {
     <section
       id="why-gagamba"
       aria-labelledby="why-gagamba-heading"
-      className="bg-white px-6 py-16 lg:px-8 lg:py-[120px]"
+      className="bg-white px-6 py-12 lg:px-8 lg:py-20"
     >
       <div ref={ref} className="mx-auto max-w-[1200px] text-center">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-0 lg:divide-x lg:divide-pearl">

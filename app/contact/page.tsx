@@ -60,7 +60,7 @@ export default function Contact() {
   };
 
   return (
-    <main className="bg-white px-6 py-16 lg:px-8 lg:py-[120px]">
+    <main className="bg-white px-6 py-12 lg:px-8 lg:py-20">
       <div ref={ref} className="mx-auto w-full max-w-[640px] text-left">
         <h1
           style={fadeTop(0)}

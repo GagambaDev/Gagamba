@@ -60,7 +60,7 @@ export default function MediaGallery() {
     const { ref, fadeTop } = useScrollReveal();
 
     return (
-        <section id="media-gallery" className="px-6 pt-12 pb-16 md:px-8 md:pt-16 md:pb-30">
+        <section id="media-gallery" className="px-6 pt-12 pb-12 md:px-8 md:pt-20 md:pb-20">
             <div ref={ref} className="mx-auto max-w-[1200px]">
                 <h2 style={fadeTop(0)} className="text-h2 text-sapphire">
                     Media Gallery
